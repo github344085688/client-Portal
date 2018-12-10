@@ -1,0 +1,40 @@
+.radio-btn{cursor: pointer; display: inline-block;}
+.option-checkbox {
+  margin-top: -8px;
+  appearance: none;
+  top: 9px;
+  width: 30px;
+  height: 30px;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block !important;
+  outline: none;
+  position: relative;
+  margin-right: 0.5rem;
+  z-index: 1000;
+  &:hover {
+    background: #9faab7;
+  }
+  &:checked {
+    background: #15223d;
+    &::after {
+      background: #15223d;
+      content: '';
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  &:checked::before {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    content: '\2713';
+    display: inline-block;
+    font-size: 22px;
+    text-align: center;
+    line-height: 30px;
+  }
+}

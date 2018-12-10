@@ -1,0 +1,76 @@
+.line-scale>div {
+  width: 4px;
+  height: 35px;
+  display: inline-block
+}
+
+.line-scale>div,
+ {
+  border-radius: 2px;
+  margin: 2px;
+  background-color: #a6aec8
+}
+
+.ball-zig-zag-deflect>div:first-child {
+  -webkit-animation: ball-zig-deflect 1.5s 0s infinite linear;
+  animation: ball-zig-deflect 1.5s 0s infinite linear
+}
+
+.ball-zig-zag-deflect>div:last-child {
+  -webkit-animation: ball-zag-deflect 1.5s 0s infinite linear;
+  animation: ball-zag-deflect 1.5s 0s infinite linear
+}
+
+@-webkit-keyframes line-scale {
+  0%,
+  100% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1)
+  }
+  50% {
+    -webkit-transform: scaley(.4);
+    transform: scaley(.4)
+  }
+}
+
+@keyframes line-scale {
+  0%,
+  100% {
+    -webkit-transform: scaley(1);
+    transform: scaley(1)
+  }
+  50% {
+    -webkit-transform: scaley(.4);
+    transform: scaley(.4)
+  }
+}
+
+.line-scale>div:nth-child(1) {
+  -webkit-animation: line-scale 1s -.4s infinite cubic-bezier(.2, .68, .18, 1.08);
+  animation: line-scale 1s -.4s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(2) {
+  -webkit-animation: line-scale 1s -.3s infinite cubic-bezier(.2, .68, .18, 1.08);
+  animation: line-scale 1s -.3s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(3) {
+  -webkit-animation: line-scale 1s -.2s infinite cubic-bezier(.2, .68, .18, 1.08);
+  animation: line-scale 1s -.2s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(4) {
+  -webkit-animation: line-scale 1s -.1s infinite cubic-bezier(.2, .68, .18, 1.08);
+  animation: line-scale 1s -.1s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div:nth-child(5) {
+  -webkit-animation: line-scale 1s 0s infinite cubic-bezier(.2, .68, .18, 1.08);
+  animation: line-scale 1s 0s infinite cubic-bezier(.2, .68, .18, 1.08)
+}
+
+.line-scale>div {
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both
+}

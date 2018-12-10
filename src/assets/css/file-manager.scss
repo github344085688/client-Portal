@@ -1,0 +1,82 @@
+.dropzone.hover .file-upload-container {
+	background-color: rgba(128, 128, 128, .3);
+}
+
+.file-upload-container {
+	border: 3px dashed;
+	padding: 20px 0;
+	text-align: center;
+	height: 135px;
+	font-size: .875rem;
+	position: relative;
+
+	.file-upload-select {
+		float: none;
+		margin: 15px auto 0 auto;
+	}
+}
+
+.file-name-list,
+.file-list {
+	height: 300px;
+	overflow: scroll;
+}
+
+.file-name-list {
+	li {
+		padding: 5px;
+		@include ellipsis();
+	}
+}
+
+.file-list {
+	padding: 10px 0;
+
+	li {
+		float: left;
+		width: 140px;
+		margin: 10px;
+
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.file {
+	position: relative;
+	cursor: pointer;
+
+	.file-overlay {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		display: none;	
+	}
+
+	&:hover .file-overlay {
+		display: block;
+		pointer-events: none;
+		padding: 5px;
+		text-align: center;
+
+		button {
+			pointer-events: auto;
+			width: 70%;
+			margin-bottom: 5px;
+			font-size: .75rem;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+
+			i {
+				position: absolute;
+				left: 7px;
+				top: 9px;
+			}
+		}
+	}
+}

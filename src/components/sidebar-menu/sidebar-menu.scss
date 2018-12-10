@@ -1,0 +1,175 @@
+.sidebar-menu {
+
+  .menu-tip {
+    height: 110px;
+    box-sizing: border-box;
+    padding: 17px 24px 50px 24px;
+    .unis-image {
+      float: left;
+      width: 88px; 
+      height: 36px;
+    }
+    .nav-line{
+      float: right;
+      width: 20px; 
+      height: 12px;
+      margin-top: 10px;
+    }
+  }
+ .module-title{
+   height: 37px;
+   color: #9D9E9F;
+   padding-left: 21px;
+ }
+  .open {
+    background: none;
+  }
+  .open>a:first-child span {
+    font-family: "AvenirNext-Bold";
+  }
+  .yellow-color {
+    color: #C9836C;
+    font-family: "AvenirNext-Regular" !important;
+  }
+  .yellow-bg {
+    width: 6px;
+    height: 35PX;
+    background-color: #C9836C;
+    position: absolute;
+    left: -20PX;
+    top: 50%;
+    margin-top: -17PX;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover,
+  .page-sidebar {
+    background: #2e323c;
+}
+  .nav-item {
+    padding-left: 20px !important;
+    position: relative;
+  }
+  .nav-item.has-img {
+    padding-left: 0px !important;
+  }
+  .page-sidebar .page-sidebar-menu>li,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0px;
+  }
+  .page-sidebar .page-sidebar-menu .sub-menu li,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu li {
+    background: none;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 1px !important;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li:last-child>a,
+  .page-sidebar .page-sidebar-menu>li:last-child>a {
+    border-bottom: 1px solid transparent !important;
+    line-height: 1.42857143;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a>i,
+  .page-sidebar .page-sidebar-menu>li>a>i {
+    color: #606C7D;
+  }
+  .page-sidebar .page-sidebar-menu>li>a,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a {
+    display: block;
+    position: relative;
+    margin: 0;
+    border: 0px;
+    padding: 10px 15px 10px 0;
+    text-decoration: none;
+    font-family: 'AvenirNext';
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    color: #9FA0A1;
+  }
+  .page-sidebar .nav-item .material-icons {
+    vertical-align: middle;
+    font-size: 20px;
+  }
+  .page-sidebar .page-sidebar-menu>li>a>i,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a>i {
+    font-size: 16px;
+    margin-right: 5px;
+    text-shadow: none;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li>a>.arrow:before,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li>a>.arrow.open:before,
+  .page-sidebar .page-sidebar-menu li>a>.arrow:before,
+  .page-sidebar .page-sidebar-menu li>a>.arrow.open:before {
+    color: #fff;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu>li:hover>a,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu>li.open>a,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu>li.active>a,
+  .page-sidebar .page-sidebar-menu .sub-menu>li:hover>a,
+  .page-sidebar .page-sidebar-menu .sub-menu>li.open>a,
+  .page-sidebar .page-sidebar-menu .sub-menu>li.active>a {
+    //  color: #f7b020;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu>li>a,
+  .page-sidebar .page-sidebar-menu .sub-menu>li>a {
+    color: #9FA0A1;
+  }
+  .page-sidebar .page-sidebar-menu .sub-menu li>a,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu li>a {
+    display: block;
+    margin: 0;
+    padding: 13px 15px 13px 0px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 300;
+    background: none;
+  }
+  .page-sidebar .page-sidebar-menu li>a,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu li>a {
+    position: relative;
+    line-height: 1.42857143;
+  }
+  .page-sidebar .sub-menu .material-icons {
+    font-size: 18px !important;
+  }
+   .sub-menu{
+    padding-left: 10px!important;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu>li>a>i,
+  .page-sidebar .page-sidebar-menu .sub-menu>li>a>i {
+    color: #606C7D;
+  }
+  h1 {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    color: inherit;
+    margin: .67em 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'AvenirNext';
+    font-weight: 300;
+  }
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li:hover>a,
+  .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li.open>a,
+  .page-sidebar .page-sidebar-menu>li:hover>a,
+  .page-sidebar .page-sidebar-menu>li.open>a {
+    // background: #2C3542;
+    color: #fff;
+  }
+  .page-content-wrapper {
+    margin-left: 220px;
+    padding-top: 50px;
+  }
+}

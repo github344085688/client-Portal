@@ -1,0 +1,14 @@
+.scroll-pager {
+  cursor: pointer;
+  text-align: center;
+  padding-top: 50px;
+  .loading-text {
+    display: inline-block;
+    width: 160px;
+    .text-center {
+      background: #f8f3f3;
+      padding: 5px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+    }
+  }
+}

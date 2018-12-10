@@ -1,0 +1,78 @@
+.progressbar-container {
+  position: relative;
+  right: 0;
+  top: 0;
+  padding: 30px 10px;
+  li {
+    float:left;
+    width:33%;
+    text-align: center;
+  }
+  >ul>li{
+    font-family: AvenirNext-Medium;
+  }
+}
+
+.progressbar {
+  counter-reset: step;
+}
+
+.progressbar li {
+  list-style-type: none;
+  width: 33%;
+  float: left;
+  font-size: 14px;
+  position: relative;
+  text-align: center;
+  color: #15223d;
+}
+
+.progressbar li:before {
+  width: 30px;
+  height: 30px;
+  content: '';
+  counter-increment: step;
+  line-height: 30px;
+  border: 2px solid #e5e5e5;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.progressbar .line {
+  width: 80%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: #e5e5e5;
+  top: 15px;
+  left: -40%;
+  z-index: -1;
+}
+
+.progressbar .line.current {
+  background-color: #f7b020;
+}
+
+.progressbar li:first-child:after {
+  content: none;
+}
+
+.progressbar li span.current {
+  font-family: AvenirNext-Demibold;
+  color: #15223d;
+
+}
+
+.progressbar li.current:before {
+  background-color: white !important;
+  border-color: white ;
+  background: url(../../assets/images/marked.svg) no-repeat 0px 0px;
+}
+
+.progressbar li span.current + li span:after {
+  background-color: #f7b020;
+}
+

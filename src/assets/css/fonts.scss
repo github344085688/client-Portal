@@ -1,0 +1,90 @@
+// Fonts
+// @include font-face(ProximaNova, './fonts/ProximaNova/ProximaNova-Regular');
+// @include font-face(AvenirNext-Medium, './fonts/Avenir/AvenirNext-Medium');
+// @include font-face(AvenirNext-Regular, './fonts/Avenir/AvenirNext-Regular');
+// @include font-face(AvenirNext-Bold, './fonts/Avenir/AvenirNext-Bold');
+// @include font-face(AvenirNext-DemiBold, './fonts/Avenir/AvenirNext-DemiBold');
+
+
+
+
+$font-path: './fonts';
+$font-name: 'fontawesome-webfont';
+
+$main_font_family: 'AvenirNext-Regular';
+$font-ave-bold: 'AvenirNext-Bold';
+$font-ave-medium: 'AvenirNext-Medium';
+$font-ave-demibold: 'AvenirNext-DemiBold';
+$proxima-nova-font: 'ProximaNova-Regular';
+
+$fallback-src: url("#{$font-path}/#{$font-name}.eot");
+$src:
+  url("#{$font-path}/#{$font-name}.eot?#iefix") format('embedded-opentype'),
+  url("#{$font-path}/#{$font-name}.woff") format('woff'),
+  url("#{$font-path}/#{$font-name}.ttf") format('truetype'),
+  url("#{$font-path}/#{$font-name}.svg?##{$font-name}") format('svg')
+;
+
+$ave-src:
+  url("#{$font-path}/Avenir/#{$main_font_family}.otf") format('opentype'),
+  url("#{$font-path}/Avenir/#{$main_font_family}.woff") format('woff'),
+;
+
+$ave-src-bold:
+  url("#{$font-path}/Avenir/#{$font-ave-bold}.otf") format('opentype'),
+  url("#{$font-path}/Avenir/#{$font-ave-bold}.woff") format('woff'),
+;
+$ave-src-medium:
+  url("#{$font-path}/Avenir/#{$font-ave-medium}.otf") format('opentype'),
+  url("#{$font-path}/Avenir/#{$font-ave-medium}.woff") format('woff'),
+;
+$ave-src-demibold:
+  url("#{$font-path}/Avenir/#{$font-ave-demibold}.otf") format('opentype'),
+  url("#{$font-path}/Avenir/#{$font-ave-demibold}.woff") format('woff'),
+;
+$pro-src:
+  url("#{$font-path}/ProximaNova/#{$proxima-nova-font}.otf") format('opentype'),
+  url("#{$font-path}/ProximaNova/#{$proxima-nova-font}.woff") format('woff'),
+;
+
+
+@font-face {
+  font-family: $font-name;
+  src:  $fallback-src;
+  src:  $src;
+  font-weight: normal;
+  font-style: normal;
+} 
+@font-face {
+  font-family: $main_font_family;
+  src:  $ave-src;
+  font-weight: normal;
+  font-style: normal;
+} 
+@font-face {
+  font-family: $font-ave-bold;
+  src:  $ave-src-bold;
+  font-weight: normal;
+  font-style: normal;
+} 
+@font-face {
+  font-family: $font-ave-medium;
+  src:  $ave-src-medium;
+  font-weight: normal;
+  font-style: normal;
+} 
+@font-face {
+  font-family:$font-ave-demibold;
+  src:  $ave-src-demibold;
+  font-weight: normal;
+  font-style: normal;
+} 
+@font-face {
+  font-family:$proxima-nova-font;
+  src:  $pro-src;
+  font-weight: normal;
+  font-style: normal;
+} 
+
+
+$secondary_font_family: $font-ave-bold, $main_font_family;

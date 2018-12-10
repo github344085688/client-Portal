@@ -1,0 +1,110 @@
+.pager {
+  font-family: 'AvenirNext';
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-align: center;
+  color: #4a4a4a;
+  margin: 20px 0px !important;
+  .paginate {
+    display: inline-block;
+    padding-right: 20px;
+
+    .pagination-panel {
+      line-height: 35px;
+    }
+
+    li:hover {
+      cursor: pointer;
+    }
+
+    .pagination-panel-input {
+      width: 50px;
+      text-align: center;
+      padding: 0px 0px 0px 10px;
+      margin: 0 5px;
+      color: #555;
+      background-color: #fff;
+      background-image: none;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+
+    .selectsize {
+      width: 85px;
+      .el-input__inner {
+        cursor: pointer;
+        padding-right: 25px;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+    }
+  }
+  .paginate_num {
+    line-height: 31px;
+    display: inline-flex;
+    li {
+      float: left;
+      margin: 0 10px;
+      a {
+        font-family: 'AvenirNext';
+        font-size: 16px;
+        color: #4a4a4a;
+        text-decoration: none;
+        .fa {
+          display: inline-block;
+        }
+      }
+    }
+    .active {
+      width: 31px;
+      height: 31px;
+      text-align: center;
+      border-bottom: 3px solid #f7b020;
+      a {
+        font-weight: 700;
+      }
+    }
+  }
+  .btn {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: box-shadow .28s cubic-bezier(.4, 0, .2, 1);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    border-width: 0 !important;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    padding: 9px 14px;
+    text-decoration: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1), 0 1px 2px rgba(0, 0, 0, .18);
+  }
+  .btn.default:not(.btn-outline) {
+    color: #666;
+    background-color: #e1e5ec;
+    border-color: #e1e5ec;
+  }
+  .btn.default:not(.btn-outline):hover {
+    color: #666;
+    background-color: #c2cad8;
+    border-color: #c2cad8;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+}

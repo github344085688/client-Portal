@@ -1,0 +1,171 @@
+.date-dashbord {
+  width: auto;
+  height: 30px;
+  border-radius: 2px;
+  background-image: -moz-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+  background-image: -webkit-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+  background-image: -ms-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+  background-image: linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+  border: solid 1px #15223d;
+}
+
+.date-img {
+  padding: 7px 10px 0px 10px;
+  display: inline-block;
+}
+
+.relative {
+  position: relative;
+}
+
+.date-font {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  padding-right: 20px;
+}
+
+.buttom {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.date-selector {
+  position: absolute;
+  width: 660px;
+  // min-height: 520px;
+  background-color: #f7f7f7;
+  border: solid 1px #656565;
+  z-index: 9;
+  top: -5px;
+  left: -1px;
+  padding: 10px;
+}
+
+.bg-white {
+  background: #fff;
+  color: #000;
+}
+
+.mydatePick .cell:not(.blank):not(.disabled).day:hover {
+  border: 1px solid #eee !important;
+  background-color: #eee !important;
+}
+
+.mydatePick .cell .day-header {
+  color: #cbccce;
+}
+
+.mydatePick .day {
+  font-size: 13px;
+  height: 30px !important;
+  width: 30px !important;
+  margin: 6px;
+  line-height: 30px !important;
+}
+
+.mydatePick .cell.highlighted {
+  background: #f3f3f3 !important;
+  position: relative;
+}
+
+.mydatePick .cell.highlight-start {
+  background: #d8d8d8 !important;
+  border-bottom-color: #d8d8d8 !important;
+}
+
+.mydatePick .cell.highlight-end {
+  background: #d8d8d8 !important;
+  border-bottom-width: 3px !important;
+  border-bottom-color: #f7b020 !important;
+}
+
+.mydatePick .cell.highlighted::after {
+  background: #f3f3f3;
+  content: "";
+  height: 30px;
+  height: 30px;
+  width: 6px;
+  position: absolute;
+  left: 29px;
+  top: -1px;
+}
+
+.mydatePick .cell.highlight-end::after {
+  background: #fff;
+}
+
+.mydatePick .cell.highlighted~.highlighted::before {
+  background: #f3f3f3;
+  content: "";
+  height: 30px;
+  height: 30px;
+  width: 6px;
+  position: absolute;
+  left: -7px;
+  top: -1px;
+}
+
+.mydatePick .selected {
+  background: #d8d8d8 !important;
+
+}
+
+// .mydatePick .selected:last-child {
+//   border-bottom-width: 3px !important;
+//   border-bottom-color: #f7b020 !important;
+// }
+
+.cover-parent {
+  position: relative;
+}
+
+.cover-parent .cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.asd__action-buttons button,.asd__keyboard-shortcuts-trigger {
+  padding: 0;
+  width: inherit;
+  border-radius: 0px !important;
+}
+
+.asd__wrapper {
+    position: relative !important;
+    top: 1px !important;
+    border: 0px !important;
+}
+
+.asd__day{
+    border: 0px;
+}
+
+.asd__change-month-button>button:hover,.asd__change-month-button>button {
+  border: 0px !important;
+}
+.asd__day-button{
+  font-family: 'AvenirNext-Regular';
+}
+.asd__month-name{
+  font-size: 1.1em;
+  margin-bottom: 45px;
+}
+
+.asd__list-complete-enter-to:first{
+   margin-right: 10px !important;
+}
+
+.asd__selected-date-two{
+
+  border-bottom-width: 2px !important;
+  border-bottom-color: #f7b020 !important;
+}
+
+
+// .asd__inner-wrapper>div:first-child{
+//   background: #fcfcfc;
+// }

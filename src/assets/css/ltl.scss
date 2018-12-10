@@ -1,0 +1,936 @@
+.section-header {
+	font-family:'AvenirNext';
+	font-size: 1.125rem;
+	color: #656565;
+}
+
+.sub-title {
+	position: absolute;
+	top: 75px;
+}
+
+.sub-header {
+	font-family: 'AvenirNext';
+	font-size: 1rem;
+	margin: 15px 0;
+	color: #15223d;
+}
+
+.title {
+	position: relative;
+	letter-spacing: 0.4px;
+}
+
+.has-img{
+	padding-left: 0px !important;
+}
+
+.sub-menu{
+	padding-left: 20px;
+}
+
+.title-gray {
+	font-family: 'AvenirNext';
+	font-size: 1.875em;
+	color: #15223d;
+	letter-spacing: .7px;
+}
+
+.textfield-text, .textfield-text-medium {
+	font-size: 0.875rem;
+}
+
+.textfield-text-medium {
+	font-family: 'AvenirNext';
+}
+
+.text-bold {
+	font-family: 'AvenirNext';
+}
+
+.optional-label:after {
+	content: '(Optional)';
+	font-family: 'AvenirNext';
+	font-size: 0.6875rem;
+	color: rgba(21, 34, 61, 0.7);
+	font-style: italic;
+	text-transform: capitalize;
+	margin-left: 10px;
+}
+
+.character-limit, .text-disclosure {
+	font-family: 'AvenirNext';
+	color: rgba(21, 34, 61, 0.7);
+	font-style: italic;
+	text-transform: none !important;
+	position: relative;
+}
+
+.character-limit {
+	font-size: 0.6875rem;
+	float: right;
+	bottom: -5px;
+}
+
+.text-disclosure {
+	font-size: 0.875rem;
+	top: -10px;
+}
+
+.margin-bottom-40 {
+	margin-bottom: 40px;
+}
+
+.margin-left-10 {
+	margin-left: 10px !important;
+}
+
+.label-number, .label-number-summary {
+	font-family: 'AvenirNext';
+	color: #ffffff;
+	border-radius: 100%;
+	padding: 4px 11px;
+	margin-right: 10px;
+	font-size: 1.125rem;
+}
+
+.label-number {
+	background-color: #656565;
+}
+
+.label-number-summary {
+	background-color: #2E323C;
+}
+
+.label-number.active {
+	background-color: #f7b020;
+	color: #15223d;
+}
+
+.manifest-line-container {
+	position: relative;
+}
+
+.manifest-line-count {
+	font-family: 'AvenirNext';
+	font-size: 1.125rem;
+	color: #15223d;
+	margin-left: 0px;
+	float: left;
+    width: 2%;
+}
+
+.pallets-count-container {
+	background-color: #e5e5e5;
+    padding: 15px;
+    border-radius: 6px;
+    margin-left: 2.5%;
+}
+
+.pallets-count-container p {
+	padding-left: 10px;
+}
+
+.pallet-space-count {
+	font-family: 'AvenirNext';
+}
+
+.step-header {
+	font-family: 'AvenirNext';
+	font-size: 1.5rem;
+	position: relative;
+
+	> .checkbox {
+		position: absolute !important;
+		margin-left: 15px;
+
+		> span {
+			margin-left: 5px !important;
+			margin-top: 5px;
+		}
+	}
+}
+
+.indent-15 {
+	margin-left: 15px;
+}
+
+.margin-top-20 {
+	margin-top: 20px;
+}
+
+.margin-left-50 {
+	margin-left: 50px;
+}
+
+.margin-left-minus-10 {
+	margin-left: -10px !important;
+}
+
+h1.title {
+	font-family: 'AvenirNext';
+	font-size: 1.875rem;
+	text-transform: uppercase;
+	color: #15223d;
+	margin-bottom: 60px;
+	position: relative;
+	margin-top: 50px; /*temporary*/
+}
+
+.simple-landing {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+
+	button {
+		float: none;
+		font-size: 0.938em !important;
+	}
+}
+
+.checkbox-list {
+	margin: 0;
+	float: left;
+}
+
+.checkbox {
+	margin: 5px 0;
+}
+
+input[type="checkbox"] + .checkbox:after, input[type="checkbox"] + .radio:after {
+	width: 20px;
+	height: 20px;
+	border: solid 1px #656565;
+	border-radius: 2px;
+	box-shadow: none !important;
+}
+
+input[type="radio"] + .radio {
+	top: 10px;
+}
+
+input[type="radio"]:checked + .radio:after {
+	background-color: #2E323C;
+}
+
+input[type="radio"] + .radio:after {
+	width: 20px;
+	height: 20px;
+	border: solid 1px #656565;
+	border-radius: 50%;
+	box-shadow: none !important;
+}
+
+input[type="radio"]:checked + .radio:before {
+	background-color: #ffffff;
+	width: 10px;
+	height: 10px;
+	top: 5px;
+	left: 15px;
+}
+
+input[type="checkbox"]:checked + .checkbox:after {
+	background: #FFFFFF url(#{$svg-path}/checkbox-light.svg) no-repeat 2px 2px !important;
+    background-size: 15px 15px !important;
+    background-color: #15223d !important;
+}
+
+input[type="checkbox"]:disabled:checked + .checkbox:after {
+	background: url(#{$svg-path}/checkbox-disabled.svg) no-repeat 2px 2px !important;
+    background-size: 15px 15px !important;
+    background-color: #e5e5e5 !important;
+    cursor: not-allowed;
+    border: transparent;
+}
+
+input[type="checkbox"]:disabled + .checkbox:after, input[type="checkbox"]:disabled:not(:checked) + .checkbox:after {
+	cursor: not-allowed !important;
+}
+
+input[type="checkbox"] + .checkbox span, input[type="checkbox"] + .radio span, input[type="radio"] + .checkbox span, input[type="radio"] + .radio span {
+	float: right !important;
+	margin-left: 10px;
+	font-size: 0.875rem;
+	color: #15223d;
+	font-weight: normal;
+}
+
+input[type="checkbox"]:disabled + .checkbox span {
+	cursor: not-allowed;
+}
+
+button.button-standard-small, button.button-yellow-small {
+	height: 40px !important;
+	font-size: 0.875rem;
+}
+
+button.button-standard-medium, button.button-yellow-medium {
+	height: 45px !important;
+	font-size: 0.9375rem;
+}
+
+button.button-standard-large, button.button-yellow-large {
+	height: 45px !important;
+	font-size: 1rem;
+}
+
+.button-standard-small:hover:enabled, .button-standard-medium:hover:enabled, .button-standard-large:hover:enabled {
+	background-color: #15223d !important;
+	color: white !important;
+}
+
+.button-yellow-small:hover, .button-yellow-medium:hover, .button-yellow-large:hover {
+	background-color: rgba(247, 176, 32, 0.7) !important;
+	color: #15223d !important;
+}
+
+.footer {
+	position: relative;
+	margin-top: 60px;
+}
+
+.footer p {
+	padding-left: 30px;
+	margin-bottom: 80px;
+	font-size: .95rem;
+}
+
+.footer-button {
+	position: absolute;
+	right: 60px;
+	bottom: 0;
+	width: 40%;
+}
+
+input.input-client-error {
+	background-color: rgba(178, 23, 23, 0.2) !important;
+	border: solid 2px #b21717 !important;
+}
+
+.error-message p {
+	font-family: 'AvenirNext';
+	font-size: 0.8125rem;
+	color: #b21717;
+	position: relative;
+	top: -10px;
+}
+
+.white-theme .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+	color: #15223d;
+	background-color: #ffffff;
+	border: solid 2px #15223d;
+}
+
+.white-theme .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:hover {
+	background-color: #15223d !important;
+	color: white !important;
+}
+
+.ui-button.delete {
+	background-color: #b21717 !important;
+	color: white !important;
+	border: transparent !important;
+}
+
+.toast-message {
+	background-color: rgba(21, 34, 61, 0.9);
+	color: white;
+	border-radius: 25px;
+	font-size: 0.875rem;
+	text-align: center;
+	position: relative;
+    padding: 10px;
+    left: 25%;
+    min-width: 50%;
+}
+
+.message-box {
+	border: solid 1px #7c6a91;
+    border-radius: 6px;
+    position: relative;
+    padding: 25px 25px 0 25px;
+    left: 15%;
+    text-align: center;
+    min-width: 70%
+}
+
+.message-box > div {
+	padding: 30px 0 20px 0;
+	margin: 0 auto;
+	position: relative;
+	width: 85%;
+}
+
+.message-box > p {
+	padding: 2px 0;
+	position: relative;
+}
+
+.message-container p {
+	position: relative;
+	font-family: 'AvenirNext';
+}
+
+.message-container p:not(.text-disclosure) {
+	padding-top: 15px !important;
+}
+
+.message-container> p > span {
+	position: absolute;
+	right: 0;
+	color: #15223d;
+	font-size: 1rem;
+	font-style: normal;
+	text-decoration: none;
+	text-transform: none;
+}
+
+.message-container {
+	text-align: left;
+	padding-top: 10px !important;
+}
+
+.message-container p.text-disclosure {
+	top: 0px !important;
+}
+
+.grid-container {
+  max-width: 1200px !important;
+}
+
+header.new_header {
+	height: 80px;
+    background-color: #2E323C;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    left: 0;
+    top: 48px;
+}
+
+.top-navbar li {
+	display: inline-block;
+	list-style: none;
+	color: white;
+	cursor: pointer;
+	font-size: 1rem;
+	text-transform: uppercase;
+	padding: 30px 20px;
+}
+
+.top-navbar li.active {
+	font-family: 'AvenirNext' !important;
+	color: #f7b020;
+	text-decoration: underline;
+}
+
+.top-navbar-menu {
+	float: right;
+	position: relative;
+    right: 50px;
+}
+
+/* tables */
+.table-client, .table-tracking {
+	width: 100%;
+	border-collapse: collapse !important;
+}
+
+.table-client thead, .table-tracking thead {
+	background-color: transparent !important;
+}
+.table-client thead tr{
+    background-color: #2E323C;
+    color: #fff;
+}
+.table-client thead th, .table-tracking thead th {
+	border: none !important;
+	// color: #15223d;
+	color: #FFFFFF;
+	font-family: 'AvenirNext-Regular';
+	font-size: 0.8125rem;
+	text-align: left !important;
+	// text-transform: uppercase;
+	padding: 10px 10px 10px 15px;
+}
+
+// .table-client tbody tr {
+// 	// border-bottom: solid 2px rgba(21, 34, 61, 0.1);
+// 	border-bottom: solid 1px rgba(21, 34, 61, 0.1);
+// }
+
+.table-client tr.selected-row td {
+
+    &:not(:first-of-type) {
+        background-color: #15223d !important;
+        color: #ffffff !important;
+    }
+
+    tbody tr {
+        border-top: none !important;
+        border-bottom: none !important;
+    }
+
+    + td button.edit-row {
+		visibility: hidden;
+        background-color: transparent !important;
+        width: 25px;
+    }
+
+    + td button.delete-row {
+		visibility: hidden;
+        background-color: transparent !important;
+        top: 10px;
+        width: 15px;
+	}
+}
+
+.table-client tbody td {
+    button {
+        display: inline-flex;
+    }
+
+    button.delete-row,
+    button.edit-row {
+        border-radius: 0px !important;
+        margin: 0px 5px;
+    }
+}
+
+.table-client tbody td, .table-tracking tbody td {
+	font-size: 0.875rem;
+	color: #15223d;
+	border: none !important;
+    padding: 10px 10px 10px 15px;
+}
+
+table:not(.ui-datepicker-calendar) tbody > tr:nth-child(even) {
+	// background-color: transparent !important;
+	background-color: transparent;
+}
+
+table:not(.ui-datepicker-calendar) tbody > tr:nth-child(even):hover {
+	// background-color: #e5e5e5 !important;
+	background-color: #e5e5e5;
+}
+
+.table-client tbody tr:hover {
+	background-color: #e5e5e5 !important;
+}
+
+.table-tracking tbody td.date {
+	background-color: rgba(21, 34, 61, 0.9);
+	color: #ffffff;
+	font-family: 'AvenirNext';
+	letter-spacing: .4px;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    background: none;
+}
+
+.table-details {
+	border-collapse: collapse;
+	margin: 15px 0 0 40px;
+	position: relative;
+}
+
+.table-details tr td:first-of-type {
+	font-family: 'AvenirNext';
+}
+
+.table-details thead th, .table-details tbody td {
+	padding: 5px 10px;
+}
+
+.table-details tbody td {
+	white-space: nowrap;
+	font-size: .875rem;
+}
+
+.table-details tbody td:nth-child(even) {
+	position: relative;
+    max-width: 170px;
+    min-width: 170px;
+}
+
+table:not(.table-client) tbody > tr:nth-child(even):hover, table:not(.table-client) tbody > tr:nth-child(odd):hover {
+	// background-color: transparent !important;
+	background-color: transparent;
+}
+
+.table-details .checkbox {
+	float: none !important;
+	padding: 0px !important;
+}
+
+.table-details input[type="checkbox"] + .checkbox span {
+	margin-left: 10px !important;
+}
+
+.table-details .line {
+	background: #e5e5e5;
+    width: 500px;
+    height: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    left: -50px;
+}
+
+.table-details div.manifest-line-count {
+	position: absolute;
+    left: -30px;
+    margin-left: 0;
+}
+/* End of tables */
+
+/* Info Containers */
+.info-container {
+	background-color: #e5e5e5;
+	border-radius: 6px;
+	padding: 20px 10px !important;
+	margin-bottom: 25px;
+}
+
+.notification-container {
+	position: absolute;
+    left: -70px;
+    bottom: -210px;
+}
+
+.tracking-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* End of Info Containers */
+
+/* Tracking page styling */
+.tracking-status-text p {
+	font-family: 'AvenirNext';
+	font-size: 1.125rem;
+}
+
+.tracking-status-text p.complete {
+	font-family: 'AvenirNext';
+}
+
+.tracking-status-text span {
+	font-family: 'AvenirNext';
+	font-size: 1rem;
+}
+
+p.active-text {
+	font-family: 'AvenirNext';
+}
+
+ul.tracking-status-icon {
+	width: 100%;
+}
+
+.tracking-process {
+	width: 85%;
+	margin: 40px auto;
+}
+
+.tracking-process ul.tracking-status-icon {
+	margin: 10px 0px;
+}
+
+.tracking-process ul li {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tracking-process ul.tracking-status-text:first-child {
+	margin-top: 45px;
+}
+
+.tracking-process ul.tracking-status-text li {
+    width: 31%;
+	font-size: 13px;
+ 	line-height: 25px;
+}
+
+.tracking-process ul.tracking-status-text li:first-of-type {
+	text-align: center;
+	position: relative;
+    left: -150px;
+    width: 200px;
+}
+
+.tracking-process ul.tracking-status-text li:last-of-type {
+	text-align: center;
+    position: relative;
+    right: -80px;
+    width: 200px;
+}
+
+.tracking-process ul.tracking-status-text li {
+    width: 145px;
+    font-family: "AvenirNext";
+}
+
+.tracking-process ul.tracking-status-text li .details {
+	display: block;
+}
+
+.tracking-process ul.tracking-status-text li .details:last-of-type {
+	text-transform: uppercase;
+}
+
+.tracking-status-text {
+	display: flex;
+	justify-content: space-around;
+	position: relative;
+}
+
+.tracking-process .active .circle {
+    background-color: #4D7F89;
+    font-family: 'AvenirNext';
+	border: 1px solid #4D7F89;
+}
+
+.tracking-process .circle {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: solid 2px #e5e5e5;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.tracking-process .circle.complete {
+	background-color: #f7b020 !important;
+    background: url(#{$svg-path}/white-checkmark.svg) no-repeat 5px 5px;
+    background-size: 20px 20px;
+	border: none;
+}
+
+.tracking-process .line {
+    background: #e5e5e5;
+    width: 390px;
+    height: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -10px;
+    left: 2px;
+}
+
+.tracking-process .line.complete {
+	background-color: #f7b020;
+}
+
+.progressbar-container {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.progressbar {
+	counter-reset: step;
+}
+
+.progressbar li {
+	list-style-type: none;
+	width: 25%;
+	float: left;
+	font-size: 14px;
+	position: relative;
+	text-align: center;
+	text-transform: uppercase;
+	color: #15223d;
+}
+
+.progressbar li:before {
+	width: 30px;
+	height: 30px;
+	content: '';
+	counter-increment: step;
+	line-height: 30px;
+	border: 2px solid #f7b020;
+	display: block;
+	text-align: center;
+	margin: 0 auto 10px auto;
+	border-radius: 50%;
+	background-color: white;
+}
+
+.progressbar li:after {
+	width: 100%;
+	height: 2px;
+	content: '';
+	position: absolute;
+	background-color: #2E323C;
+	top: 15px;
+	left: -50%;
+	z-index: -1;
+}
+
+.progressbar li:first-child:after {
+	content: none;
+}
+
+.progressbar li span.current {
+	font-family:'AvenirNext';
+	color: #15223d;
+}
+
+.progressbar li.current:before {
+	background-color: #f7b020;
+	border-color: #f7b020;
+}
+
+.progressbar li span.current + li span:after {
+	background-color: #f7b020;
+}
+
+.schedule-pickup-nav {
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+
+.schedule-pickup-nav li {
+	display: inline-block;
+}
+
+.schedule-pickup-nav li span.circle {
+	width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: solid 2px #f7b020;
+    margin-left: -16px;
+	display: inline-block;
+	counter-reset: counter(stage-counter);
+}
+
+.schedule-pickup-nav li span.current {
+	background-color: #f7b020;
+}
+
+.schedule-pickup-nav .line {
+	background: #15223d;
+    height: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -8px;
+    left: -8px;
+}
+
+.schedule-pickup-nav .line {
+	width: 70px;
+}
+
+.schedule-pickup-nav-text {
+	position: absolute !important;
+    right: -30px !important;
+    top: 25px !important;
+    display: inline-flex !important;
+}
+
+.schedule-pickup-nav-text li {
+	font-size: 0.875rem;
+	position: relative;
+	left: -65px;
+	top: 20px;
+}
+
+.schedule-pickup-nav-text li:first-of-type {
+	left: -95px !important;
+	position: relative;
+}
+
+.schedule-pickup-nav-text li:last-of-type {
+	left: -25px !important;
+	position: relative;
+}
+
+.schedule-pickup-nav-text span.current  {
+	font-family: 'AvenirNext';
+}
+
+/* End of Tracking page styling*/
+
+/* Start of speech/tooltip bubbles */
+
+.tooltip-label {
+    margin-left: 0px !important;
+}
+
+.checkbox-list .tooltip-light {
+    margin-left: 50px;
+}
+
+.tooltip-light, .tooltip-dark, .manifest-tooltip-light {
+    cursor: pointer;
+    float: right;
+    margin-left: 0px;
+}
+
+.tooltip-light, .manifest-tooltip-light {
+    content: url(#{$svg-path}/tooltip-light.svg);
+}
+
+.tooltip-dark {
+    content: url(#{$svg-path}/tooltip-dark.svg);
+}
+
+.manifest-tooltip-light {
+    top: 30px;
+    position: relative;
+    right: 20px;
+}
+
+/* File Manager */
+
+.file-list {
+    height: 350px;
+    overflow: auto;
+	padding-left: 35px;
+
+	li {
+		float: left;
+		width: 140px;
+		margin: 10px;
+
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.file {
+	position: relative;
+	cursor: pointer;
+}
+
+.file-category {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.missing-file {
+    border: 1px dashed #15223d;
+    max-width: 100%;
+    height: 135px;
+    margin: 10px;
+}
+
+/*  End of File Manager*/
+

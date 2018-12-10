@@ -1,0 +1,55 @@
+// Adding a new font into the project
+// @mixin font-face($name, $path) {
+// 	@font-face {
+// 		font-family: $name;
+// 		src: url($path + '.otf') format('otf'),
+// 			 url($path + '.woff') format('woff');
+// 	}
+// }
+
+// Transitions
+@mixin transition($duration, $timingtype, $property: all, $delay: 0s) {
+	-webkit-transition: $property $duration $timingtype $delay;
+	-moz-transition: $property $duration $timingtype $delay;
+	-o-transition: $property $duration $timingtype $delay;
+	transition: $property $duration $timingtype $delay;
+}
+
+// Transform
+@mixin transform($deg) {
+	-webkit-transform: rotate($deg + deg);
+	-moz-transform: rotate($deg + deg);
+	-o-transform: rotate($deg + deg);
+	transform: rotate($deg + deg);
+}
+
+// Border radius
+@mixin border-radius($tl, $tr, $br, $bl) {
+	border-top-left-radius: $tl + px;
+	border-top-right-radius: $tr + px;
+	border-bottom-right-radius: $br + px;
+	border-bottom-left-radius: $bl + px;
+}
+
+// Add ellipsis
+@mixin ellipsis() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// Add flexbox
+@mixin flex() {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+// Vertical align middle
+@mixin vertical-align() {
+	position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

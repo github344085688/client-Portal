@@ -1,0 +1,429 @@
+.input-label {
+	font-family: 'AvenirNext-Medium';
+	font-size: 0.8125rem;
+	text-transform: capitalize;
+	color: #15223d;
+	overflow: hidden;
+    text-overflow: ellipsis;
+	white-space: nowrap;
+	letter-spacing: .3px;
+}
+
+input[type="file"] {
+	display: none;
+}
+
+select,
+button,
+input[type="checkbox"],
+button {
+	-webkit-appearance: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+select, 
+textarea {
+	width: 100%;
+	margin-bottom: 14px;
+	border-radius: 2px;
+	padding-left: 8px;
+	font-size: .875rem;
+	outline: none;
+	border: solid 1px #656565;
+	color: #15223d;
+
+	&:focus {
+		border: solid 2px #f7b020; 
+	}
+
+	&:disabled {
+		background-color: #e5e5e5;
+	}
+
+	&.input-date {
+		// background: url(#{$svg-path}/icon-input-date-calendar-white-light.svg) no-repeat right 10px center;
+		background-size: 15px;
+	}
+
+	&.input-time {
+		background: url(#{$svg-path}/input_time.svg) no-repeat right 10px center;
+		background-size: 15px;
+	}
+
+	&.input-search {
+		background: url(#{$svg-path}/input_search.svg) no-repeat left 10px center;
+		background-size: 15px;
+		padding-left: 35px;
+	}
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"] {
+	height: 35px;
+	padding-right: 8px;
+}
+
+select {
+	height: 35px;
+	padding-right: 20px;
+	font-size: .75rem;
+}
+
+.dropdown {
+	background: #FFFFFF url("#{$svg-path}/icon-keyboard-arrow-down-dark.svg") no-repeat right 10px center;
+}
+
+button {
+	min-height: 28px;
+	outline: none;
+	border: none; 
+	font-family: 'AvenirNext-Medium';
+	font-size: .875rem;
+	cursor: pointer;
+	padding: 0 6px;
+	border-radius: 6px;
+	position: relative;
+	width: 100%;
+	letter-spacing: .4px;
+	// text-transform: uppercase;
+
+	&:disabled {
+		cursor: not-allowed;
+	}
+
+	&.button-standard-small, 
+	&.button-standard-medium, 
+	&.button-standard-large {
+		color: #15223d;
+		background-color: #ffffff;
+		border: solid 2px #15223d;
+
+		&:disabled {
+			color: rgba(101, 101, 101, 0.7);
+			border: solid 2px rgba(101, 101, 101, 0.7);
+		}
+	} 
+
+	&.button-yellow-small, 
+	&.button-yellow-medium, 
+	&.button-yellow-large {
+		color: #15223d;
+		background-color: #f7b020;
+		border: none;
+
+		&:disabled {
+			color: rgba(21, 34, 61, 0.3);
+			background-color: #e5e5e5;
+		}
+	}
+	
+	a {
+		display: block;
+		padding: 5px 0;
+		text-decoration: none;
+	}
+
+	&.add {
+		background: #FFFFFF url(#{$svg-path}/add_item.svg) no-repeat 25px 10px;
+		padding-left: 20px;
+
+		&:hover {
+			background: #FFFFFF url(#{$svg-path}/add_item_hover.svg) no-repeat 25px 10px;
+		}
+	}
+
+	&.remove {
+		background: #FFFFFF url(#{$svg-path}/remove_item.svg) no-repeat 10px 8px;
+		padding-left: 20px;
+
+		&:hover {
+			background: #FFFFFF url(#{$svg-path}/remove_item_hover.svg) no-repeat 10px 8px;
+		}
+
+		&:disabled {
+			background: #FFFFFF url(#{$svg-path}/remove_item_disabled.svg) no-repeat 10px 8px;
+		}
+	}
+
+	&.edit {
+		background: #FFFFFF url(#{$svg-path}/edit_item.svg) no-repeat 20px 8px;
+		padding-left: 20px;
+
+		&:hover {
+			background: #FFFFFF url(#{$svg-path}/edit_item_hover.svg) no-repeat 20px 8px;
+		}
+
+		&:disabled {
+			background: #FFFFFF url(#{$svg-path}/edit_item_disabled.svg) no-repeat 20px 8px;
+		}
+	}
+
+	&.cancel {
+		background-color: #b21717;
+	}
+
+	&.download {
+		background: url(#{$svg-path}/download_item.svg) no-repeat 30px 8px;
+		padding-left: 35px;
+
+		&:hover {
+			background: url(#{$svg-path}/download_item_hover.svg) no-repeat 30px 8px;
+		}
+	}
+
+	&.delete-standalone {
+		background: url(#{$svg-path}/remove_item.svg) no-repeat 1px 10px;
+		border-radius: 0px;
+		padding-left: 10px;
+		vertical-align: sub;
+	}
+
+	&.delete-manifest-line {
+		background: #e5e5e5 url(#{$svg-path}/remove_item_disabled.svg) no-repeat 8px 5px;
+		width: 30px;
+		border-radius: 2px;
+		margin: 4px 0 0 4px;
+		right: -30px;
+
+		&:hover {
+			background: #b21717 url(#{$svg-path}/remove_item_hover.svg) no-repeat 7.5px 5px;
+		}
+	}
+
+	&.actions {
+		background: url(#{$svg-path}/actions_icon.svg) no-repeat;
+		background-color: transparent;
+		width: 10px;
+		top: 15px;
+		left: 5px;
+		border-radius: 0px;
+	}
+	
+	&.edit-row {
+		background: url(#{$svg-path}/edit_item_disabled.svg) no-repeat;
+		background-color: transparent;
+		width: 25px;
+		top: 10px;
+		border-radius: 0px; 
+	}
+
+	&.delete-row {
+		background: url(#{$svg-path}/remove_item_disabled.svg) no-repeat;
+		background-color: transparent;
+		width: 15px; 
+		top: 10px; 
+		border-radius: 0px; 
+	}
+}
+
+.btn-icon-add,
+.btn-icon-delete {
+	cursor: pointer;
+	position: relative;
+	margin-top: 15px;
+	@include transition(.25s, ease-in-out);
+
+	// Animation messing up js click
+	&:active {
+		opacity: .5;
+	}
+}
+
+.container .checkbox,
+.container .radio {
+	padding: 0 10px;
+	
+	&:first-of-type {
+		padding-left: 0;
+	}
+
+	&:last-of-type {
+		padding-right: 0;
+	}
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	display: none;
+
+	&:checked {
+		+ .radio {
+			&:first-of-type {
+				&:before {
+					left: 5px;
+				}
+			}
+
+			&:before {
+			    content: "";
+			    width: 20px;
+			    height: 20px;
+			    border-radius: 50%;
+			    background-color: #D3D3D3;
+			    display: inline-block;
+			    position: absolute;
+			    top: 27px;
+			    left: 15px;
+			}
+		} 
+	}
+
+	+ .checkbox,
+	+ .radio {
+		display: inline-block;
+		cursor: pointer;
+		float: left;
+		position: relative;
+
+		span {
+			font-size: .75rem;
+			font-weight: bold;
+			margin-bottom: 6px;
+			display: block;
+		}
+
+		&:after {
+			content: "";
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			cursor: pointer;
+			box-sizing: border-box;
+		}
+	}
+
+	+ .radio {
+		&:after {
+			border-radius: 50%;
+			border: 1px solid #CCCCCC;
+		}
+	}
+}
+
+.table {
+	input[type="checkbox"],
+	input[type="radio"] {
+		&:checked {
+			+ .radio {
+				&:before {
+				    width: 10px;
+				    height: 10px;
+				    left: 5px;
+				}
+			} 
+		}
+	}
+}
+
+.table {
+	input[type="checkbox"],
+	input[type="radio"] {
+		&:checked {
+			+ .checkbox:after,
+			+ .radio:after {
+				background-size: 13px 13px !important;
+			}
+		}
+
+		+ .checkbox,
+		+ .radio {
+			&:after {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+}
+
+.custom-select {
+    background-size: 22px 22px;
+}
+
+textarea {
+	min-height: 120px;
+	padding: 7px;
+	resize: none;
+	font-size: .875rem;
+	width: 100%;
+	outline: none;
+	color: #15223d;
+}
+
+// Ripple Button Effect
+.ripplelink {
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	overflow: hidden;
+}
+
+.ink {
+	display: block;
+	position: absolute;
+	background: rgba(255, 255, 255, 0.3);
+	border-radius: 100%;
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
+}
+
+.animate {
+	-webkit-animation: ripple 0.65s linear;
+	-moz-animation: ripple 0.65s linear;
+	-ms-animation: ripple 0.65s linear;
+	-o-animation: ripple 0.65s linear;
+	animation: ripple 0.65s linear;
+}
+
+@-webkit-keyframes ripple {
+    100% {
+		opacity: 0; 
+		-webkit-transform: scale(2.5);
+	}
+}
+
+@-moz-keyframes ripple {
+    100% {
+		opacity: 0; 
+		-moz-transform: scale(2.5);
+	}
+}
+
+@-o-keyframes ripple {
+    100% {
+		opacity: 0; 
+		-o-transform: scale(2.5);
+	}
+}
+
+@keyframes ripple {
+    100% {
+		opacity: 0; 
+		transform: scale(2.5);
+	}
+}
+
+/* Fixes input fields autofill CSS for Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill, 
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+	box-shadow: 0 0 0px 1000px #ffffff inset !important;
+	color: #15223d !important;
+}

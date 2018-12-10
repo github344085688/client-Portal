@@ -1,0 +1,24 @@
+@import "mixins.scss";
+
+// Colors
+$lightblack: #333333;
+$lightgray: #e2e2e2;
+$lightergray: #f2f2f2;
+$darkergray: #f4f4f4;
+$white: #ffffff;
+$lightteal: #b7c8cc;
+$lightwhite: #f8f8f8;
+$black: #4A4A4A;
+$teal: #4c949f;
+$lighterteal: #8ad6e1;
+
+// Theme Color
+$dark-theme: #1D1D1D;
+$light-theme: linear-gradient(to bottom, #7697a4, #32464f);
+
+// SubTheme colors
+$orange: #e18c58;
+$strawberry: #ef518d;
+$grape: #a05abd;
+
+$svg-path: "./svg"

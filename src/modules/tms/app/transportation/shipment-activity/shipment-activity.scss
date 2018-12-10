@@ -1,0 +1,45 @@
+.shipment-activity {
+    .relative .date-dashbord, .button-unis{
+        background-image: -moz-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+        background-image: -webkit-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+        background-image: -ms-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+        background-image: linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
+    }
+
+    th {
+        background-color:#2E323C;
+    }
+
+    .inline-block .button-unis {
+        width:130px;
+    }
+
+    .el-input input {
+        height:30px !important;
+    }
+
+    input::-webkit-input-placeholder {
+        font-size:12px;
+    }
+
+    .grid-20 {
+        width:16.924%;
+    }
+
+    .grid-20:last-child {
+        width:16.154%;
+    }
+
+    .el-input__inner {
+        padding-right:5px !important;
+    }
+
+    .search-by {
+        width:30%;
+    }
+
+    .delete-text-decoration{
+        text-decoration: none !important;
+    }
+}
+

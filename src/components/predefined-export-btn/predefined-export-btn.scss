@@ -1,0 +1,83 @@
+.predefined-export {
+  position: relative;
+
+  .init-line {
+    display: inline-block;
+  }
+
+  .export-detail {
+    max-height: 260px;
+    overflow: auto;
+    position: absolute;
+    top: 28px;
+    width: auto;
+    z-index: 8;
+    background-color: #ffffff;
+    right: 0;
+    border-radius: 2px;
+    border: solid 1px #979797;
+  }
+
+  .child-export {
+    display: flex;
+    padding: 6px 15px;
+    cursor: pointer;
+
+    span {
+      line-height: 28px;
+    }
+  }
+
+  .child-export:hover {
+    background-color: rgba(21, 34, 61, 0.1);
+  }
+
+  .dz-icon {
+    color: #ffffff;
+    padding-left: 5px;
+  }
+
+  .button-export {
+    padding: 0px 5px 0px 10px;
+    background: linear-gradient(180deg, #63666C 11.55%, #2E323C 83.16%);
+    border: 1px solid #15223D;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
+
+  .ball-pulse>div:nth-child(0) {
+    -webkit-animation: scale 0.75s -0.36s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+    animation: scale 0.75s -0.36s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  }
+
+  .ball-pulse>div:nth-child(1) {
+    -webkit-animation: scale 0.75s -0.24s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+    animation: scale 0.75s -0.24s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  }
+
+  .ball-pulse>div:nth-child(2) {
+    -webkit-animation: scale 0.75s -0.12s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+    animation: scale 0.75s -0.12s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  }
+
+  .ball-pulse>div:nth-child(3) {
+    -webkit-animation: scale 0.75s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+    animation: scale 0.75s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+  }
+
+  .ball-pulse>div {
+    background-color: #fff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block;
+  }
+
+  .ball-pulse {
+    display: inline-block;
+  }
+
+}

@@ -1,0 +1,37 @@
+.invenroty-table {
+    .child-table-total .child-table tbody tr {
+        background-color: #fff !important;
+        color: #15223d !important;
+    }
+    .child-table-total .child-table tbody tr:hover {
+        background-color: #fff !important;
+        color: #15223d !important;
+    }
+    .child-table-total .child-table tbody td {
+        color: #15223d !important;
+        font-size: 0.7rem;
+    }
+    .dl-serial {
+        display: flex;
+        flex-flow: wrap;
+        padding: 10px 24px;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        font-size: 14px;
+        dt {
+            width: 100%;
+            display: block;                
+        }
+        dd {
+            display: block;
+            padding: 6px 15px;
+        }
+    }
+    .child .init-pager{
+      background: none !important;
+      color: #666 !important;
+      a{
+       color: #666 !important;
+     } 
+    }
+}

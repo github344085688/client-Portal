@@ -1,0 +1,244 @@
+@mixin flexNowrap {
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.inventory-search-content {
+    box-sizing: border-box;
+    position: absolute;
+    left: 220px;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    .content {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: stretch;
+        min-height: 100%;
+        .left-content {
+            padding-top: 30px;
+            flex: 1;
+            min-height: 100%;
+            box-sizing: border-box;
+        }
+        .mindle-content {
+            width: 1px;
+            background: #979797;
+            min-height: 100%;
+        }
+        .right-content {
+            flex: 1;
+            min-height: 100%;
+            box-sizing: border-box;
+            padding: 15px 10px 0 5px;
+        }
+    }
+    .displayNone {
+        display: none;
+    }
+    .align-left {
+        text-align: left !important;
+    }
+    .align-right {
+        text-align: right !important;
+    }
+    .label {
+        font-weight: 500;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.4px;
+        color: #15223d;
+        padding-left: 23px;
+    }
+    .position-re {
+        position: relative;
+        height: 100%;
+    }
+    .navigation {
+        position: absolute;
+        left: 0;
+        padding: 0 23px;
+        line-height: 50px;
+        height: 50px;
+        right: 0;
+        top: 0;
+        background: #fff;
+        border-bottom: 1px solid #979797;
+    }
+    .no-details-search {
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: 0.3px;
+        text-align: center;
+        color: #15223d;
+        width: 75%;
+        margin: 100px auto auto auto;
+    }
+    .details-of-search {
+        margin-top: 20px;
+        .search-box {
+            margin-top: 10px;
+            @include flexNowrap();
+            .search-box {
+                flex: 1;
+                margin: 0 10px
+            }
+            .select-bix {
+                flex: 1;
+                margin-left: auto
+            }
+        }
+    }
+    .isActive {
+        background-color: rgba(21, 34, 61, 0.1);
+        .sort-result {
+            display: block !important;
+        }
+        &:hover {
+            background-color: rgba(21, 34, 61, 0.1) !important;
+            cursor: default;
+        }
+    }
+    .inventory-list {
+        width: 100%;
+        padding: 0;
+        margin-top: 20px;
+        li {
+            width: 100%;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-bottom: solid 1px #cfcfcf;
+            .title {
+                width: 100%;
+                cursor: pointer;
+                box-sizing: border-box;
+                padding: 0 24px;
+                line-height: 40px;
+                height: 40px;
+                .id {
+                    min-width: 130px;
+                    display: inline-block;
+                    font-weight: 500;
+                    color: #00a6e8;
+                }
+                .name {
+                    display: inline-block;
+                }
+            }
+            .sort-result {
+                padding: 0 24px 0 24px;
+                box-sizing: border-box;
+                font-size: 14px;
+                display: none;
+                dd {
+                    padding: 3px 0;
+                    margin: 0;
+                    display: inline-block;
+                    box-sizing: border-box;
+                    width: 33%;
+                    min-width: 100px;
+                    label {
+                        text-align: right;
+                        width: 50%;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .isActive {
+            .sort-result {
+                display: block !important;
+            }
+        }
+    }
+    .lp-details {
+        margin: auto;
+        width: 96%;
+        padding: 5px 0;
+        li {
+            width: 100%;
+            padding: 20px 0;
+            margin-bottom: 15px;
+            border-radius: 2px;
+            border: solid 2px #cfcfcf;
+            min-height: 170px;
+            cursor: pointer;
+            .dl-details,
+            .sn-for-user,
+            .dl-serial {
+                display: flex;
+                flex-flow: wrap;
+                padding: 0 24px 10px 24px;
+                justify-content: flex-start;
+                box-sizing: border-box;
+                font-size: 14px;
+                >dd {
+                    width: 50%;
+                    min-width: 100px;
+                    label {
+                        width: 42%;
+                        display: inline-block
+                    }
+                }
+            }
+            .sn-for-user {
+                position: relative;
+                margin: 10px 0;
+                .number {
+                    color: #15223d;
+                    position: relative;
+                    left: 10PX;
+                    top: 0px;
+                }
+            }
+            .dl-serial {
+                padding: 0;
+                margin: 10px 0;
+                >dt {
+                    width: 100%;
+                    height: 20px;
+                    margin-bottom: 10px;
+                    @include flexNowrap();
+                    label {
+                        width: 50%;
+                        padding-left: 25px;
+                        box-sizing: border-box;
+                        &:nth-of-type(2) {
+                            padding-right: 9%;
+                            text-align: right;
+                        }
+                    }
+                }
+                >dd {
+                    width: 33.333%;
+                    min-height: 20px;
+                    line-height: 20px; //cursor: pointer;
+                    color: #00a6e8;
+                    text-align: center; //text-decoration: underline;
+                    &:hover {
+                        //color: #02587a;
+                    }
+                }
+            }
+        }
+    }
+    .isActive {
+        background: rgba(21, 34, 61, 0.1);
+    }
+    .lpDetailTable {
+        width: 100%;
+        td {
+            width: 25%;
+            padding: 4px;
+        }
+    }
+}
