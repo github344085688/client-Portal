@@ -1,0 +1,67 @@
+{
+    "Order": {
+        "searchParams": [
+            {"name": "OrderId", "apiParamName": "order_id_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []},
+            {"name": "OrderPro", "apiParamName": "order_pro_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "OrderPu", "apiParamName": "pu_id_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "Shipper", "apiParamName": "shipper_name", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "Consignee", "apiParamName": "consignee_name", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false, "value": []}
+        ],
+        "timeType": "order_create_date",
+        "timeTypeArr": [
+            {"key": "Create Date", "value": "order_create_date"},
+            {"key": "Schedule Pick Date", "value": "order_pickup_date"},
+            {"key": "Schedule Delivery Date", "value": "order_delivery_date"}
+        ]
+    },
+    "Trip": {
+        "searchParams": [
+            {"name": "tripNo", "apiParamName": "trip_no_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []},
+            {"name": "CarrierName", "apiParamName": "carrier_name", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "Dispatcher", "apiParamName": "dispatcher", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false, "value": []}
+        ],
+        "timeType": "trip_create_date",
+        "timeTypeArr": [
+            {"key": "Create Date", "value": "trip_create_date"},
+            {"key": "Dispatch Date", "value": "trip_date"}
+        ]
+    },
+    "WMS": {
+        "searchParams": [
+            {"name": "ET", "keyFix": "ET-", "apiParamName": "et_no_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []},
+            {"name": "RN", "keyFix": "RN-", "apiParamName": "rn_no_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []},
+            {"name": "DN", "keyFix": "DN-", "apiParamName": "dn_no_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []}
+        ],
+        "timeType": "createWhen",
+        "timeTypeArr": [
+            {"key": "Create Date", "value": "createdWhen"}
+        ]
+    },
+    "PickAndDeliveryOrders": {
+        "searchParams": [
+            {"name": "orderId", "apiParamName": "order_id_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []},
+            {"name": "orderPro", "apiParamName": "order_pro_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "OrderPu", "apiParamName": "pu_id_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "Shipper", "apiParamName": "shipper_name", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "Consignee", "apiParamName": "consignee_name", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false, "value": []}
+        ],
+        "timeType": "order_create_date",
+        "timeTypeArr": [
+            {"key": "Create Date", "value": "order_create_date"},
+            {"key": "Schedule Pick Date", "value": "order_pickup_date"},
+            {"key": "Schedule Delivery Date", "value": "order_delivery_date"}
+        ]
+    },
+    "ExistingTrips": {
+        "searchParams": [
+            {"name": "tripNo", "apiParamName": "trip_no_array", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false,  "value": []},
+            {"name": "CarrierName", "apiParamName": "carrier_name", "optArr": ["is", "isn't", "include", "exclude"], "type": "input",  "multiple": false, "value": []},
+            {"name": "Dispatcher", "apiParamName": "dispatcher", "optArr": ["is", "isn't", "include", "exclude"], "type": "input", "multiple": false, "value": []}
+        ],
+        "timeType": "trip_create_date",
+        "timeTypeArr": [
+            {"key": "Create Date", "value": "trip_create_date"},
+            {"key": "Dispatch Date", "value": "trip_date"}
+        ]
+    }
+}

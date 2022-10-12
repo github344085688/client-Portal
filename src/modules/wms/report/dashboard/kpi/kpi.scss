@@ -1,0 +1,76 @@
+.kpi-title {
+	padding-top: 8px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.text-mes {
+	text-align: center;
+}
+.snapshot-title {
+	width: 360px;
+	margin-bottom: 26px;
+	font-size: 16px;
+	font-weight: bold;
+	height: 38px;
+	line-height: 38px;
+	border-radius: 4px;
+	color: #fff;
+	text-align: center;
+	background: #91B5BE;
+}
+.order-con {
+	font-size: 16px;
+	> p {
+		font-weight: bold;
+		margin-bottom: 20px;
+		font-size: 18px;
+	}
+}
+.progress {
+	margin-top: 2px;
+	> P {
+		width: 90%;
+		margin-top: 2px;
+		text-align: center;
+	}
+}
+.line {
+	> span {
+		margin-left: 4px;
+	}
+}
+.line-fill {
+	margin-top: 4px;
+	background: #ccc;
+	width: 85%;
+	height: 10px;
+	border-radius: 5px;
+	> div {
+		height: 100%;
+		border-radius: 5px;
+		background: #56A7FD;
+	}
+}
+.text-mes {
+	font-size: 18px;
+}
+.shipped {
+	color: #777;
+}
+.queue {
+	color: #39f;
+}
+
+.table .tit {
+	background: #F9F9F9;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.table > div {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+.table-client tbody td, .table-client thead th {
+	text-align: center !important;
+}

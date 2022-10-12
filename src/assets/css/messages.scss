@@ -1,94 +1,94 @@
 #message-overlay {
-	position: absolute;
-	min-height: 100px;
-	width: 125px;
-	top: calc(50% - 50px);
-	left: calc(50% - 62.5px);
-	z-index: 1000;
-	padding: 17px 12px 11px 12px;
-	text-align: center;
+  position: absolute;
+  min-height: 100px;
+  width: 125px;
+  top: calc(50% - 50px);
+  left: calc(50% - 62.5px);
+  z-index: 1000;
+  padding: 17px 12px 11px 12px;
+  text-align: center;
 
-	img {
-		width: 30px;
-		height: 30px;
-		display: block;
-		margin: 0 auto 8px auto;
-	}
+  img {
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin: 0 auto 8px auto;
+  }
 
-	h2 {
-		margin-bottom: 6px;
-		text-align: center;
-		letter-spacing: .8px;
-		font-family: $secondary_font_family;
-		font-size: 9px;
-	}
+  h2 {
+    margin-bottom: 6px;
+    text-align: center;
+    letter-spacing: .8px;
+    font-family: $secondary_font_family;
+    font-size: 9px;
+  }
 
-	p {
-		font-size: 6px;
-		letter-spacing: .6px;
-		font-family: $main_font_family;
-	}
+  p {
+    font-size: 6px;
+    letter-spacing: .6px;
+    font-family: $main_font_family;
+  }
 }
 
 .scale {
-	-webkit-animation: scale 0.25s linear;
-	-moz-animation: scale 0.25s linear;
-	-ms-animation: scale 0.25s linear;
-	-o-animation: scale 0.25s linear;
-	animation: scale 0.25s linear;
-	animation-fill-mode: forwards;
+  -webkit-animation: scale 0.25s linear;
+  -moz-animation: scale 0.25s linear;
+  -ms-animation: scale 0.25s linear;
+  -o-animation: scale 0.25s linear;
+  animation: scale 0.25s linear;
+  animation-fill-mode: forwards;
 }
 
 @-webkit-keyframes scale {
-	50% {
-		-webkit-transform: scale(1.5);
-	}
+  50% {
+    -webkit-transform: scale(1.5);
+  }
 
-    100% {
-		-webkit-transform: scale(2);
-	}
+  100% {
+    -webkit-transform: scale(2);
+  }
 }
 
 @-moz-keyframes scale {
-    50% {
-		-webkit-transform: scale(1.5);
-	}
+  50% {
+    -webkit-transform: scale(1.5);
+  }
 
-    100% {
-		-webkit-transform: scale(2);
-	}
+  100% {
+    -webkit-transform: scale(2);
+  }
 }
 
 @-o-keyframes scale {
-    50% {
-		-webkit-transform: scale(1.5);
-	}
+  50% {
+    -webkit-transform: scale(1.5);
+  }
 
-    100% {
-		-webkit-transform: scale(2);
-	}
+  100% {
+    -webkit-transform: scale(2);
+  }
 }
 
 @keyframes scale {
-    50% {
-		-webkit-transform: scale(1.5);
-	}
+  50% {
+    -webkit-transform: scale(1.5);
+  }
 
-    100% {
-		-webkit-transform: scale(2);
-	}
+  100% {
+    -webkit-transform: scale(2);
+  }
 }
 
 .help.is-danger {
-	position: relative;
-    top: -15px;
-	font-family: 'AvenirNext';
-	font-size: 0.8125rem;
-	color:  #b21717 !important;
-	letter-spacing: 0.4px;
+  position: relative;
+  top: -15px;
+  font-family: 'AvenirNext';
+  font-size: 0.8125rem;
+  color: #b21717 !important;
+  letter-spacing: 0.4px;
 }
 
 .input.is-danger {
-	background-color: rgba(178, 23, 23, 0.2);
-	border: solid 2px #b21717 !important;
+  background-color: rgba(178, 23, 23, 0.2);
+  border: solid 2px #b21717 !important;
 }

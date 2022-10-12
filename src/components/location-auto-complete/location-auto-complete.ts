@@ -1,9 +1,9 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import template from "./location-auto-complete.vue";
 import { find, unionBy, findIndex } from 'lodash-es';
-import locationService from "../../services/tms/tms-location-service";
-import errorHanlder from '../../shared/error-handler';
+import locationService from "@services/tms/tms-location-service";
+import errorHanlder from '@shared/error-handler';
 
 @Component({
     mixins: [template],

@@ -1,9 +1,9 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import template from "./receipt-auto-complete.vue";
 import { find, unionBy, findIndex } from 'lodash-es';
-import receiptService from "../../services/receipt-service";
-import errorHanlder from '../../shared/error-handler';
+import receiptService from "@services/receipt-service";
+import errorHanlder from '@shared/error-handler';
 
 @Component({
     mixins: [template],
@@ -67,8 +67,8 @@ export default class ReceiptAutoComplete extends WiseVue {
     }
 
     getItemById(id: string) {
-        if (this.value && findIndex(this.receipts, { id: this.value }) < 0) {
-            this.unsubcribers.push(receiptService.get(id, this.facility.accessUrl).subscribe(
+        if (this.value && findIndex(this.receipts, ['id', this.value]) < 0) {
+            this.unsubcribers.push(receiptService.get(id).subscribe(
                 res => {
                     this.receipts = unionBy(res, this.receipts, "id");
                     this.selectValue = this.value;
@@ -106,7 +106,7 @@ export default class ReceiptAutoComplete extends WiseVue {
         this.addCustomerIdToSearchParam(param);
         this.loading = true;
 
-        this.unsubcribers.push(receiptService.searchReceiptByPaging(param, this.facility.accessUrl).subscribe(
+        this.unsubcribers.push(receiptService.searchReceiptByPaging(param).subscribe(
             res => {
 
                 this.receipts = res.receipts;

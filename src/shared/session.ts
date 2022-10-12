@@ -1,8 +1,9 @@
 
-import userService from "../services/user-service";
-import companyService from "../services/company-service";
-import facilityService from "../services/facility-service";
+import userService from "@services/user-service";
+import companyService from "@services/company-service";
+import facilityService from "@services/facility-service";
 import errorHanlder from './error-handler';
+import { forEach } from "lodash-es";
 
 export class Session {
 
@@ -25,18 +26,29 @@ export class Session {
     }
 
 
-    getUserRelatedCustomerId() {
-        return this.getFromSessionOrStorage("userRelatedCustomerId", false);
+    getUserRelatedCustomerIds() {
+        return this.getFromSessionOrStorage("userRelatedCustomerIds", true);
     }
 
-    setUserRelatedCustomerId(relatedCustomerId: string) {
-        this.setToSessionAndLocalStorage("userRelatedCustomerId", relatedCustomerId, false);
+    setUserRelatedCustomerIds(relatedCustomerIds: any) {
+        this.setToSessionAndLocalStorage("userRelatedCustomerIds", relatedCustomerIds, true);
+    }
+
+    getUserRelatedCustomers() {
+        return this.getFromSessionOrStorage("userRelatedCustomers", true);
+    }
+
+    setUserRelatedCustomers(relatedCustomers: any) {
+        this.setToSessionAndLocalStorage("userRelatedCustomers", relatedCustomers, true);
     }
 
     setUserInfo(userInfo: any) {
         this.setSessionData("userInfo", userInfo);
     }
 
+    getUserInfo() {
+        return this.getFromSessionOrStorage("userInfo", false);
+    }
 
     getUserId() {
         return this.getFromSessionOrStorage("userId", false);
@@ -70,10 +82,18 @@ export class Session {
         this.setToSessionAndLocalStorage("selectedCustomer", customerId, false);
     }
 
+    getCurrentPanel() {
+        return this.getFromSessionOrStorage("currentPanel", false);
+    }
+
 
 
     getSsoMark() {
         return this.getFromSessionOrStorage("ssoMark", false);
+    }
+
+    setCurrentPanel(panelName: string) {
+        this.setToSessionAndLocalStorage("currentPanel", panelName, false);
     }
 
     setSsoMark() {
@@ -104,18 +124,70 @@ export class Session {
         this.setToSessionAndLocalStorage("assignedCompanyFacilities", assignedCompanyFacilities, true);
     }
 
+    setAssignedInvoiceAppCompanyIds(invoiceAppCompanyIdsMappings: any) {
+        this.setToSessionAndLocalStorage("invoiceAppCompanyIdsMappings", invoiceAppCompanyIdsMappings, true);
+    }
+
+    getAssignedInvoiceAppCompanyIds() {
+        return  this.getFromSessionOrStorage("invoiceAppCompanyIdsMappings", true);
+    }
+
+    setAssignedInvoiceCustomerIds(invoiceCustomerIds: any) {
+        this.setToSessionAndLocalStorage("invoiceCustomerIds", invoiceCustomerIds, true);
+    }
+
+    getAssignedInvoiceCustomerIds() {
+        return  this.getFromSessionOrStorage("invoiceCustomerIds", true);
+    }
+
+    getFacilityAndCustomerRelation() {
+        return this.getFromSessionOrStorage("facilityAndCustomerRelation", true);
+    }
+
+    setFacilityAndCustomerRelation(facilityAndCustomerRelation: any) {
+        this.setToSessionAndLocalStorage("facilityAndCustomerRelation", facilityAndCustomerRelation, true);
+    }
+
+    getUserPanelData() {
+        let panelData = this.getFromSessionOrStorage("userPanelData", true);
+        if (panelData) {
+            return panelData;
+        } else {
+            this.setUserDefaultPanelData();
+        }
+    }
+
+    addUserPanelData(addPanelData: any) {
+        let panelData = this.getFromSessionOrStorage("userPanelData", true);
+        panelData = panelData.concat(addPanelData);
+        this.setToSessionAndLocalStorage("userPanelData", panelData, true);
+    }
+
+    updateUserPanelData(panelData: any) {
+        this.setToSessionAndLocalStorage("userPanelData", panelData, true);
+    }
+
+    setUserDefaultPanelData() {
+    }
+
     clean() {
         this._sessionInfo = {};
         if (Storage !== undefined) {
-            localStorage.clear();
+            forEach(Object.keys(localStorage), function (key) {
+                if (key.startsWith("cp-")) {
+                    localStorage.removeItem(key);
+                }
+            });
         }
     }
 
     private getFromSessionOrStorage(key: string, isObject: boolean) {
+        key = this.addPrefix(key);
         return this.getSessionData(key) || this.getFromStorageAndSetToSessionDataIfExist(key, isObject);
     }
 
     private setToSessionAndLocalStorage(key: string, value: any, isObject: boolean) {
+        key = this.addPrefix(key);
         this.setSessionData(key, value);
         if (Storage !== undefined) {
             this.setToStorage(key, value, isObject);
@@ -147,10 +219,12 @@ export class Session {
 
 
     private setSessionData(key: string, value: any) {
+        key = this.addPrefix(key);
         this._sessionInfo[key] = value;
     }
 
     private getSessionData(key: string): any {
+        key = this.addPrefix(key);
         return (<any>this._sessionInfo)[key];
     }
 
@@ -179,6 +253,15 @@ export class Session {
             return item;
         }
     }
+
+    private addPrefix(key: string) {
+        if (!key.startsWith("cp-")) {
+            key = "cp-" + key;
+        }
+        return key;
+    }
+
+
 
 }
 

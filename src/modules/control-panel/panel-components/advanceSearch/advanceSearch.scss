@@ -1,0 +1,92 @@
+.search-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1000px;
+    height: 100px;
+    background: #fcfcfc;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px #ccc;
+}
+.icon {
+    margin-top: 12px;
+    cursor: pointer;
+    text-align: right;
+    padding-right: 10px;
+    div {
+        height: 3px;
+        margin: 0 auto 4px;
+        background: #444545;
+    }
+    div:first-child {
+        width: 24px;
+    }
+    div:nth-child(2) {
+        width: 16px;
+    }
+    div:last-child {
+        width: 8px;
+    }
+    > span {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 12px !important;
+        line-height: 20px;;
+        border-radius: 50%;
+        text-align: center;
+        display: inline-block;
+        background: #E74E51;
+        color: #fff !important;
+    }
+}
+.searched .icon {
+    div {
+        background: #E74E51 !important;
+    }
+    color: #E74E51;
+}
+.dialog-search > div {
+    box-shadow: 0 0 0px 20px #E5E5E5;
+    border-radius: 0;
+    .el-dialog__headerbtn {
+        float: right;
+        width: 20px;
+        top: 17px;
+        right: 16px;
+    }
+    .el-dialog__headerbtn .el-icon-close {
+        font-size: 22px;
+        color: #666;
+        font-weight: bold;
+    }
+    .el-dialog__header {
+        text-align: left;
+        color: #333 !important;
+    }
+}
+.search-list > div {
+    padding: 0 !important;
+    margin-bottom: 10px;
+}
+
+.add-search-item {
+    margin-top: 15px;
+    color: #7FA9B3;
+    strong {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        font-size: 26px;
+        text-align: center;
+        line-height: 26px;
+        box-shadow: 0 0 0 2px #7FA9B3;
+        cursor: pointer;
+    }
+    span {
+        padding-left: 4px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}

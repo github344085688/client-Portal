@@ -5,6 +5,7 @@
 const path = require('path')
 let apiHost = "http://stage.logisticsteam.com"
 let wiseConfig= {}
+
 if(process.argv[2] && process.argv[2].startsWith('env=')) {
   let wiseEnv = process.argv[2].split("=")[1]
   wiseConfig =  require('./wise/' + wiseEnv)
@@ -23,6 +24,12 @@ module.exports = {
       "/walnut": apiHost,
       "/viabaron": apiHost,
       "/valley": apiHost,
+      "/cpapi": apiHost,
+      "/fontana": apiHost,
+      "/indiana": apiHost,
+      "/morganlakes": apiHost,
+      "/valleyview": apiHost,
+      "/spring": apiHost
     },
 
     // Various Dev Server settings
@@ -55,7 +62,14 @@ module.exports = {
 
     cssSourceMap: true,
     "apiContextPath": wiseConfig.API_CONTEXT_PATH,
-    "TMS_DOMAIN": wiseConfig.TMS_DOMAIN
+    "TMS_DOMAIN": wiseConfig.TMS_DOMAIN,
+    'reportCenterPath': wiseConfig.REPORT_CENTER_PATH,
+    "isPermissionDisabled": wiseConfig.isPermissionDisabled,
+    'DEPOSIT_API_BASE_URL': wiseConfig.DEPOSIT_API_BASE_URL,
+    'MESSAGE_URL': wiseConfig.MESSAGE_URL,
+    'TMS_MESSAGE_URL': wiseConfig.TMS_MESSAGE_URL,
+    "ssoRedirectLink": wiseConfig.ssoRedirectLink,
+    'enableSaasMode': wiseConfig.enableSaasMode
   },
 
   build: {
@@ -66,6 +80,9 @@ module.exports = {
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: wiseConfig.STATIC_CONTENT_CONTEXT_PATH ? wiseConfig.STATIC_CONTENT_CONTEXT_PATH : '/',
+
+    // Google Analytics
+    enableGoogleAnalytics: wiseConfig.enableGoogleAnalytics,
 
     /**
      * Source Maps
@@ -88,6 +105,13 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report, 
     "apiContextPath": wiseConfig.API_CONTEXT_PATH,
-    "TMS_DOMAIN": wiseConfig.TMS_DOMAIN
+    "TMS_DOMAIN": wiseConfig.TMS_DOMAIN,
+    'reportCenterPath': wiseConfig.REPORT_CENTER_PATH,    // prod report-center api url
+    "isPermissionDisabled": wiseConfig.isPermissionDisabled,
+    'DEPOSIT_API_BASE_URL': wiseConfig.DEPOSIT_API_BASE_URL,
+    'MESSAGE_URL': wiseConfig.MESSAGE_URL,
+    'TMS_MESSAGE_URL': wiseConfig.TMS_MESSAGE_URL,
+    'ssoRedirectLink': wiseConfig.ssoRedirectLink,
+    'enableSaasMode': wiseConfig.enableSaasMode
   }
 }

@@ -1,0 +1,60 @@
+.layout-select {
+  display: inline-block;
+
+
+  .layout-text {
+    padding: 0px 30px;
+    background-color: #fff;
+    border: 1px solid #DADADA;
+
+    .drop-icon {
+      left: 12px;
+      position: relative;
+    }
+  }
+
+  .select-content {
+    position: absolute;
+    background: #fff;
+    border-radius: 2px;
+    border: 1px solid #DADADA;
+
+    .line {
+
+      margin-top: 10px;
+      border: 0.5px solid #DADADA;
+      margin: 0px 10px;
+    }
+  }
+
+  .item-selected {
+
+    position: relative;
+
+    .selected-img {
+      position: absolute;
+      left: 5px;
+      top: 12px;
+    }
+  }
+
+  .layout-option {
+    padding: 7px 30px;
+    cursor: pointer;
+
+    label {
+      cursor: pointer;
+    }
+
+    .deleteImg {
+      position: relative;
+      float: right;
+      left: 15px;
+      top: 5px;
+    }
+  }
+
+  .layout-option:hover {
+    background-color: #E5E5E5;
+  }
+}

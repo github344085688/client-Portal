@@ -10,8 +10,8 @@
     border-radius: 0;
 }
 .el-select-dropdown__item.selected ,.el-select-dropdown__item:hover {
-    background-color: #d8d8d8;
-    color: #000000;
+    background-color: #d8d8d8 !important;
+    color: #000000 !important;
 }
 .el-select-dropdown__item{
     color: #000000;
@@ -19,7 +19,9 @@
     line-height: 40px;
     font-weight: 700;
 }
-
+.el-tag--info{
+    color: #000 !important;
+}
 // .el-select .el-input__inner:focus {
 //     border: 1px solid #656565;
 // }

@@ -3,6 +3,10 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const join = path.join
+const basename = path.basename
+const camel2Dash = require("camel-2-dash")
+const transformerFactory = require('ts-import-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -45,6 +49,12 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      '@components': resolve('src/components'),
+      '@services': resolve('src/services'),
+      '@shared': resolve('src/shared'),
+      '@assets': resolve('src/assets'),
+      '@panelComponents': resolve('src/modules/control-panel/panel-components'),
+      '@modules': resolve('src/modules')
     }
   },
   module: {
@@ -52,13 +62,28 @@ module.exports = {
       ...(config.dev.useEslint ? [createESLintingRule(),createTSLintingRule()] : []),
       
       {
-        test: /\.tsx?$/,
+        test: /\.(jsx|tsx|js|ts)$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
         options: {
-          appendTsSuffixTo: [/\.vue$/]
+          appendTsSuffixTo: [/\.vue$/],
+          getCustomTransformers: () => ({
+            before: [
+              transformerFactory({
+                libraryName: 'element-ui',
+                libraryDirectory: 'lib',
+                camel2DashComponentName: true,
+                style: (path) =>
+                  join('element-ui', 'lib', 'theme-chalk', `${camel2Dash(basename(path, '.js'))}.css`),
+              })
+            ]
+          }),
+          compilerOptions: {
+            module: 'es2015'
+          }
         }
-      },{
+      }
+      ,{
         test: /\.vue$/,
         loader: 'vue-loader',
         options: vueLoaderConfig

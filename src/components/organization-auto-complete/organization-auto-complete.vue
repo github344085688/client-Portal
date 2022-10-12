@@ -7,7 +7,7 @@
     ref="input"
     no-match-text="No Data"
     no-data-text="No Data" 
-    placeholder="Input to search"
+    :placeholder="placeholder"
     @change="onSelectChange"
     :remote-method="remoteMethod"
     :loading="loading"

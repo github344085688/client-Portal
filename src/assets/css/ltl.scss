@@ -230,9 +230,17 @@ input[type="radio"]:checked + .radio:before {
 }
 
 input[type="checkbox"]:checked + .checkbox:after {
-	background: #FFFFFF url(#{$svg-path}/checkbox-light.svg) no-repeat 2px 2px !important;
-    background-size: 15px 15px !important;
-    background-color: #15223d !important;
+	// background: #FFFFFF url(#{$svg-path}/checkbox-light.svg) no-repeat 2px 2px !important;
+    // background-size: 15px 15px !important;
+    // background-color: #15223d !important;
+	width: 0.4285714286rem !important;
+    height: 0.8571428571rem !important;
+	border-width: 0.1428571429em;
+    border-style: solid;
+    border-color: #777879;
+    border-top: 0;
+    border-left: 0;
+	display: inline-block;
 }
 
 input[type="checkbox"]:disabled:checked + .checkbox:after {
@@ -283,7 +291,6 @@ button.button-standard-large, button.button-yellow-large {
 	background-color: rgba(247, 176, 32, 0.7) !important;
 	color: #15223d !important;
 }
-
 .footer {
 	position: relative;
 	margin-top: 60px;
@@ -440,13 +447,17 @@ header.new_header {
 	background-color: transparent !important;
 }
 .table-client thead tr{
-    background-color: #2E323C;
-    color: #fff;
+    background-color: #F9F9F9;
+    // color: #fff;
+	font-weight: bold;
+}
+.table-client tr {
+	border: 1px solid #CECECE;
 }
 .table-client thead th, .table-tracking thead th {
 	border: none !important;
 	// color: #15223d;
-	color: #FFFFFF;
+	// color: #FFFFFF;
 	font-family: 'AvenirNext-Regular';
 	font-size: 0.8125rem;
 	text-align: left !important;
@@ -932,5 +943,35 @@ ul.tracking-status-icon {
     margin: 10px;
 }
 
+.mx-calendar-header{
+  display: flex !important;
+  .mx-btn-text:nth-child(1){
+    order:1
+  }
+  .mx-btn-text:nth-child(2){
+    order:2
+  }
+  .mx-btn-text:nth-child(3){
+    order:4
+  }
+  .mx-btn-text:nth-child(4){
+    order:5
+  }
+  .mx-calendar-header-label{
+    display: flex !important;
+    order:3
+  }
+}
+ .mx-calendar-time{
+   .mx-time-header-title{
+     text-align: center !important;
+   }
+ }
+ .vue2-datepicker{
+   top:35%!important;
+ }
+ .mx-datepicker{
+   width: 97%;
+ }
 /*  End of File Manager*/
 

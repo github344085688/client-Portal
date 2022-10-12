@@ -1,7 +1,6 @@
-import { Subject } from 'rxjs/Subject';
-import Vue from 'vue';
+import { split, trim, map, difference, constant, sum, forEach } from 'lodash-es';
 import { Observable } from 'rxjs/Observable';
-
+import { MessageBox, Message } from 'element-ui';
 
 export default {
 
@@ -28,11 +27,15 @@ export default {
         });
         return obs$;
     },
+
     exportFile(res: any, filename: any) {
         let octetStreamMime = 'application/octet-stream';
         let headers = res.headers;
         let contentType = headers['content-type'] || octetStreamMime;
-
+        let contentDisposition = headers['content-disposition'] || "";
+        if (contentDisposition.match(/CSV/g) || contentDisposition.match(/csv/g)) {
+            filename = filename.replace("xlsx", "csv");
+        }
         let blob = new Blob([res.data], {
             type: contentType
         });
@@ -40,6 +43,7 @@ export default {
         let link = document.createElement('a');
         link.style.display = 'none';
         link.href = objectUrl;
+        filename = this.addTimeForFilename(filename);
         link.setAttribute('download', filename);
 
         document.body.appendChild(link);
@@ -47,17 +51,53 @@ export default {
 
     },
 
+    addTimeForFilename(fileName: string) {
+        let addTimeForFilename = fileName.split('.');
+        let format = addTimeForFilename[addTimeForFilename.length - 1];
+        addTimeForFilename.pop();
+        let refileName = addTimeForFilename.join("");
+        let YYMMDDHHMMSS = this.getCurrentYYMMDDHHMMSS();
+        return refileName + "(" + YYMMDDHHMMSS + ")." + format;
+    },
+
+    getCurrentYYMMDDHHMMSS() {
+        let date: any = new Date();
+        let YY = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let HH = date.getHours();
+        let MM = date.getMinutes();
+
+        month = month < 10 ? "0" + month : month;
+        day = day < 10 ? "0" + day : day;
+        HH = HH < 10 ? "0" + HH : HH;
+        MM = MM < 10 ? "0" + MM : MM;
+        let YYMMDDHHMMSS = YY + "" + month + "" + day + "" + HH + "" + MM ;
+        return YYMMDDHHMMSS;
+    },
+
+    fomateCurrentMMFirstDay(date: any) {
+        let mouthAndDay = this.getMouthAndDay(date);
+        return date.getFullYear() + "-" + mouthAndDay.month + "-01" + "T00:00:00";
+    },
+
     fomateStartDate(date: any) {
         let mouthAndDay = this.getMouthAndDay(date);
-        return date.getFullYear() + "-" + mouthAndDay.month + "-" + mouthAndDay.day + " 00:00:00";
+        return date.getFullYear() + "-" + mouthAndDay.month + "-" + mouthAndDay.day + "T00:00:00";
     },
+
     fomateEndDate(date: any) {
         let mouthAndDay = this.getMouthAndDay(date);
-        return date.getFullYear() + "-" + mouthAndDay.month + "-" + mouthAndDay.day + " 23:59:59";
+        return date.getFullYear() + "-" + mouthAndDay.month + "-" + mouthAndDay.day + "T23:59:59.999";
     },
+
     fomateDateDDMMYYYY(date: any) {
         let mouthAndDay = this.getMouthAndDay(date);
         return mouthAndDay.month + "-" + mouthAndDay.day + "-" + date.getFullYear();
+    },
+    fomateDateYYYYDDMM(date: any) {
+        let mouthAndDay = this.getMouthAndDay(date);
+        return date.getFullYear() + "-" + mouthAndDay.month + "-" + mouthAndDay.day;
     },
 
     getMouthAndDay(date: any) {
@@ -95,5 +135,99 @@ export default {
             };
         }
         return objects.sort(compare);
+    },
+
+    deleteMessageBox(message: string, title: string, fn: Function) {
+        MessageBox.confirm(message, title, {
+            confirmButtonText: 'Delete',
+            cancelButtonText: 'Cancel',
+            customClass: 'clien-portal-box',
+            cancelButtonClass: 'cancel-class',
+            confirmButtonClass: 'delete-class',
+            type: 'warning'
+        }).then(() => {
+            fn();
+        });
+    },
+    popUpSucceedMessage(message: string) {
+        Message.success(message);
+    },
+    buildItemDownloadUrl(fileId: string) {
+        let fileDownloadUrl = "/shared/file-app/file-download/" + fileId;
+        return fileDownloadUrl;
+    },
+    buildPackingListDownloadUrl(orderId: string) {
+        let fileDownloadUrl = "/report-center/outbound/packing-list/pdf/download/" + orderId ;
+        return fileDownloadUrl;
+    },
+    popUpWarningMessage(message: string) {
+        Message.warning(message);
+    },
+
+    judgeIfHasPermission(requiredPermissions: any, userPermissions: any) {
+        if (isPermissionDisabled || !requiredPermissions) {
+            return true;
+        }
+        if (!userPermissions) {
+            return true;
+        }
+        let permissions = split(requiredPermissions, ",");
+        requiredPermissions = map(permissions, trim);
+        if (requiredPermissions.length == 0) {
+            return true;
+        } else if (difference(userPermissions, requiredPermissions).length >= userPermissions.length) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+
+    sum(Lists: Array<any>, mapName: string) {
+        return sum(map(Lists, (item) => {
+            return Number(item[mapName]);
+        }));
+    },
+
+    removeEmptyString(Lists: Array<any>) {
+        forEach(Lists, function (object) {
+            forEach(object, function (value, key) {
+                if (value == "") {
+                    delete object[key];
+                }
+            });
+        });
+    },
+
+    itemDisplay(item: any) {
+        let itemDisplayName: any = '';
+        let itemSpec: any = {};
+        let itemSpecTitle: any = '';
+        if (!item) return;
+        itemSpec = {};
+        if (item.name) {
+            itemSpec = item;
+        } else if (item.itemSpecName) {
+            itemSpec.name = item.itemSpecName;
+            itemSpec.desc = item.itemSpecDesc;
+            itemSpec.shortDescription = item.shortDescription;
+        } else if (item.itemName) {
+            itemSpec.name = item.itemName;
+            itemSpec.desc = item.itemDesc;
+            itemSpec.shortDescription = item.shortDescription;
+        }
+        itemDisplayName = itemSpec.name;
+        if (itemSpec.shortDescription && itemSpec.desc) {
+            itemDisplayName = itemDisplayName + " (" + itemSpec.shortDescription + ")";
+            itemSpecTitle = itemSpec.desc;
+        } else if (itemSpec.shortDescription) {
+            itemDisplayName = itemDisplayName + " (" + itemSpec.shortDescription + ")";
+        } else if (itemSpec.desc) {
+            itemDisplayName = itemDisplayName + " (" + itemSpec.desc + ")";
+        }
+
+        item.itemDisplayName = itemDisplayName;
+        item.itemSpecTitle = itemSpecTitle;
     }
+
+
 };

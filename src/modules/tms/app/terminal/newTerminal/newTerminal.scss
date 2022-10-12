@@ -1,0 +1,33 @@
+.head {
+    padding-bottom: 28px;
+    border-bottom: 1px solid #CECECE;
+}
+// .terminal-info > div {
+//     margin-bottom: 1rem !important;
+//     input {
+//         margin-bottom: 0 !important;
+//     }
+// }
+// .terminal-info > h4 {
+//     margin-bottom: 1.2rem !important;
+// }
+.x-close {
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px;
+    margin-top: 4px;
+    border-radius: 2px;
+}
+.x-close:hover {
+    cursor: pointer;
+    background: #DADADA;
+}
+.back-arrow {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 42px;
+    cursor: pointer;
+}

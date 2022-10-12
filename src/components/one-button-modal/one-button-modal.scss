@@ -1,0 +1,63 @@
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: right;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    background-color: #4D7F89;
+    border-radius: 4px;
+    color: #FFFFFF;
+}
+
+.h1-model-class{
+    height: 33px;
+    font-family: AvenirNext-Medium;
+    font-size: 24px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    text-align: left;
+    color: #15223d;
+    margin-top: 20px;
+    margin-left:30px;
+    margin-bottom: 30px;
+}
+
+.p-model-class {
+    // height: 22px;
+    font-family: 'AvenirNext-Regular';
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    text-align: left;
+    color: #15223d;
+    margin:20px 30px;
+}
+.slot_section{
+    margin-left:30px;
+    margin-bottom: 33px;
+}
+.ui-button {
+    display:inline-block;
+    width:200px;
+    height:45px;
+    float:right;
+    margin-right: 24px;
+    margin-bottom:32px; 
+    color: #15223d !important;
+	background-color: #ffffff !important;
+    border: solid 2px #15223d !important;
+}
+
+
+.ui-button.close-modal-x {
+    background: url('../../assets/css/svg/close-modal-x.svg') no-repeat 5px 10px !important;
+    width: 50px;
+    border: transparent !important;
+    padding: 0px;
+    margin: 0px; 
+}

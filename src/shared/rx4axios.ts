@@ -6,11 +6,11 @@ export interface RxiosConfig extends AxiosRequestConfig {
   localCache?: boolean;
 }
 
-class Rx4axios {
+export class Rx4axios {
   private _httpClient: AxiosInstance;
 
-  constructor(private options: RxiosConfig = {}) {
-    this._httpClient = ax;
+  constructor(axios: AxiosInstance, private options: RxiosConfig = {}) {
+    this._httpClient = axios;
   }
 
   private _makeRequest<T>(method: string, url: string, queryParams?: object, body?: object, headers?: object) {
@@ -47,7 +47,7 @@ class Rx4axios {
   }
 
   public get<T>(url: string, queryParams?: object, headers?: object) {
-    return this._makeRequest<T>('GET', url, queryParams, headers);
+    return this._makeRequest<T>('GET', url, queryParams, {}, headers);
   }
 
   public post<T>(url: string, body: object, queryParams?: object, headers?: object) {
@@ -62,10 +62,10 @@ class Rx4axios {
     return this._makeRequest<T>('PATCH', url, queryParams, body, headers);
   }
 
-  public delete(url: string, queryParams?: object, headers?: object) {
+  public delete<T>(url: string, queryParams?: object, headers?: object) {
     return this._makeRequest('DELETE', url, queryParams, headers);
   }
 }
 
-let Rx4ax =  new Rx4axios();
+let Rx4ax =  new Rx4axios(ax);
 export default Rx4ax;

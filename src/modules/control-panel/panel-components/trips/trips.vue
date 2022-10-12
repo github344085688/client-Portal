@@ -1,0 +1,323 @@
+<template>
+    <div class="panel_c_wrap" style="position: relative">
+        <div class="view-head">
+            <h2>Trips
+                <span>{{totalCompleted}} Completed</span>
+                <strong>{{totalCanceled}} Cancelled</strong>
+            </h2>
+            <div class="head-mes">
+                <div class="grid-100 tablet-grid-100">
+                    <div :class="index == 0 ? 'grid-33' : 'grid-66'" v-for="(item, index) in headDataArr" :key="index">
+                        <div class="head-mes-num">
+                            <strong :class="isViewNormal ? 'bold-num view-status-size' : 'bold-num'" @click="viewIssueOrNormal(index, 'normal')">{{item.normal.total}}</strong>
+                            <span>●</span>
+                            <span :class="isViewNormal ? '' : 'view-status-size'" @click="viewIssueOrNormal(index, 'issue')">{{item.issue.total}}</span>
+                        </div>
+                        <div :class="'head-mes-type colortrip-bt-' + item.name">{{item.name}}</div>
+                        <div class="head-mes-pdw">   
+                            <p>
+                                <span v-for="(dataItem, dataIndex) in isViewNormal ? item.normal : item.issue" :key="dataIndex" v-show="dataIndex != 'total'" @click="filterType(index, item.name, dataIndex)" :class="item.filter == (item.name + '-' + dataIndex) ? '--filter': ''">
+                                    {{dataIndex}}({{dataItem}})
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="view-body">
+            <div class="body-control" style="padding-left: 5px">
+                <div class="body-top">
+                    <div class="grid-30">
+                        <el-select no-match-text="No Data" v-model="selectViewType" @change="selectView(selectViewType)">
+                            <el-option v-for="(item, index) in viewType" :key="index" :label="item" :value="item">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <div class="grid-10">&nbsp;</div>
+                    <div class="grid-35">
+                        <button class="unis-btn unis-btn-primary color-white" style="margin: 5px 10px 0 0px" @click="createNewTrip"> + New Trip</button>
+                    </div>
+                    <div class="grid-25">
+                        <advance-search :class="isDefaultAdvanceSearch ? '' : 'searched'"
+                            :panel="searchPanelName"
+                            @click.native="searchPanelName = 'Trip'"
+                            @closeAdvanceSearch="closeAdvance"
+                        >
+                        </advance-search>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="view-container" v-loading="loadingTrip" element-loading-text="loading data">
+                <div class="card-view-container" v-show="selectViewType == 'Card View'">
+                    <div class="body-mes">
+                        <div class="grid-100 tablet-grid-100" style="padding-left: 5px">
+                            <div class="card-view trip-card-view">
+                                <div class="top-title">
+                                    <div :class="'grid-' + item.size" v-for="(item, index) in dataList" :key="index">
+                                        {{item[index]}}
+                                        <div class="item-control">
+                                            <strong v-show="!item.isHide">{{item.type}}</strong>
+                                            <span>
+                                                <el-dropdown>
+                                                    <span class="el-dropdown-link">···</span>
+                                                    <el-dropdown-menu slot="dropdown">
+                                                        <el-dropdown-item @click.native="hideOrExpand(index)">{{item.isHide ? 'Expand' : 'Hide'}}</el-dropdown-item>
+                                                        <el-dropdown-item :class="item.sort == '1' ? 'set-bg-color' : ''" @click.native="sortAscending(item)">Sort by date ascending</el-dropdown-item>
+                                                        <el-dropdown-item :class="item.sort == '2' ? 'set-bg-color' : ''" @click.native="sortDecending(item)">Sort by date decending </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-con-box d-flex">
+                                    <div :class="'grid-' + item.size" v-for="(item, index) in dataList" :key="index">
+                                        <div class="item-list" v-show="!item.isHide">
+                                            <div
+                                                :class="'item-card-view color-trips-'+ item.type + ' grid-' + (parseInt(100 / item.cols) - 3) + (item.cols ? ' cols-card' : '') + (associatedTripNo == data.trip_no ? ' associated' : '')"
+
+                                                v-for="(data, dataIndex) in item.secData" :key="dataIndex"
+
+                                                v-show="headDataArr[index].filter ? headDataArr[index].filter.toUpperCase() == data.trip_status_category.toUpperCase().replace('_', '-') + '-' + data.trip_stage_category : true"
+                                                v-menu="menuItem" @click="showTripLog(data.logs, data.trip_no)" @contextmenu.prevent="mouseclick(data)" @dblclick="dbClickForDetail(data)"
+                                            >
+                                                <div class="card-tag" v-show="!item.isHide">{{data.trip_stage_category}} {{item.showMore}}</div>
+                                                <strong>#{{data.trip_no}}</strong>
+                                                <p>{{data.total_weights}}lb/{{data.total_pallets}}PL/{{data.total_mileage}}mil</p>
+                                                <p v-if="data.original_terminal != undefined">F:{{data.original_terminal.location_city + ' ' + data.original_terminal.location_state}}</p>
+                                                <!-- <p v-if="data.destination_terminal != undefined">T:{{data.destination_terminal.location_city + ' ' + data.destination_terminal.location_state}}</p> -->
+                                                <p v-if="data.tasks.length != 0">T: {{(data.tasks[data.tasks.length-1].stops)[data.tasks[data.tasks.length-1].stops.length-1].stop_location.location_address}}</p>
+                                                <p style="margin-bottom: 5px">Driver: {{data.driver_firstname + ' ' + data.driver_lastname}}</p>
+                                                <div :class="data.showMore ? 'common-arrow trun-deg' : 'common-arrow'" @click="dropDownTrip(data)"></div>
+                                                <div class="show-more-item" v-show="data.showMore">
+                                                    <!-- <p>{{data.total_mileage}} mil</p> -->
+                                                    <div class="per-task" v-for="(task, taskIndex) in data.tasks" :key="taskIndex">
+                                                        <div class="per-stop" v-for="(stop, stopIndex) in task.stops" :key="stopIndex" style="margin-bottom: 10px">
+                                                            <strong style="display: block;margin-bottom: 5px">Stop {{stopIndex + 1}}: <span class="right">{{stop.stage_text ? stop.stage_text.substring(0,1).toUpperCase() : ''}}</span></strong>
+                                                            <strong style="display: block;margin-bottom: 5px">{{stop.stop_location.location_city}}, {{stop.stop_location.location_state}}</strong>
+                                                            <div class="per-order" v-for="(line, lineIndex) in stop.lines" :key="lineIndex">
+                                                                <div v-if="stop.stage!= 'truck inspection'">
+                                                                    <div class="per-order" v-for="(order, orderIndex) in line.orders" :key="orderIndex">
+                                                                        <p style="margin-bottom: 2px" @click="getOrderDetailById(order.order_id)" >{{order.order_pro ? 'Pro: ' + order.order_pro : 'Pu: ' + order.pu_id}} | {{order.pallets + 'PLT'}} | {{order.weights + 'lbs'}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <div v-else>
+                                                                    truck inspection
+                                                                </div>
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-view-container" v-show="selectViewType == 'List View'">
+                    <div class="list-table table-view trip-list-view drop-down-table body-mes">
+                        <div class="table-out">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th v-for="(item, index) in listViewDataTitle" :key="index" :class="[!item.isHide ? '' : 'hide-th']">
+                                            <strong>{{ !item.isHide ? item.name : ''}}</strong>
+                                            <span>
+                                                <el-dropdown>
+                                                    <span class="el-dropdown-link">···</span>
+                                                    <el-dropdown-menu slot="dropdown">
+                                                        <el-dropdown-item @click.native="hideOrExpandList(index)">{{item.isHide ? 'Expand' : 'Hide'}}</el-dropdown-item>
+                                                        <el-dropdown-item :class="sort == '1' ? 'set-bg-color' : ''" @click.native="sortAscending()">Sort by date ascending</el-dropdown-item>
+                                                        <el-dropdown-item :class="sort == '2' ? 'set-bg-color' : ''" @click.native="sortDecending()">Sort by date decending </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <slot v-for="(item, index) in viewArr">
+                                        <tr :key="index" :class="(associatedTripNo == item.trip_no ? 'associated' : '')" @dblclick="dbClickForDetail(item)">
+                                            <td :class="'drop-down-table-arrow-box arrow-box-' + item.trip_status_category">
+                                                <div :class="[item.showDropDown ? 'drop-down-table-arrow arrow-dowm' : 'drop-down-table-arrow']" @click="clickDropDown(index)"></div>
+                                            </td>
+                                            <td><strong>{{!listViewDataTitle[0].isHide ? item.trip_no : ''}}</strong>
+                                            <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div></td>
+                                            <td>{{!listViewDataTitle[1].isHide ? item.total_mileage : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!listViewDataTitle[2].isHide ? item.priority : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!listViewDataTitle[3].isHide ? item.dispatcher : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!listViewDataTitle[4].isHide ? item.carrier_name : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!listViewDataTitle[5].isHide ? item.trip_end_date + ' ' + item.trip_start_time_to : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!listViewDataTitle[6].isHide ? item.trip_start_date + ' ' + item.trip_start_time_from  + ' > ' + item.trip_end_date + ' ' + item.trip_start_time_to : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!listViewDataTitle[7].isHide ? (item.original_terminal.location_street ? item.original_terminal.location_street + ',' : '')
+                                            + (item.original_terminal.location_city ? item.original_terminal.location_city + ',' : '')
+                                            + (item.original_terminal.location_state ? item.original_terminal.location_state + ',' : '')
+                                            + item.destination_terminal.location_zip : ''}}
+                                            <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div></td>
+                                            <td>
+                                                <span v-for="(task, taskIndex) in item.tasks" :key="taskIndex" v-show="taskIndex == (item.tasks.length -1)">
+                                                    <span v-for="(stop, stopIndex) in task.stops" :key="stopIndex" v-show="stopIndex == (task.stops.length -1)">
+                                                        {{!listViewDataTitle[8].isHide ? (stop.stop_location.location_street ? stop.stop_location.location_street + ',' : '')
+                                                        + (stop.stop_location.location_city ? stop.stop_location.location_city + ',' : '')
+                                                        + (stop.stop_location.location_state ? stop.stop_location.location_state + ',' : '')
+                                                        + stop.stop_location.location_zip : ''}}
+                                                    </span>
+                                                </span>
+                                            <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div></td>
+                                        </tr>
+                                        <slot  v-for="(task) in item.tasks">
+                                            <tr v-show="item.showDropDown">
+                                                <td colspan="12" style="padding: 0; border: 0">
+                                                    <div class="drop-down-items" v-for="(stop, stopIndex) in task.stops" :key="stopIndex">
+                                                        <span>stop{{stop.stop_sequence}}</span>
+                                                        <span v-if="stop.stage == 'truck inspection'">truck inspection</span>
+                                                        <span v-if="stop.stop_location != undefined && stop.stage != 'truck inspection'">{{(stop.stop_location.location_street ? stop.stop_location.location_street + ',' : '')
+                                                            + (stop.stop_location.location_city ? stop.stop_location.location_city + ',' : '')
+                                                            + (stop.stop_location.location_state ? stop.stop_location.location_state + ',' : '')
+                                                            + stop.stop_location.location_zip}}
+                                                        </span>
+                                                        <span v-if="stop.stage != 'truck inspection'">{{stop.weights}}libs</span>
+                                                        <span v-if="stop.stage != 'truck inspection'">{{stop.pallets}}pallets</span>
+                                                        <!-- <span v-if="stop.stage != 'truck inspection'">{{stop.miles}}miles</span> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </slot>
+                                    </slot>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-view-container" v-show="selectViewType == 'Table View'">
+                    <div class="list-table table-view trip-table-view drop-down-table body-mes">
+                        <div class="table-out">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th v-for="(item, index) in tableViewDataTitle" :key="index" :class="[!item.isHide ? '' : 'hide-th']">
+                                            <strong>{{ !item.isHide ? item.name : ''}}</strong>
+                                            <span>
+                                                <el-dropdown>
+                                                    <span class="el-dropdown-link">···</span>
+                                                    <el-dropdown-menu slot="dropdown">
+                                                        <el-dropdown-item @click.native="hideOrExpandList(index)">{{item.isHide ? 'Expand' : 'Hide'}}</el-dropdown-item>
+                                                        <el-dropdown-item :class="sort == '1' ? 'set-bg-color' : ''" @click.native="sortAscending()">Sort by date ascending</el-dropdown-item>
+                                                        <el-dropdown-item :class="sort == '2' ? 'set-bg-color' : ''" @click.native="sortDecending()">Sort by date decending </el-dropdown-item>
+                                                    </el-dropdown-menu>
+                                                </el-dropdown>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <slot v-for="(item, index) in viewArr">
+                                        <tr :class="(index % 2 == 0 ? 'tr-green' : '') + (associatedTripNo == item.trip_no ? ' associated' : '')" :key="index" @dblclick="dbClickForDetail(item)">
+                                            <td :class="'drop-down-table-arrow-box arrow-box-' + item.trip_status_category">
+                                                <div :class="[item.showDropDown ? 'drop-down-table-arrow arrow-dowm' : 'drop-down-table-arrow']" @click="clickDropDown(index)"></div>
+                                            </td>
+                                            <td><strong>{{!tableViewDataTitle[0].isHide ? item.trip_no : ''}}</strong>
+                                            <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div></td>
+                                            <td>{{!tableViewDataTitle[1].isHide ? item.total_mileage : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!tableViewDataTitle[2].isHide ? item.priority : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!tableViewDataTitle[3].isHide ? item.dispatcher : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!tableViewDataTitle[4].isHide ? item.carrier_name : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!tableViewDataTitle[5].isHide ? item.trip_end_date + ' ' + item.trip_start_time_to : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!tableViewDataTitle[6].isHide ? item.trip_start_date + ' ' + item.trip_start_time_from  + ' > ' + item.trip_end_date + ' ' + item.trip_start_time_to : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                            <td>{{!tableViewDataTitle[7].isHide ? (item.original_terminal.location_street ? item.original_terminal.location_street + ',' : '')
+                                            + (item.original_terminal.location_city ? item.original_terminal.location_city + ',' : '')
+                                            + (item.original_terminal.location_state ? item.original_terminal.location_state + ',' : '')
+                                            + item.destination_terminal.location_zip : ''}}
+                                            <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div></td>
+                                            <td>{{!tableViewDataTitle[8].isHide ? (item.destination_terminal.location_street ? item.destination_terminal.location_street + ',' : '')
+                                            + (item.destination_terminal.location_city ? item.destination_terminal.location_city + ',' : '')
+                                            + (item.destination_terminal.location_state ? item.destination_terminal.location_state + ',' : '')
+                                            + item.destination_terminal.location_zip : ''}}
+                                            <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div></td>
+                                            <td>{{!tableViewDataTitle[9].isHide ? item.driver_firstname + ' ' + item.driver_lastname : ''}}
+                                                <div class="right-menu" @click="showTripLog(item.logs, item.trip_no)" v-menu="menuItem" @contextmenu.prevent="mouseclick(item)"></div>
+                                            </td>
+                                        </tr>
+                                        <slot  v-for="(task) in item.tasks">
+                                            <tr v-show="item.showDropDown">
+                                                <td colspan="12" style="padding: 0; border: 0">
+                                                    <div class="drop-down-items" v-for="(stop, stopIndex) in task.stops" :key="stopIndex">
+                                                        <span>stop{{stop.stop_sequence}}</span>
+                                                        <span v-if="stop.stage == 'truck inspection'">truck inspection</span>
+                                                        <span v-if="stop.stop_location != undefined && stop.stage != 'truck inspection'">{{(stop.stop_location.location_street ? stop.stop_location.location_street + ',' : '')
+                                                            + (stop.stop_location.location_city ? stop.stop_location.location_city + ',' : '')
+                                                            + (stop.stop_location.location_state ? stop.stop_location.location_state + ',' : '')
+                                                            + stop.stop_location.location_zip}}
+                                                        </span>
+                                                        <span v-if="stop.stage != 'truck inspection'">{{stop.weights}}libs</span>
+                                                        <span v-if="stop.stage != 'truck inspection'">{{stop.pallets}}pallets</span>
+                                                        <!-- <span v-if="stop.stage != 'truck inspection'">{{stop.miles}}miles</span> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </slot>
+                                    </slot>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <trip-detail 
+            :show="showTripDetail" 
+            :tripId="currentTripId" 
+            @closeTripDetail="closeDialog"
+        ></trip-detail>
+
+        <advance-detail
+            :detail="orderDetail"
+            :type="'Order'"
+            :show="showAdvanceDetails"
+            @setShowOrHide="setShowOrHideFun"
+        >
+        </advance-detail>
+
+        <new-trip
+            :show="showTripDialog"
+            :isEdit="isEditTrip"
+            :currentTrip="tripDetail"
+            @closeNewTrip="closeNewTripDialog"
+            :styleCss="''"
+        ></new-trip>
+    </div>
+</template>
+<style lang="scss" src="./trips.scss"></style>

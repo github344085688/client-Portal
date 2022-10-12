@@ -1,9 +1,9 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 import template from "./order-auto-complete.vue";
 import { find, unionBy, findIndex } from 'lodash-es';
-import orderService from "../../services/order-service";
-import errorHanlder from '../../shared/error-handler';
+import orderService from "@services/order-service";
+import errorHanlder from '@shared/error-handler';
 
 @Component({
     mixins: [template],
@@ -69,8 +69,8 @@ export default class OrderAutoComplete extends WiseVue {
     }
 
     getItemById(id: string) {
-        if (this.value && findIndex(this.orders, { id: this.value }) < 0) {
-            this.unsubcribers.push(orderService.get(id, this.facility.accessUrl).subscribe(
+        if (this.value && findIndex(this.orders, ['id', this.value]) < 0) {
+            this.unsubcribers.push(orderService.get(id).subscribe(
                 res => {
                     this.orders = unionBy([res], this.orders, "id");
                     this.selectValue = this.value;
@@ -108,7 +108,7 @@ export default class OrderAutoComplete extends WiseVue {
         this.addCustomerIdToSearchParam(param);
         this.loading = true;
 
-        this.unsubcribers.push(orderService.searchReceiptByPaging(param, this.facility.accessUrl).subscribe(
+        this.unsubcribers.push(orderService.searchReceiptByPaging(param).subscribe(
             res => {
 
                 this.orders = res.orders;

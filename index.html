@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>WISE Client Portal</title>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDtFt9CIaNT-Y489y6Z8FDYB3PVbFoI0xA&libraries=geometry,visualization,drawing"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDIwg0biR0nsqK6z93gA-XdUV-B-_b_xko&signed_ins&signed_in=true&sensor=false&libraries=places&language=en" async></script>
   </head>
   <body>
     <div id="app"></div>
@@ -21,5 +23,17 @@
       })(document, "script");
     </script>
     <!--End of Zendesk Chat Script-->
+
+    <!-- Start of Google Analytics -->
+    <% if (htmlWebpackPlugin.options.enableGoogleAnalytics) {%>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167822942-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167822942-1');
+      </script>
+    <% } %>
+    <!-- End of Google Analytics -->
   </body>
 </html>

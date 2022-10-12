@@ -1,10 +1,10 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch, Emit } from "vue-property-decorator";
 import template from "./predefined-customer-select.vue";
 import { Select, Option } from "element-ui";
 import { find, unionBy, findIndex, flatMap } from 'lodash-es';
-import organizationService from "../../services/organization-service";
-import errorHanlder from '../../shared/error-handler';
+import organizationService from "@services/organization-service";
+import errorHanlder from '@shared/error-handler';
 
 WiseVue.use(Select);
 WiseVue.use(Option);
@@ -24,73 +24,37 @@ export default class PredefinedCustomerSelect extends WiseVue {
     @Prop({ default: "" })
     tag!: string;
 
+    @Prop({ default: false })
+    isDisabled!: boolean ;
+
+    @Prop({ default: () => {
+        return {};
+    }})
+    facility!: Object;
 
     customerIds: Array<any> = [];
     loading = false;
     orgs: Array<any> = [];
 
     selectValue: any = "";
-    onSelectChange() {
-        this.setCustomerIdByUserSelect(this.selectValue);
+    async onSelectChange() {
+        await this.setCustomerIdByUserSelect(this.selectValue);
         this.$emit("input", this.selectValue);
-        this.$emit("change", find(this.orgs, ['id', this.value]));
+        this.$emit("change", find(this.orgs, ['id', this.selectValue]));
     }
 
-    @Watch("value")
-    valueUpdate() {
-        this.getOrganizationById();
-        this.searchOrganizations();
-    }
+    // @Watch("facility")
+    // valueUpdate() {
+    //     this.init();
+    // }
 
-    getOrganizationById() {
-        let id: any = null;
-        if (!this.value) {
-            id = this.getCustomerIdByUserSelect();
-        } else {
-            id = this.value;
-        }
-        if (id && findIndex(this.orgs, { id: id }) < 0) {
-            this.unsubcribers.push(organizationService.get(id).subscribe(
-                res => {
-                    let response: any = flatMap([res], "basic");
-                    this.orgs = unionBy(response, this.orgs, "id");
-                    this.selectValue = id;
-                },
-                err => {
-                    errorHanlder.handle(err);
-                }
-            ));
-        }
-    }
-
-    private searchOrganizations() {
-        let id: any = null;
-        if (!this.value) {
-            id = this.getCustomerIdByUserSelect();
-        } else {
-            id = this.value;
-        }
-        if (id && findIndex(this.orgs, { id: id }) < 0) {
-            this.customerIds = this.getCustomerIds();
-            this.loading = true;
-            this.unsubcribers.push(organizationService.search({ ids: this.customerIds }).subscribe(
-                res => {
-                    let orgs: any = flatMap(res, "basic");
-                    this.orgs = orgs;
-                    this.loading = false;
-                },
-                err => {
-                    this.loading = false;
-                    errorHanlder.handle(err);
-                }
-            ));
-        }
-
-    }
     init() {
-        this.getOrganizationById();
-        this.searchOrganizations();
-        this.$emit("input", this.getCustomerIdByUserSelect());
+        this.customerIds = this.getCustomerIds();
+        this.orgs = this.getCustomers();
+        this.selectValue = this.getCustomerIdByUserSelect();
+        this.$forceUpdate();
+        this.$emit("input", this.selectValue);
+        this.$emit("change", find(this.orgs, ['id', this.selectValue]));
     }
 
     mounted() {

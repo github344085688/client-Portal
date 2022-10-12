@@ -14,6 +14,7 @@
 @import "header.scss";
 //@import "file-manager.scss";
 @import "messages.scss";
+@import "message-box.scss";
 // jQuery UI Style Override
 //@import "jqueryui.scss";
 // Tutorials
@@ -27,6 +28,7 @@
 @import "./element-ui/loading.scss";
 @import "./element-ui/message.scss";
 @import "./element-ui/icon.scss";
+@import "./element-ui/tooltip.scss";
 
 @import "unsemantic-extend.scss";
 @import "loaders.scss";

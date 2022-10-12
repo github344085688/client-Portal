@@ -1,0 +1,59 @@
+.empty {
+   width: 18px;
+   height: 18px; 
+   background: #fff;
+   border: 1px solid #656565;
+   box-sizing: border-box;
+   border-radius: 2px;
+} 
+.checkbox-word {
+       display: inline-block;
+       width: 600px;
+       font-size: 13px;
+       position: relative;
+       top: -8px;
+       left: 30px;
+       color: #2e323c;
+       cursor: pointer;
+       font-family: AvenirNext-Regular;
+}
+.filled {
+    .checkbox-word {
+        position: relative;
+        top: -35px;
+        left: 30px;
+    } 
+}
+.modify .empty {
+    .checkbox-word {
+        position: relative;
+        top: -5px;
+        left: 30px;
+    } 
+    .down {
+        position: relative;
+        top: -32px;
+        left: 30px;
+    }
+}
+
+.list-view-container {
+    .table-view {
+        thead th {
+            background: #fff;
+        }
+        tbody tr td:first-child {
+            background: #ECECEC;
+        }
+        tbody tr td {
+            border-right: 0;
+        }
+        tbody {
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+    }
+}
+.per-order > p:hover {
+    color: #39f;
+}

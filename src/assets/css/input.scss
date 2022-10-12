@@ -1,14 +1,23 @@
 .input-label {
-	font-family: 'AvenirNext-Medium';
 	font-size: 0.8125rem;
 	text-transform: capitalize;
 	color: #15223d;
 	overflow: hidden;
     text-overflow: ellipsis;
 	white-space: nowrap;
+	padding-bottom: 4px;
+	display: inline-block;
 	letter-spacing: .3px;
 }
-
+.el-input.is-focus .el-input__inner {
+	border: 1px solid #91B5BE;
+}
+.el-input input:hover {
+	border: 1px solid #91B5BE !important;
+}
+.el-input input {
+	border: 1px solid #DADADA !important;
+}
 input[type="file"] {
 	display: none;
 }
@@ -25,7 +34,7 @@ input[type="email"],
 input[type="password"],
 input[type="search"],
 input[type="number"],
-select, 
+select,
 textarea {
 	width: 100%;
 	margin-bottom: 14px;
@@ -33,11 +42,11 @@ textarea {
 	padding-left: 8px;
 	font-size: .875rem;
 	outline: none;
-	border: solid 1px #656565;
+	border: solid 1px #DADADA;
 	color: #15223d;
 
 	&:focus {
-		border: solid 2px #f7b020; 
+		border: solid 1px #91B5BE;
 	}
 
 	&:disabled {
@@ -83,7 +92,7 @@ select {
 button {
 	min-height: 28px;
 	outline: none;
-	border: none; 
+	border: none;
 	font-family: 'AvenirNext-Medium';
 	font-size: .875rem;
 	cursor: pointer;
@@ -98,8 +107,8 @@ button {
 		cursor: not-allowed;
 	}
 
-	&.button-standard-small, 
-	&.button-standard-medium, 
+	&.button-standard-small,
+	&.button-standard-medium,
 	&.button-standard-large {
 		color: #15223d;
 		background-color: #ffffff;
@@ -109,10 +118,10 @@ button {
 			color: rgba(101, 101, 101, 0.7);
 			border: solid 2px rgba(101, 101, 101, 0.7);
 		}
-	} 
+	}
 
-	&.button-yellow-small, 
-	&.button-yellow-medium, 
+	&.button-yellow-small,
+	&.button-yellow-medium,
 	&.button-yellow-large {
 		color: #15223d;
 		background-color: #f7b020;
@@ -123,7 +132,7 @@ button {
 			background-color: #e5e5e5;
 		}
 	}
-	
+
 	a {
 		display: block;
 		padding: 5px 0;
@@ -205,21 +214,21 @@ button {
 		left: 5px;
 		border-radius: 0px;
 	}
-	
+
 	&.edit-row {
 		background: url(#{$svg-path}/edit_item_disabled.svg) no-repeat;
 		background-color: transparent;
 		width: 25px;
 		top: 10px;
-		border-radius: 0px; 
+		border-radius: 0px;
 	}
 
 	&.delete-row {
 		background: url(#{$svg-path}/remove_item_disabled.svg) no-repeat;
 		background-color: transparent;
-		width: 15px; 
-		top: 10px; 
-		border-radius: 0px; 
+		width: 15px;
+		top: 10px;
+		border-radius: 0px;
 	}
 }
 
@@ -239,7 +248,7 @@ button {
 .container .checkbox,
 .container .radio {
 	padding: 0 10px;
-	
+
 	&:first-of-type {
 		padding-left: 0;
 	}
@@ -272,7 +281,7 @@ input[type="radio"] {
 			    top: 27px;
 			    left: 15px;
 			}
-		} 
+		}
 	}
 
 	+ .checkbox,
@@ -291,7 +300,7 @@ input[type="radio"] {
 
 		&:after {
 			content: "";
-			display: inline-block;
+			// display: inline-block;
 			width: 30px;
 			height: 30px;
 			cursor: pointer;
@@ -317,7 +326,7 @@ input[type="radio"] {
 				    height: 10px;
 				    left: 5px;
 				}
-			} 
+			}
 		}
 	}
 }
@@ -386,37 +395,37 @@ textarea {
 
 @-webkit-keyframes ripple {
     100% {
-		opacity: 0; 
+		opacity: 0;
 		-webkit-transform: scale(2.5);
 	}
 }
 
 @-moz-keyframes ripple {
     100% {
-		opacity: 0; 
+		opacity: 0;
 		-moz-transform: scale(2.5);
 	}
 }
 
 @-o-keyframes ripple {
     100% {
-		opacity: 0; 
+		opacity: 0;
 		-o-transform: scale(2.5);
 	}
 }
 
 @keyframes ripple {
     100% {
-		opacity: 0; 
+		opacity: 0;
 		transform: scale(2.5);
 	}
 }
 
 /* Fixes input fields autofill CSS for Chrome */
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
-input:-webkit-autofill, 
+input:-webkit-autofill,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover
 textarea:-webkit-autofill:focus,
@@ -426,4 +435,11 @@ select:-webkit-autofill:focus {
 	-webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
 	box-shadow: 0 0 0px 1000px #ffffff inset !important;
 	color: #15223d !important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
 }

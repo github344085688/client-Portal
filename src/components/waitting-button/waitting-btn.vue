@@ -1,6 +1,6 @@
 <template>
-    <div class="inline-block">
-        <button :type="btnType" :class="btnClass" :disabled="disabled" @click="clickBtn">
+    <div class="">
+        <button :type="btnType" :class="btnClass + 'unis-btn unis-btn-primary'" :disabled="disabled || isLoading" @click="clickBtn">
             <i :class="iconClass"></i>
             {{value}}
             <div class="ball-pulse" v-if="isLoading">

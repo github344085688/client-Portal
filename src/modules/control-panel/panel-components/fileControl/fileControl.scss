@@ -1,0 +1,41 @@
+.file-control {
+    margin-top: 20px;
+}
+.el-upload-list__item-actions {
+    height: 108px !important;
+}
+.el-upload-list__item {
+    // padding-bottom: 10px;
+    height: auto !important;
+}
+.file-name {
+    width: 90%;
+    line-height: 18px;
+    margin: 0 auto 5px;
+}
+.el-select {
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.per-file {
+    .min-img {
+        display: block;
+        border: 1px solid #ececec;
+        width: 90%;
+        min-height: 80px;
+        margin: 0 auto 10px;
+        height: auto;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+    p {
+        height: 46px;
+        padding: 0 10px;
+        margin-bottom: 10px;
+    }
+}
+.el-upload-list--text {
+    display: none !important;
+}

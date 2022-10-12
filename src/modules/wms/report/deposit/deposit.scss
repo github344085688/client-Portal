@@ -1,0 +1,46 @@
+.deposit-wrap {
+  position: relative;
+  min-height: 800px;
+}
+.iframe {
+  iframe {
+    display: block;
+    width: 100%;
+    min-height: 800px;
+  }
+  div {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  button {
+    margin-top: 20px;
+  }
+}
+.tips {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.customer-switch {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  width: 60%;
+  max-width: 500px;
+  min-width: 400px;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 8px 0 #666;
+  transform: translateX(-50%);
+  .inline-block {
+    display: block;
+    margin-top: 40px;
+    button {
+      float: right;
+      width: 50%;
+    }
+  }
+}
+.deposit-control {
+  height: 120px;
+  overflow-y: hidden;
+}

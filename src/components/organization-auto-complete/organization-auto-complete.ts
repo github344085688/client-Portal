@@ -1,10 +1,10 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch, Emit } from "vue-property-decorator";
 import template from "./organization-auto-complete.vue";
 import { Select, Option } from "element-ui";
-import { find, unionBy, findIndex, flatMap } from 'lodash-es';
-import organizationService from "../../services/organization-service";
-import errorHanlder from '../../shared/error-handler';
+import { find, unionBy, findIndex, flatMap , compact } from 'lodash-es';
+import organizationService from "@services/organization-service";
+import errorHanlder from '@shared/error-handler';
 
 WiseVue.use(Select);
 WiseVue.use(Option);
@@ -28,11 +28,25 @@ export default class OrganizationAutoComplete extends WiseVue {
     @Prop({ default: "" })
     customerId!: string;
 
-    selectValue: any = "";
+    @Prop({ default: "Input to search" })
+    placeholder!: string;
+
+    selectValue: any = this.value;
 
     loading = false;
     orgs: Array<any> = [];
+    relatedOrgsKeyByCustomerId: any = {};
 
+    mounted() {
+       this.relatedOrgsKeyByCustomerId = this.getRelatedOrgsKeyByCustomerId();
+        if (this.value && this.tag) {
+            this.searchOrganizations("", this.value);
+        }
+        if (this.value && !this.tag) {
+            this.selectValue = "";
+            this.getOrganization(this.value);
+        }
+    }
 
     onSelectChange() {
         this.$emit("input", this.selectValue);
@@ -44,17 +58,33 @@ export default class OrganizationAutoComplete extends WiseVue {
     }
 
     @Watch("value")
-    valueUpdate() {
-        this.getOrganizationById(this.value);
+    valueUpdate(val: any) {
+        this.selectValue = "";
+        if (val) {
+            this.getOrganizationById(val);
+            this.getOrganization(val);
+        }
     }
 
     @Watch("customerId")
     valueCustormerUpdate() {
+        this.selectValue = "";
         this.searchOrganizations('');
     }
 
+    private  getOrganization(id: any) {
+        organizationService.get(id).subscribe(
+            res => {
+                if (res.basic) this.selectValue = res.basic.name;
+            },
+            err => {
+                errorHanlder.handle(err);
+            }
+        );
+    }
+
     getOrganizationById(id: string) {
-        if (this.value && findIndex(this.orgs, { id: this.value }) < 0) {
+        if (this.value && findIndex(this.orgs, ['id', this.value]) < 0) {
             this.unsubcribers.push(organizationService.get(id).subscribe(
                 res => {
                     let response: any = flatMap([res], "basic");
@@ -68,28 +98,36 @@ export default class OrganizationAutoComplete extends WiseVue {
         }
     }
 
-    private setupSearchParameter(keyword: string) {
-        let parameter: any = { scenario: 'Auto Complete' };
-        if (this.tag) {
-            parameter.relationship = this.tag;
-            parameter.partnerName = keyword;
-        } else {
-            parameter.nameRegex = keyword;
-        }
-        return parameter;
-    }
-
-    private addCustomerIdToSearchParam(param: any) {
-
+    private setupSearchParameter(keyword: string, partnerId?: String) {
+        let param: any = { scenario: 'Auto Complete' };
         param.customerId = this.customerId || this.getCustomerIdByUserSelect();
-
+        let reletionOrgs = this.relatedOrgsKeyByCustomerId[param.customerId];
+        if (this.tag && this.tag) {
+            param.relationship = this.tag;
+            param.partnerName = keyword;
+        }
+        if (!this.tag) {
+            delete param.customerId;
+            param.nameRegex = keyword;
+            param.searchScenario = 'Auto Complete';
+        }
+        else {
+            param.nameRegex = keyword;
+        }
+        if (reletionOrgs && compact(reletionOrgs.relatedTitleIds).length > 0) {
+            param.partnerIds = reletionOrgs.relatedTitleIds;
+        } else {
+            if (partnerId) {
+                param.partnerId = partnerId;
+            }
+        }
+        return param;
     }
 
-    private searchOrganizations(keyword: string) {
-        let param = this.setupSearchParameter(keyword);
-        this.addCustomerIdToSearchParam(param);
-        this.loading = true;
 
+    private searchOrganizations(keyword: string, partnerId?: String) {
+        let param = this.setupSearchParameter(keyword, partnerId);
+        this.loading = true;
         this.unsubcribers.push(organizationService.getOrganizationByTagAndCustomerId(param).subscribe(
             res => {
                 let orgs: any = flatMap(res, "basic");
@@ -98,6 +136,7 @@ export default class OrganizationAutoComplete extends WiseVue {
             },
             err => {
                 this.loading = false;
+                this.error(err);
             }
         ));
 

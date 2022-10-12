@@ -53,10 +53,10 @@
             <div class="grid-100 tablet-grid-100 container margin-top-50">
 
                 <div class="grid-50 tablet-grid-50 container  ">
-                    <customize-table :tableFileds="tableHeader" :disabled="loading" @selectCustomizeTable="onSelectCustomizeTable"></customize-table>
+                    <static-customize-table :tableFileds="tableHeader" :disabled="loading" @selectCustomizeTable="onSelectCustomizeTable"></static-customize-table>
                 </div>
                 <div class="grid-50 tablet-grid-50 container">
-                    <waitting-btn btn-class="button-unis color-white" class="right" @click="exportExcel" :value="'Export'" :is-loading="exportLoading" :disabled="loading"> </waitting-btn>
+                    <waitting-btn btn-class="unis-btn unis-btn-primary color-white" class="right" @click="exportExcel" :value="'Export'" :is-loading="exportLoading" :disabled="loading"> </waitting-btn>
                 </div>
             </div>
 

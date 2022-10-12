@@ -1,0 +1,70 @@
+.filter-area {
+    margin-top: 60px;
+    padding: 0;
+}
+
+.input-address {
+    position: relative;
+    .icon-41 {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        z-index: 9;
+        font-size: 24px;
+    }
+    input {
+        padding-left: 32px !important;
+    }
+}
+.table-client tr, .table-client td, .table-client th {
+    border: 1px solid #CECECE !important;
+}
+.table-client thead tr {
+    height: 35px;
+    line-height: 35px;
+    color: #777879 !important;
+}
+.table-client tbody td {
+    color: #444545 !important;
+}
+.table-client tbody td:first-child {
+    background-color: #F9F9F9;
+    color: #777879 !important;
+}
+.child-table-total input {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.static-input {
+    border: 0;
+}
+
+.table-client tbody tr:has(:focus) {
+    background: #39f !important;
+}
+.no-days {
+    background: #EDF2F6;
+}
+
+.terminal-result {
+    max-height: 388px;
+    overflow: auto;
+}
+.no-data {
+    text-align: center;
+    line-height: 500px;
+    height: 500px;
+    background: #F9F9F9;
+}
+
+.content {
+    width: 92%;
+    margin: 0 auto;
+    border-radius: 10px;
+    line-height: 24px;
+    background: rgba(200, 216, 228, 0.5);
+}
+.c-error {
+    background: #F2D4CC !important;
+    border: 1px solid #E52628 !important;
+}

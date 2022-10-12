@@ -12,9 +12,10 @@ export default class MainButtonSet extends Vue {
     rightBtnText!: string;
 
     @Prop({ default: "Cancel" })
-    leftBtnText: string = "Cancel";
+    leftBtnText!: string;
 
-
+    @Prop({default: false})
+    disabled!: boolean;
     // @Prop()
     // rightBtnAction: Function;
 

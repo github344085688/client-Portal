@@ -1,5 +1,5 @@
 
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch } from "vue-property-decorator";
 import template from "./predefined-export-btn.vue";
 import { filter } from 'lodash-es';

@@ -1,20 +1,20 @@
 
-import LocationAutoComplete from "../../../../../components/location-auto-complete/location-auto-complete";
-import SimplifiedPager from "../../../../../components/simplified-pager/simplified-pager";
-import CustomizeTable from "../../../../../components/customize-table/customize-table";
-import ElementSelect from "../../../../../components/element-select/element-select";
-import WaittingBtn from "../../../../../components/waitting-button/waitting-btn";
-import DateRange from "../../../../../components/date-range/date-range";
-import Pager from "../../../../../components/pager/pager";
-import errorHandler from "../../../../../shared/error-handler";
-import WiseVue from "../../../../../shared/wise-vue";
-import util from "../../../../../shared/util";
+import LocationAutoComplete from "@components/location-auto-complete/location-auto-complete";
+import SimplifiedPager from "@components/simplified-pager/simplified-pager";
+import StaticCustomizeTable from "@components/static-customize-table/static-customize-table";
+import ElementSelect from "@components/element-select/element-select";
+import WaittingBtn from "@components/waitting-button/waitting-btn";
+import DateRange from "@components/date-range/date-range";
+import Pager from "@components/pager/pager";
+import errorHandler from "@shared/error-handler";
+import WiseVue from "@shared/wise-vue";
+import util from "@shared/util";
 import { Component } from "vue-property-decorator";
-import * as XLSX from 'xlsx';
+import { map } from 'lodash-es';
 import tlp from "./shipment-activity.vue";
-import PicturesShow from "../../../../../components/pictures-show/pictures-show";
+import PicturesShow from "@components/pictures-show/pictures-show";
 
-import shipmentActivityService from "../../../../../services/tms/tms-shipment-activity-service";
+import shipmentActivityService from "@services/tms/tms-shipment-activity-service";
 @Component({
     mixins: [tlp],
     components: {
@@ -22,7 +22,7 @@ import shipmentActivityService from "../../../../../services/tms/tms-shipment-ac
         LocationAutoComplete,
         DateRange,
         SimplifiedPager,
-        CustomizeTable,
+        StaticCustomizeTable,
         Pager,
         WaittingBtn,
         PicturesShow
@@ -160,17 +160,53 @@ export default class ShipmentActivity extends WiseVue {
            res => {
                this.exportLoading = false;
                if (res.status == 200) {
-                   const wb = XLSX.utils.book_new();
-                   const sheet = XLSX.utils.json_to_sheet(res['data']);
-                   XLSX.utils.book_append_sheet(wb, sheet, "Shipment Activity");
-                   XLSX.writeFile(wb, "shipmentActivity.xlsx" );
-               } else {
-                   errorHandler.handle(res['error']);
-               }
+                let data = res.data;
+                if (data.length > 0) {
+                    let headStr = this.getHeadherData(data);
+                    let bodyStr = this.getBodyData(data);
+                    let excelCsvStr = headStr + bodyStr;
+                    this.downLoadCsv(excelCsvStr, 'shipmentActivity');
+                }
+            }
+        }, err => {
+            this.exportLoading = false;
+            errorHandler.handle(err);
+        });
+    }
 
-           }, err => {
-               this.exportLoading = false;
-               errorHandler.handle(err);
-           });
+    getHeadherData(headData: any) {
+        let head: string = '';
+        if (headData[0]) {
+            map(headData[0], (value: any, index: any) => {
+                head += `${index},`;
+            });
+            head += '\n';
+        }
+        return head;
+    }
+
+    getBodyData(headData: any) {
+        let body: string = '';
+        if (headData) {
+            map(headData, (value: any, index: any) => {
+                body += '\n';
+                map(value, (item: any, key: any) => {
+                    item = "\"" + item + "\"";
+                    body += `${item + '\t'},`;
+                });
+            });
+            body += '\n';
+        }
+        return body;
+    }
+
+    downLoadCsv(dataStr: string, fileName: string) {
+        let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(dataStr);
+        let link = document.createElement("a");
+        link.href = uri;
+        link.download =  `${fileName}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 }

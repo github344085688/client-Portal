@@ -1,9 +1,9 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch } from "vue-property-decorator";
 import template from "./user-profile-sidebar.vue";
-import session from '../../shared/session';
-import errorHanlder from '../../shared/error-handler';
-import OrganizationService from '../../services/organization-service';
+import session from '@shared/session';
+import errorHanlder from '@shared/error-handler';
+import OrganizationService from '@services/organization-service';
 
 
 @Component({

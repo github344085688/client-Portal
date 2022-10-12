@@ -1,12 +1,19 @@
 .date-dashbord {
   width: auto;
-  height: 30px;
+  height: 36px;
+  line-height: 30px;
   border-radius: 2px;
-  background-image: -moz-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
-  background-image: -webkit-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
-  background-image: -ms-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
-  background-image: linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
-  border: solid 1px #15223d;
+  background: #91B5BE;
+}
+
+.unis-date .el-input.is-focus .el-input__inner {
+	border: 1px solid #91B5BE !important;
+}
+.unis-date input:hover {
+	border: 1px solid #91B5BE !important;
+}
+.unis-date input {
+	border: 1px solid #DADADA !important;
 }
 
 .date-img {

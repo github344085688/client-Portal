@@ -1,5 +1,5 @@
 <template>
-  <div class="header-bar">
+  <div class="header-bar" :class="{isBlur: isBlur}" style="padding-left: 30px">
     <dl>
       <img class="link" src="../../assets/images/header_icons/square-icon.svg" alt="">
       <img class="ative" src="../../assets/images/header_icons/square-icon-ative.svg" alt="">
@@ -8,14 +8,22 @@
       <div class="ul-box">
         <img src="../../assets/images/header_icons/arrow-up-icon.svg" alt="">
         <ul>
-          <li @click="switchSideBarMenu('transportation')">
+          <li v-if="judgePermissionForMenu('transportation::transportation_read')" @click="switchSideBarMenu('transportation')">
             <img class="link" src="../../assets/images/header_icons/truck-trailer-icon.svg" alt="">
             <img class="ative" src="../../assets/images/header_icons/truck-trailer-icon-ative.svg" alt="">
             Transportation</li>
-          <li @click="switchSideBarMenu('warehousing')">
+          <li v-if="judgePermissionForMenu('warehousing::warehousing_read')" @click="switchSideBarMenu('warehousing')">
             <img  class="link" src="../../assets/images/header_icons/warehouse-icon.svg" alt="">
             <img class="ative" src="../../assets/images/header_icons/warehouse-icon-ative.svg" alt="">
             Warehousing</li>
+          <li  v-if="judgePermissionForMenu('controlPanel::controlPanel_read')" @click="switchSideBarMenu('controlpanel')">
+            <img  class="link" src="../../assets/images/header_icons/table-icon.svg" alt="">
+            <img class="ative" src="../../assets/images/header_icons/table-icon.svg" alt="">
+            Controlpanel</li>
+          <li  v-if="judgePermissionForMenu('idm::idm_read')" @click="switchSideBarMenu('idm')">
+            <img  class="link" src="../../assets/images/header_icons/id-management-icon.svg" alt="">
+            <img class="ative" src="../../assets/images/header_icons/id-management-icon.svg" alt="">
+            ID Management</li>
         </ul>
       </div>
     </dl>

@@ -4,73 +4,65 @@ const FixedHead = {
         vue.directive("fixed-head", FixedHeads);
     }
 };
-let flexNode: any = null;
-let needToResizeHead: boolean = false;
-let tdNodeHtml: any = null;
-let tbodyNode: any = null;
+let flexTableEl: any = null;
+let absoluteThead: any = null;
 function handleScroll() {
     let scrollTop = window.pageYOffset || document.body.scrollTop;
-    let tdNodechilds = flexNode.getElementsByTagName('tbody')[0].firstChild.getElementsByTagName('td');
-    tdNodeHtml = tdNodechilds[tdNodechilds.length - 1].innerHTML;
-    tbodyNode = flexNode.getElementsByTagName('tbody')[0];
-    setNodeWidth();
-    if (scrollTop > (flexNode.offsetTop - 60)) {
-        if (flexNode.getElementsByTagName('thead')[0]) {
-            needToResizeHead = false;
-            flexNode.getElementsByTagName('thead')[0].classList.add('thead-position');
+    if (!flexTableEl) return;
+    let theads = flexTableEl.getElementsByTagName('thead');
+    let orginThead = theads[0];
+    if (scrollTop > (flexTableEl.offsetTop - 60) && flexTableEl.offsetTop) {
+        let childThs = orginThead.children[0].getElementsByTagName('th');
+        if (absoluteThead) {
+            absoluteThead.setAttribute("style", "position:absolute;top:" + (scrollTop + 51) + "px;");
+            absoluteThead.firstChild.setAttribute("style", "display: inline-flex;");
         } else {
-            flexNode.getElementsByTagName('thead')[0].classList.remove('thead-position');
-            needToResizeHead = true;
+            for (let i = 0; i < childThs.length; i++) {
+                childThs[i].setAttribute("style", 'width:' + childThs[i]!.clientWidth + 'px');
+            }
+            absoluteThead = orginThead.cloneNode(true);
+            flexTableEl.appendChild(absoluteThead);
         }
+
     } else {
-        flexNode.getElementsByTagName('thead')[0].classList.remove('thead-position');
-        needToResizeHead = true;
-        if (! tdNodeHtml) {
-            flexNode.removeChild(tbodyNode);
+        if (absoluteThead) {
+            flexTableEl.removeChild(absoluteThead);
         }
+        absoluteThead = null;
     }
 }
 
-function setNodeWidth() {
-    if (needToResizeHead) {
-        let thNode = flexNode.getElementsByTagName('thead')[0].firstChild.getElementsByTagName('th');
-        for (let i = 0; i < thNode.length; i++) {
-            thNode[i].setAttribute("style", 'width:' + thNode[i]!.clientWidth + 'px');
-        }
-        if (!tdNodeHtml) {
-            for (let i = 0; i < thNode.length; i++) {
-                let tdNode = flexNode.getElementsByTagName('tbody')[0].firstChild.getElementsByTagName('td');
-                tdNode[i].setAttribute("style", 'width:' + thNode[i]!.clientWidth + 'px;');
-            }
-        } else {
-            let tbody = document.createElement('tbody');
-            let tr = document.createElement("tr");
-            for (let i = 0; i < thNode.length; i++) {
-                let td = document.createElement("td");
-                td.setAttribute("style", 'width:' + thNode[i]!.clientWidth + 'px; height:1px;padding: 0;');
-                tr.appendChild(td);
-            }
-            tbody.appendChild(tr);
-            flexNode.insertBefore(tbody, tbodyNode);
-        }
+function autoFixHeaderWhenSizeChange() {
+    let orginTbody = flexTableEl.getElementsByTagName('tbody')[0];
+    if (!orginTbody.children[0]) return;
+    let childTds = orginTbody.children[0].getElementsByTagName('td');
+    if (!absoluteThead) return;
+    let absoluteThs = absoluteThead.children[0].getElementsByTagName('th');
+    for (let i = 0; i < childTds.length; i++) {
+        absoluteThs[i].setAttribute("style", 'width:' + childTds[i]!.clientWidth + 'px');
     }
 }
+
+
 
 const FixedHeads = {
     bind(el: any, binding: any, vnode: any) {
+        absoluteThead = null;
+        flexTableEl = el;
     },
 
     update(el: any, binding: any) {
-        if (needToResizeHead) {
-            needToResizeHead = false;
-        }
-        window.addEventListener('scroll', handleScroll);
-        flexNode = el;
-        flexNode.getElementsByTagName('thead')[0].classList.remove('thead-position');
+
     },
 
     unbind(el: any, binding: any) {
     }
 };
+window.addEventListener('scroll', handleScroll);
+document.addEventListener('click', (e: any) => {
+    if (e.target.alt === 'flex-logo') {
+        setTimeout(autoFixHeaderWhenSizeChange, 500);
+    }
+});
 
 export default FixedHead;

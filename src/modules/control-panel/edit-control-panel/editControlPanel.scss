@@ -1,0 +1,83 @@
+.margin-bot{
+    margin-bottom: 0 !important;
+    margin-top:0px !important;
+}
+.tetext_right.pager .text-right{
+    text-align: left!important;
+}
+
+.vue-grid-item {
+    background: #e3e3e3;
+    border: 5px solid #f7f7f7;
+    position: relative;
+}
+.inset-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px !important;
+    font-weight: bold;
+}
+
+.bcg-grid {
+    height: 100%;
+    position: relative;
+}
+.grid-box {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 5px;
+    padding-right: 10px;
+    z-index: 997;
+    background: rgba(0, 0, 0, 0);
+}
+
+.grid-box .vue-grid-item {
+    background: transparent;
+    border: 0;
+}
+.panel-list {
+    margin-top: 40px;
+    padding-bottom: 20px;
+    .create-new {
+        border: 0 !important;
+    }
+}
+.panel-list div {
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 28px;
+    font-size: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border: 1px solid #8FB4BD;
+    color: #8FB4BD;
+    cursor: pointer;
+}
+.panel-list .select {
+    background: #8FB4BD;
+    color: #fcfcfc;
+}
+
+.per-dom {
+    float: left;
+    width: 25%;
+    height: 100%;
+    box-shadow: 0px 1px 0 1px #fff;
+}
+
+.remove-panel {
+    position: absolute;
+    right: 12px;
+    top: 16px;
+    z-index: 9999;
+    width: 16px;
+    height: 16px;
+    background: url('../images/remove.png');
+    background-size: 100% 100%;
+    cursor: pointer;
+}

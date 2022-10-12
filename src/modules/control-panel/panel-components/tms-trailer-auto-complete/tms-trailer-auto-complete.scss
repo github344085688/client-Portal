@@ -1,0 +1,9 @@
+.drag-area .el-select {
+    background: transparent !important;
+    padding: 0 !important;
+}
+.drag-area {
+    > div {
+        padding: 0 10px;
+    }
+}

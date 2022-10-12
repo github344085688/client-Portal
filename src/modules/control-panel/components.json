@@ -1,0 +1,16 @@
+{
+    "components": [
+        {"panelName": "Orders", "data": {"x": 0, "y": 0, "w": 6, "h": 6, "i": "1", "component": "Orders", "static": false}},
+        {"panelName": "Trips", "data": {"x": 6, "y": 0, "w": 6, "h": 6, "i": "2", "component": "Trips", "static": false}},
+        {"panelName": "Wms", "data": {"x": 12, "y": 0, "w": 7, "h": 6, "i": "3", "component": "Wms", "static": false}},
+        {"panelName": "Driver", "data": {"x": 19, "y": 0, "w": 5, "h": 4, "i": "4", "component": "Driver", "static": false}},
+        {"panelName": "DriverCalendar", "data": {"x": 19, "y": 4, "w": 5, "h": 2, "i": "5", "component": "DriverCalendar", "static": false}},
+        {"panelName": "Messages", "data": {"x": 0, "y": 7, "w": 4, "h": 5, "i": "6", "component": "Messages", "static": false}},
+        {"panelName": "Equipment", "data": {"x": 4, "y": 6, "w": 5, "h": 4, "i": "7", "component": "Equipment", "static": false}},
+        {"panelName": "Notifications", "data": {"x": 9, "y": 6, "w": 5, "h": 3, "i": "8", "component": "Notifications", "static": false}},
+        {"panelName": "TripLog", "data": {"x": 13, "y": 6, "w": 6, "h": 2, "i": "9", "component": "TripLog", "static": false}},
+        {"panelName": "OrderHistory", "data": {"x": 4, "y": 6, "w": 4, "h": 4, "i": "10", "component": "OrderHistory", "static": false}},
+        {"panelName": "PickupAndDeliveryOrders", "data": {"x": 0, "y": 0, "w": 11, "h": 6, "i": "11", "component": "PickupAndDeliveryOrders", "static": false}},
+        {"panelName": "ExistingTrips", "data": {"x": 11, "y": 0, "w": 8, "h": 6, "i": "12", "component": "ExistingTrips", "static": false}}
+    ]
+}

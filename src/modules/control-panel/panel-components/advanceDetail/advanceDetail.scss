@@ -1,0 +1,131 @@
+.search-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1000px;
+    height: 100px;
+    background: #fcfcfc;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px #ccc;
+}
+.el-dialog {
+    background: #FEFEFE !important;
+}
+.dialog-search > div {
+    box-shadow: 0 0 10px 4px #c9c9c9;
+    border-radius: 0;
+    .el-dialog__headerbtn {
+        float: right;
+        width: 20px;
+        top: 17px;
+        right: 16px;
+    }
+    .el-icon-close {
+        font-size: 22px;
+        color: #666;
+        font-weight: bold;
+    }
+    .el-dialog__header {
+        text-align: left;
+        color: #333 !important;
+    }
+}
+
+.advance-detail-box {
+    margin-top: -10px;
+    max-height: 750px;
+    // overflow: auto;
+    border-top: 1px solid #333;
+    > .order-advance, .trip-advance {
+        height: 700px;
+        overflow: auto;
+    }
+}
+.detail-base-info {
+    padding: 0 0 !important; 
+    div {
+        margin-top: 10px;
+        p {
+            color: #000;
+        }
+    }
+}
+.close-dialog {
+    position: absolute;
+    right: 22px;
+    top: 18px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+.dialog-title {
+    padding-bottom: 6px;
+    line-height: 40px;
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+}
+.per-card-detail {
+    margin-top: 25px;
+    > div:first-child {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .per-card-detail-box {
+        padding: 0 0 12px;
+        margin-top: 10px;
+        border: 1px solid #8C95A6;
+        border-radius: 4px;
+    }
+    .card-detail-bold {
+        padding-left: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+    }
+    .grid-100 {
+        margin-top: 6px;
+    }
+    p {
+        margin-top: 2px !important;
+    }
+}
+.per-card-detail-table {
+    margin-top: 10px;
+    overflow: auto;
+    border: 1px solid #8C95A6;
+}
+.per-card-detail-table > table {
+    width: 100%;
+    white-space: nowrap;
+    border-collapse: collapse;
+    // border: 1px solid #8C95A6;
+    tr {
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+    }
+    thead {
+        border-bottom: 1px solid #8C95A6;
+    }
+    td {
+        padding: 0 10px;
+    }
+}
+.tools-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+.detail-note textarea {
+    display: block;
+    height: 60px;
+    background: #fff;
+    border: 1px solid #8C95A6;
+    border-radius: 4px;
+}
+.order-complete {
+    color: #39f !important;
+}

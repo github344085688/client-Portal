@@ -1,0 +1,56 @@
+.search-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1000px;
+    height: 100px;
+    background: #fcfcfc;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 1px #ccc;
+}
+.new-trip-out {
+    height: 650px;
+    overflow: auto;
+}
+
+.new-trip-out {
+	h3 {
+		padding: 15px 15px;
+		font-size: 20px !important;
+		strong {
+			font-weight: bold;
+		}
+	}
+	h3 .close-dialog {
+		margin-right: 0px;
+		cursor: pointer;
+	}
+	.new-trip-item {
+		// height: 740px;
+		// overflow: auto;
+	}
+	.new-trip-item > div {
+		margin-bottom: 20px;
+	}
+	.new-trip-out {
+		height: 860px;
+		overflow-y: auto;
+	}
+	.payment h3 {
+		text-align: right;
+	}
+	.payment > div > div {
+		text-align: right;
+		> div {
+			line-height: 28px;
+		}
+	}
+	.pay-dom-line {
+		border-bottom: 1px solid #999;
+	}
+}
+.new-trip-item .el-input__icon {
+	height: 34px !important;
+}

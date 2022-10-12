@@ -1,0 +1,101 @@
+.empty {
+   width: 18px;
+   height: 18px; 
+   background: #fff;
+   border: 1px solid #656565;
+   box-sizing: border-box;
+   border-radius: 2px;
+} 
+.checkbox-word {
+       display: inline-block;
+       width: 600px;
+       font-size: 13px;
+       position: relative;
+       top: -8px;
+       left: 30px;
+       color: #2e323c;
+       cursor: pointer;
+       font-family: AvenirNext-Regular;
+}
+.filled {
+    .checkbox-word {
+        position: relative;
+        top: -35px;
+        left: 30px;
+    } 
+}
+.modify .empty {
+    .checkbox-word {
+        position: relative;
+        top: -5px;
+        left: 30px;
+    } 
+    .down {
+        position: relative;
+        top: -32px;
+        left: 30px;
+    }
+}
+.dispatch-btn {
+    div {
+        float: left;
+        padding: 0 18px;
+        margin-right: 10px;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #A187E1;
+        cursor: pointer;
+        color: #666;
+    }
+    .dispatch-select {
+        background: #A187E1;
+        color: #fff;
+    }
+}
+.list-table tbody .belongs-trip {
+    span {
+        display: inline-block;
+        padding: 0 12px;
+        margin-right: 8px;
+        border-radius: 4px;
+    }
+}
+.belongs-trip-pickup {
+    background:#fad88a;
+}
+.belongs-trip-linehaul {
+    background: #3CD3DC;
+}
+.belongs-trip-delivery {
+    background: #989A9C;
+}
+.terminal-box {
+    margin-top: 20px;
+    overflow: hidden;
+    padding: 50px 0;
+}
+.terminal-dialog {
+    z-index: 2001;
+    .el-select__tags input {
+        border: 0;
+    }
+}
+
+.inset-table {
+    box-shadow: 0 0 0 1px #ccc;
+    thead th {
+        box-shadow: 0 0 0 1px #ccc !important;
+        z-index: 888 !important;
+    }
+    th:first-child {
+        border-left: none !important;
+    }
+    tbody td {
+        border-bottom: 0 !important;
+    }
+    td {
+        span {
+            font-weight: normal !important;
+        }
+    }
+}

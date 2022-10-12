@@ -1,0 +1,56 @@
+.margin-bot{
+    margin-bottom: 0 !important;
+    margin-top:0px !important;
+}
+.tetext_right.pager .text-right{
+    text-align: left!important;
+}
+
+.inset-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px !important;
+    font-weight: bold;
+}
+
+.bcg-grid {
+    height: 100%;
+    position: relative;
+}
+.grid-box {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 5px;
+    padding-right: 10px;
+    z-index: 997;
+    background: rgba(0, 0, 0, 0);
+}
+
+.grid-box .vue-grid-item {
+    border: 0;
+}
+
+// .panel-list {
+//     margin-top: 40px;
+//     padding-bottom: 20px;
+//     border-bottom: 1px solid #ccc;
+// }
+// .panel-list div {
+//     display: inline-block;
+//     height: 40px;
+//     line-height: 40px;
+//     padding: 0 28px;
+//     font-size: 20px;
+//     margin-right: 20px;
+//     border: 1px solid #8FB4BD;
+//     color: #8FB4BD;
+//     cursor: pointer;
+// }
+// .panel-list .select {
+//     background: #8FB4BD;
+//     color: #fcfcfc;
+// }

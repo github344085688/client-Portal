@@ -1,0 +1,53 @@
+.unis-switch {
+	display: inline-block;
+	font-size: 100%;
+	height: 1.6em;
+	line-height: 1.6em;
+	position: relative; }
+.unis-switch, .unis-switch-style, .unis-switch -style:before {
+	box-sizing: border-box; }
+.unis-switch > span {
+	vertical-align: middle; }
+.unis-switch > span:last-child {
+	vertical-align: middle;
+	margin-left: 0.5rem; }
+.unis-switch-style {
+	height: 1.6em;
+	left: 0;
+	background: #C0CCDA;
+	border-radius: 0.8em;
+	display: inline-block;
+	position: relative;
+	top: 0;
+	transition: all .3s ease-in-out;
+	width: 3em;
+	cursor: pointer; }
+.unis-switch-style:before {
+	display: block;
+	content: '';
+	height: 1.4em;
+	position: absolute;
+	width: 1.4em;
+	background-color: #fff;
+	border-radius: 50%;
+	left: 0.1em;
+	top: 0.1em;
+	transition: all .3s ease-in-out; }
+.unis-switch > input[type="checkbox"] {
+	display: none; }
+.unis-switch > input[type="checkbox"][disabled] + .unis-switch-style {
+	cursor: not-allowed;
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#15223d), to(#63666c));}
+.unis-switch > input[type="checkbox"]:checked + .unis-switch-style {
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#15223d), to(#63666c));
+	background-image: linear-gradient(0deg, #15223d 0%, #63666c 100%); }
+.unis-switch > input[type="checkbox"]:checked + .unis-switch-style:before {
+	left: 50%; }
+.unis-switch > input[type="checkbox"]:checked[disabled] + .unis-switch-style {
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#15223d), to(#63666c)); }
+.unis-switch > .unis-switch-blue > input[type="checkbox"]:checked + .unis-switch-style {
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#15223d), to(#63666c));
+	background-image: linear-gradient(0deg, #15223d 0%, #63666c 100%); }
+.unis-switch > .unis-switch-blue > input[type="checkbox"]:checked[disabled] + .unis-switch-style {
+	background-image: -webkit-gradient(linear, left bottom, left top, from(#15223d), to(#63666c));
+	background-image: linear-gradient(0deg, #15223d 0%, #63666c 100%); }

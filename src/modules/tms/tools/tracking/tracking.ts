@@ -1,11 +1,11 @@
-import errorHandler from "../../../../shared/error-handler";
-import WiseVue from "../../../../shared/wise-vue";
+import errorHandler from "@shared/error-handler";
+import WiseVue from "@shared/wise-vue";
 
 import tlp from "./tracking.vue";
 import { Component } from "vue-property-decorator";
-import tmsTrackingService from "../../../../services/tms/tms-tracking-service";
-import WaittingBtn from "../../../../components/waitting-button/waitting-btn";
-import TrackProcessBar from "../../../../components/trackProcessBar/track-process-bar";
+import tmsTrackingService from "@services/tms/tms-tracking-service";
+import WaittingBtn from "@components/waitting-button/waitting-btn";
+import TrackProcessBar from "@components/trackProcessBar/track-process-bar";
 
 @Component({
     mixins: [tlp],

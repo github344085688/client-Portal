@@ -1,4 +1,4 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop } from "vue-property-decorator";
 import template from "./track-process-bar.vue";
 

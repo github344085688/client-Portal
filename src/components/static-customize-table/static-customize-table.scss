@@ -1,0 +1,35 @@
+.static-customize-table {
+  position: relative;
+  .init-line {
+    display: inline-block;
+  }
+  .table-detail {
+    max-height: 260px;
+    overflow: auto;
+    position: absolute;
+    top: 30px;
+    width: auto;
+    z-index: 8;
+    background-color: #ffffff;
+    border: solid 1px #656565;
+  }
+  .child-field {
+    display: flex;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  .child-field:hover{
+    background-color: rgba(21, 34, 61, 0.1);
+  }
+  .dz-icon {
+    color: #ffffff;
+    padding-left: 5px;
+  }
+  .select-img {
+    position: relative;
+    left: -4px;
+    top: 5px;
+    height: 18px;
+    width: 20px;
+  }
+}

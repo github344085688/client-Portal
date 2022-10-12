@@ -13,7 +13,6 @@ const portfinder = require('portfinder')
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
-
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
@@ -51,6 +50,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       'API_CONTEXT_PATH': JSON.stringify(config.dev.apiContextPath),
       'STATIC_CONTENT_CONTEXT_PATH': JSON.stringify(config.dev.assetsPublicPath),
       'TMS_DOMAIN': config.dev.TMS_DOMAIN,
+      'REPORT_CENTER_PATH': JSON.stringify(config.dev.reportCenterPath),
+      'DEPOSIT_API_BASE_URL': config.dev.DEPOSIT_API_BASE_URL,
+      'MESSAGE_URL': config.dev.MESSAGE_URL,
+      'TMS_MESSAGE_URL': config.dev.TMS_MESSAGE_URL,
+      'isPermissionDisabled': config.dev.isPermissionDisabled,
+      'ssoRedirectLink': config.dev.ssoRedirectLink,
+      'enableSaasMode': config.dev.enableSaasMode
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.

@@ -1,9 +1,9 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch } from "vue-property-decorator";
 import template from "./pager.vue";
-import session from '../../shared/session';
-import errorHanlder from '../../shared/error-handler';
-import ElementSelect from "../../components/element-select/element-select";
+import session from '@shared/session';
+import errorHanlder from '@shared/error-handler';
+import ElementSelect from "@components/element-select/element-select";
 import { uniq, sortBy } from 'lodash-es';
 
 
@@ -26,6 +26,11 @@ export default class Pager extends WiseVue {
     @Prop({ default: 5 })
     pagerShowCount!: number;
 
+    @Prop({ default: 1 })
+    currentPage!: number;
+
+    @Prop({ default: () => []  })
+    pageOptions!: Array<any>;
 
     get showingFrom() {
         return (this.pager.activedPage - 1) * this.pageSize + 1;
@@ -67,6 +72,16 @@ export default class Pager extends WiseVue {
         this.reRenderWhenPageSizeChange(this.customizePageSize);
     }
 
+    @Watch("currentPage")
+    updateWhenCurrentPageChange() {
+        if (this.currentPage != this.pager.activedPage) {
+            if (this.pager.activedPage == this.currentPage)
+                return;
+            this.pager.activedPage = this.currentPage;
+            this.inputPage = this.currentPage;
+            this.pages = this.loadPager(this.pager.activedPage);
+        }
+    }
 
     reRenderWhenPageSizeChange(selectPageSize: number) {
         console.log("Page Size change from inside" + selectPageSize);
@@ -149,9 +164,14 @@ export default class Pager extends WiseVue {
     }
 
     setupPageSizeOptions() {
-        let defaultPageSizeOptions = [1, 10, 20, 50, 100, 300, 500, 1000];
-        defaultPageSizeOptions.push(this.pageSize);
-        this.pageSizeOptions = sortBy(uniq(defaultPageSizeOptions));
+
+        if (this.pageOptions && this.pageOptions.length > 0) {
+            this.pageSizeOptions = this.pageOptions;
+        } else {
+            let defaultPageSizeOptions = [10, 20, 50, 100, 300, 500, 1000];
+            defaultPageSizeOptions.push(this.pageSize);
+            this.pageSizeOptions = sortBy(uniq(defaultPageSizeOptions));
+        }
     }
 
     loadPager(activedPage: number) {

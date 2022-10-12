@@ -1,11 +1,11 @@
 import { Vue, Component, Prop , Provide } from "vue-property-decorator";
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import tlp from "./login.vue";
-import userService from  "../../services/user-service";
+import userService from  "@services/user-service";
 import { Subscription } from 'rxjs/Subscription';
-import session from '../../shared/session';
+import session from '@shared/session';
 import { map }  from 'lodash-es';
-import errorHanlder from '../../shared/error-handler';
+import errorHanlder from '@shared/error-handler';
 import { Subject } from "rxjs/Subject";
 
 
@@ -35,6 +35,7 @@ import { Subject } from "rxjs/Subject";
         session.setUserToken(userLoginedResult.oAuthToken);
         session.setUserId(userLoginedResult.idmUserId);
         session.setUserPermission(map(userLoginedResult.userPermissions, 'name'));
+        session.setUserInfo(userLoginedResult.userView);
     }
 
     signIn() {
@@ -45,8 +46,9 @@ import { Subject } from "rxjs/Subject";
                     this.unsubcribers.push(userService.login(this.user).subscribe(
                         res => {
                             if (res.success) {
+                              session.clean();
                               this.initialUserSession(res);
-                              this.$router.replace({name: 'Status'});
+                              this.$router.replace({name: '/'});
                             } else {
                                 errorHanlder.handle(res.errorMessage ? res.errorMessage : "Login Failed!");
                             }

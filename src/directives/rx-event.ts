@@ -1,7 +1,7 @@
 
 import { Observable }  from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
-import util from '../shared/util';
+import util from '@shared/util';
 import Vue from 'vue';
 
 

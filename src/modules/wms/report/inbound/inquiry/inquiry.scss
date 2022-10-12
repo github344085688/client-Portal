@@ -1,0 +1,107 @@
+.sn-details {
+  display: flex;
+  flex-flow: wrap;
+  padding: 0 24px 10px 24px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  span {
+    padding: 6px 15px;
+  }
+}
+
+.group-tr {
+  background: #F6F6F6 !important;
+}
+.download-icon {
+  // background: #eee;
+  width: 40px;
+}
+
+.download-icon i {
+  font-size: 20px;
+  color: #00a6e8;
+  cursor: pointer;
+}
+.vertical-align{
+  vertical-align: middle;
+}
+.table-client {
+  input[type="checkbox"]:checked+.checkbox:after {
+    background-size: 10px 10px !important;
+  }
+
+  input[type="checkbox"]+.checkbox:after,
+  input[type="checkbox"]+.radio:after {
+    width: 15px;
+    height: 15px;
+  }
+}
+.pred-checkbox {
+  margin: -7px 0;
+}
+
+.operation-btn {
+  position: absolute;
+  right: 36px;
+}
+
+.action-td {
+  text-align: center;
+  text-align: -webkit-center;
+  cursor: pointer;
+  position: relative;
+  .nav-box {
+    display: none;
+  }
+  .dis-blk {
+    display: block !important;
+  }
+}
+
+.action-td:hover{
+  .nav-box {
+    display: inline-block;
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 134px;
+    margin: auto;
+    margin-right: 50px;
+    height: auto;
+    background: #ffffff;
+    font-size: 14px;
+    background: #FFFFFF;
+    border: 0.25px solid #D8D8D8;
+    box-sizing: border-box;
+    box-shadow: 0px 2px 8px rgba(185, 185, 185, 0.25);
+    border-radius: 2px;
+    padding: 0;
+    text-align: left;
+    overflow: hidden;
+    outline: none;
+    & > div {
+      padding: 8px 15px;
+      display: block;
+      &:hover {
+        background: #C4D8EA;
+        cursor: pointer;
+      }
+    }
+
+  }
+}
+
+.cancel .input {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #656565;
+  box-sizing: border-box;
+  padding: 10px;
+  &.is-danger {
+      border: 1px solid #D0021B !important;
+  }
+}

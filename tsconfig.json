@@ -4,14 +4,25 @@
         "outDir": "./built/",
         "sourceMap": true,
         "strict": true,
-        "noImplicitReturns": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": false,
         "module": "es2015",
         "moduleResolution": "node",
         "target": "es5",
         "lib": [
-            "es2015",
+            "es2017",
             "dom"
-        ]
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@components/*": ["src/components/*"],
+            "@services/*": ["src/services/*"],
+            "@shared/*": ["src/shared/*"],
+            "@assets/*": ["src/assets/*"],
+            "@modules/*": ["src/modules/*"],
+            "@panelComponents/*": ["src/modules/control-panel/panel-components/*"]
+        }
        
     },
     "include": [

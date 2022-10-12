@@ -9,31 +9,38 @@
     max-height: 260px;
     overflow: auto;
     position: absolute;
-    top: 28px;
-    width: auto;
+    top: 35px;
+    width: 100%;
     z-index: 8;
     background-color: #ffffff;
     right: 0;
     border-radius: 2px;
+    color: #444545;
     border: solid 1px #979797;
   }
 
   .child-export {
     display: flex;
-    padding: 6px 15px;
+    width: 100%;
+    padding: 6px 6px;
     cursor: pointer;
-
     span {
-      line-height: 28px;
+      line-height: 34px;
+      padding: 0 10px;
     }
   }
-
-  .child-export:hover {
-    background-color: rgba(21, 34, 61, 0.1);
+  .child-export:hover span {
+    display: block;
+    width: 100%;
+    background: #E9F0F2;
   }
 
+  // .child-export:hover {
+  //   background-color: rgba(21, 34, 61, 0.1);
+  // }
+
   .dz-icon {
-    color: #ffffff;
+    color: #444545;
     padding-left: 5px;
   }
 

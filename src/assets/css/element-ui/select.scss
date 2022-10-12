@@ -938,14 +938,15 @@
 }
 
 .el-select .el-tag__close.el-icon-close {
-  background-color: #656565;
+  background-color: #909399;
   right: -7px;
   top: 0;
+  padding: 0 2px;
   color: #fff
 }
 
 .el-select .el-tag__close.el-icon-close:hover {
-  background-color: #909399
+  background-color: #656565;
 }
 
 .el-select .el-tag__close.el-icon-close::before {

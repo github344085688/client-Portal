@@ -1,0 +1,13 @@
+.mul-select .el-select__input, .mul-select .el-select__input:focus{
+  border: 0px;
+}
+.mul-select {
+  border-radius: 2px;
+  border: 1px solid #DADADA;
+  input {
+    border: none !important;
+  }
+}
+.mul-select:hover {
+  border: 1px solid #989A9C;
+}

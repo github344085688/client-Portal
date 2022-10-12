@@ -1,114 +1,142 @@
-import PredefinedCustomerSelect from "../../../../../components/predefined-customer-select/predefined-customer-select";
-import ItemAutoComplete from "../../../../../components/itemspec-auto-complete/itemspec-auto-complete";
-import CustomizeTable from "../../../../../components/customize-table/customize-table";
-import FacilitySelect from "../../../../../components/facility-select/facility-select";
-import ElementSelect from "../../../../../components/element-select/element-select";
-import WaittingBtn from "../../../../../components/waitting-button/waitting-btn";
-import DateRange from "../../../../../components/date-range/date-range";
-import Pager from "../../../../../components/pager/pager";
-import errorHandler from "../../../../../shared/error-handler";
-import WiseVue from "../../../../../shared/wise-vue";
-import util from "../../../../../shared/util";
-import reportService from "../../../../../services/report-service";
-import { Component, Prop, Provide } from "vue-property-decorator";
-import { map, compact, find, cloneDeep } from "lodash-es";
-import tlp from "./adjustment.vue";
 
+import PredefinedCustomerSelect from "@components/predefined-customer-select/predefined-customer-select";
+import MultipleOrganizationAutoComplete from "@components/multiple-organization-auto-complete/multiple-organization-auto-complete";
+import PredefinedTableLayout from "@components/predefined-table-layout/predefined-table-layout";
+import ItemAutoComplete from "@components/itemspec-auto-complete/itemspec-auto-complete";
+import SimplifiedPager from "@components/simplified-pager/simplified-pager";
+import CustomizeTable from "@components/customize-table/customize-table";
+import FacilitySelect from "@components/facility-select/facility-select";
+import ElementSelect from "@components/element-select/element-select";
+import MultipleItemAutoComplete from "@components/multiple-item-auto-complete/multiple-item-auto-complete";
+import WaittingBtn from "@components/waitting-button/waitting-btn";
+import TagsInput from "@components/tags-input/tags-input";
+import DateRange from "@components/date-range/date-range";
+import errorHandler from "@shared/error-handler";
+import Pager from "@components/pager/pager";
+import CustomerWiseVue from "@shared/customer-wise-vue";
+import { Component } from "vue-property-decorator";
+import { remove, cloneDeep, forEach, groupBy, isEmpty } from "lodash-es";
+import inventoryService from "@services/inventory-service";
+import reportUtil from "@shared/report-util";
+import errorHanlder from '@shared/error-handler';
+import constants from '@shared/constants';
+import { Subject } from "rxjs/Subject";
+import util from "@shared/util";
+import "rxjs/add/operator/debounceTime";
+import tlp from "./adjustment.vue";
 @Component({
     mixins: [tlp],
     components: {
         PredefinedCustomerSelect,
+        MultipleOrganizationAutoComplete,
+        PredefinedTableLayout,
         ElementSelect,
-        ItemAutoComplete,
         FacilitySelect,
+        ItemAutoComplete,
         DateRange,
         CustomizeTable,
         Pager,
-        WaittingBtn
+        WaittingBtn,
+        SimplifiedPager,
+        MultipleItemAutoComplete,
+        TagsInput
     }
 })
+export default class Adjustment extends CustomerWiseVue {
 
-export default class Adjustment extends WiseVue {
-    adjustTypes: Array<any> = [{ name: 'All' }, { name: 'Location', dbName: 'ADJUST_LOCATION' }, { name: 'LP', dbName: 'ADJUST_LP' }, { name: 'Status', dbName: 'ADJUST_STATUS' }
-        , { name: 'QTY', dbName: 'ADJUST_QTY' }, { name: 'Item', dbName: 'ADJUST_ITEM' }, { name: 'UOM', dbName: 'ADJUST_UOM' }, { name: 'Customer', dbName: 'ADJUST_CUSTOMER' }
-        , { name: 'Title', dbName: 'ADJUST_TITLE' }, { name: 'Pallet', dbName: 'ADJUST_PALLET' }, { name: 'Material', dbName: 'ADJUST_MATERIAL' }, { name: 'Add Inventory', dbName: 'ADD_INVENTORY' }
-        , { name: 'Lot No', dbName: 'ADJUST_LOTNO' }, { name: 'Expiration Date', dbName: 'ADJUST_EXPIRATIONDATE' }, { name: 'Mfg  Date', dbName: 'ADJUST_MFGDATE' }, { name: 'Shelf Life Days', dbName: 'ADJUST_SHELFLIFEDAYS' }
-        , { name: 'SN', dbName: 'ADJUST_SN' }];
-
-    adjustmentSearchInfo: any = { paging: { pageNo: 1, limit: 10 } };
+    searchParam: any = {
+        paging: { pageNo: 1, limit: 10 },
+        reportCategory: 'INVENTORY_ADJUSTMENT',
+        adjustEffect: ''
+    };
     adjustmentReports: any = {};
-
-    tableFileds: Array<any> = [];
     facilities: Array<any> = [];
-    tableHead: any;
-
     searchResultPaging: any = {};
-
     loading = false;
-    initload = false;
-    customerIds: Array<string> = [];
+    customizeComplete = false;
     exportLoading: boolean = false;
+    searchByInput: Subject<void> = new Subject();
+    customizitionTableView: any = {};
+    // adjustmentTypes: Array<any> = ['Adjust Location', 'Adjust Status', 'Adjust QTY', 'Add Inventory', 'Adjust Title', 'Adjust LotNo'];
+
+    adjustmentTypes: Array<any> = ["All", "Adjust Location", "Adjust LP", "Adjust Status",
+        "Adjust QTY", "Adjust Item", "Adjust UOM", "Adjust Customer", "Adjust Title",
+        "Add Inventory", "Adjust LotNo", "Adjust ExpirationDate", "Adjust MfgDate", "Adjust ShelfLifeDays", "Adjust SN"];
+
+    adjustEffects: Array<any> = ["AdjustOut", "AdjustIn"];
     onSelectDateRange(payload: any) {
-        this.adjustmentSearchInfo.timeFrom = payload.timeFrom;
-        this.adjustmentSearchInfo.timeTo = payload.timeTo;
+        this.searchParam.timeFrom = payload.timeFrom;
+        this.searchParam.timeTo = payload.timeTo;
         this.searchReport();
     }
 
-    onItemSelectChange(payload: any) {
-        if (!payload) {
-            delete this.adjustmentSearchInfo.itemSpecId;
-            delete this.adjustmentSearchInfo.itemSpecIds;
-        } else {
-            this.adjustmentSearchInfo.itemSpecIds = [payload.id];
-        }
-        this.searchReport();
+    onSelectAdjustmentTypes(payload: any) {
+        // this.searchReport();
     }
 
     onSelectCustomizeTable(payload: any) {
-        let head = map(payload, "fieldName");
-        this.tableHead = head;
-        this.adjustmentReports.head = head;
-    }
-
-
-    onSelectFacilityChange() {
-        this.searchReport();
-    }
-
-    onSelectAdjustTypes(payload: any) {
-        if (payload === "All") {
-            this.adjustmentSearchInfo.types = compact(map(this.adjustTypes, 'dbName'));
+        this.customizitionTableView = payload;
+        let query = this.$route.query;
+        if (!isEmpty(query)) {
+            this.searchReport();
         } else {
-            let data: any = find(this.adjustTypes, { name: payload });
-            this.adjustmentSearchInfo.types = [data.dbName];
+            if (!this.customizitionTableView.isFirstInit) {
+                this.searchReport();
+            }
         }
-        this.searchReport();
-
+        this.customizeComplete = true;
+        // this.searchReport();
     }
+
+    onSelectFacilityChange(payload: any) {
+        // this.searchReport();
+    }
+
     onselectCustomerChange(payload: any) {
-        this.searchReport();
+        this.customizeComplete = false;
+        this.searchParam.itemSpecId = null;
+        this.searchParam.titleIds = [];
+        // this.searchReport();
     }
 
-    private searchReport() {
-        this.adjustmentSearchInfo.paging = { pageNo: 1, limit: 10 };
-        this.searchAdjustmentReportByPaging();
+    onItemSelectChange(payload: any) {
+        // this.searchReport();
     }
 
-    searchAdjustmentReportByPaging() {
+
+    selectedLayout: any = null;
+    onGroupViewLayoutChange(layout: any) {
+        this.selectedLayout = layout;
+        if (!layout || !layout.groupColumns || layout.groupColumns.length === 0) {
+            this.setInitGroupReport();
+        } else {
+            this.adjustmentReports.data = reportUtil.getReOrgGroupTableSource(this.orginInventoryStatus.data, layout);
+        }
+    }
+
+    dragStart(event: any) {
+        event.dataTransfer.setData("Text", event.target.innerText);
+    }
+    orginInventoryStatus: any = [];
+    private searchInventoryAdjustmentByPaging() {
+        if (!this.searchParam.headerList.length) {
+            errorHandler.handle('Please Select at least one criteria for each customize column.');
+            return;
+        }
         this.adjustmentReports = [];
         this.searchResultPaging = [];
         this.loading = true;
-        let searchParam = cloneDeep(this.adjustmentSearchInfo);
-        if (searchParam.useless) {
-            delete searchParam.useless;
+        let searchParam = this.removeFacilityParamAndFillTitleIdsWhenSearch(cloneDeep(this.searchParam));
+        if (!searchParam.types || searchParam.types.length === 0) {
+            searchParam.types = this.adjustmentTypes;
         }
-        reportService.searchAdjustmentReportByPaging(searchParam, this.adjustmentSearchInfo.facility.accessUrl).subscribe(
+        inventoryService.searchInventoryAdjustmentByPaging(searchParam).subscribe(
             res => {
+                this.orginInventoryStatus = cloneDeep(res.results);
                 this.adjustmentReports = res.results;
                 this.searchResultPaging = res.paging;
+                this.setInitGroupReport();
                 this.loading = false;
-                this.initTable();
-                this.initload = true;
             },
             err => {
                 this.loading = false;
@@ -117,53 +145,60 @@ export default class Adjustment extends WiseVue {
         );
     }
 
-    private init() {
 
-        this.customerIds =  this.getCustomerIds();
-        let currentDate = new Date();
-        currentDate.setTime(currentDate.getTime() - 24 * 60 * 60 * 1000 * 6);
-        this.adjustmentSearchInfo.timeTo = util.fomateEndDate(new Date());
-        this.adjustmentSearchInfo.timeFrom = util.fomateStartDate(currentDate);
-        this.adjustmentSearchInfo.types = compact(map(this.adjustTypes, 'dbName'));
-        this.adjustmentSearchInfo.useless = 'All';
-        this.searchAdjustmentReportByPaging();
-    }
-
-    private initTable() {
-
-        if (this.initload) {
-            if (this.tableHead) {
-                this.adjustmentReports.head = this.tableHead;
-            }
-
-        } else {
-            this.adjustmentReports.head.forEach((head: any) => {
-                let field = { fieldId: head, fieldName: head, checked: true };
-                this.tableFileds.push(field);
-            });
+    private setInitGroupReport() {
+        let reports = cloneDeep(this.orginInventoryStatus.data);
+        forEach(reports, (dt) => {
+            dt.source = 'dbSource';
+        });
+        this.adjustmentReports.data = groupBy(reports, 'source');
+        // when customize change and has been selected layout
+        if (this.selectedLayout && this.selectedLayout.groupColumns.length > 0) {
+            this.adjustmentReports.data = reportUtil.getReOrgGroupTableSource(this.orginInventoryStatus.data, this.selectedLayout);
         }
     }
 
-    triggerSearchFromPager(pager: any) {
-        this.adjustmentSearchInfo.paging.limit = pager.pageSize;
-        this.adjustmentSearchInfo.paging.pageNo = pager.currentPage;
-        this.searchAdjustmentReportByPaging();
+
+    searchReport() {
+        this.searchParam.paging = { pageNo: 1, limit: 10 };
+        this.searchParam.headerList = reportUtil.getNestedColumnList(this.customizitionTableView);
+        this.searchInventoryAdjustmentByPaging();
     }
 
+    triggerSearchFromPager(pager: any) {
+        this.searchParam.paging.limit = pager.pageSize;
+        this.searchParam.paging.pageNo = pager.currentPage;
+        this.searchInventoryAdjustmentByPaging();
+    }
+
+
     mounted() {
-        this.init();
+        let query = this.$route.query;
+        if (!isEmpty(query)) {
+            this.searchParam.titleIds = query.titleId ? [query.titleId] : null;
+            this.searchParam.itemSpecId = query.itemSpecId ? query.itemSpecId : null;
+            this.searchParam.timeTo = query.timeTo ? query.timeTo : null;
+            this.searchParam.timeFrom = query.timeFrom ? query.timeFrom : null;
+            this.searchParam.adjustIds = query.adjustId ? [query.adjustId] : null;
+            this.searchParam.adjustEffect = query.adjustEffect ? query.adjustEffect : '';
+        } else {
+            let currentDate = new Date();
+            currentDate.setTime(currentDate.getTime() - 24 * 60 * 60 * 1000 * 2);
+            this.searchParam.timeTo = util.fomateEndDate(new Date());
+            this.searchParam.timeFrom = util.fomateStartDate(currentDate);
+        }
+
     }
 
     exportExcel() {
         this.exportLoading = true;
-        reportService.adjustmentDownLoad(this.adjustmentSearchInfo, this.adjustmentSearchInfo.facility.accessUrl).then((res => {
+        let searchParam = this.removeFacilityParamAndFillTitleIdsWhenSearch(cloneDeep(this.searchParam));
+        inventoryService.adjustmentDownLoad(searchParam).then((res => {
             this.exportLoading = false;
-            util.exportFile(res, "inventoryAdjustment.xlsx");
-        })).catch((err: any) => {
+            util.exportFile(res, "Inventory-Adjustment.xlsx");
+        })).catch(err => {
             this.exportLoading = false;
             errorHandler.handle(err);
         });
     }
-
-
 }

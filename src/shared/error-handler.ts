@@ -7,19 +7,26 @@ class ErrorHandler {
         if (typeof err === "string") {
             Message.error(err);
         } else {
-            let response = err.response;
-            let errMsg = response.error || response.data ? response.data.error : "Server Interal Error.";
-            let xrequestID = this.getResponseXRequestID(response);
-            if (xrequestID) {
-                errMsg = errMsg + ` (Request ID: ${xrequestID})`;
+            try {
+                let response = err.response;
+                let textDecoder = new TextDecoder("utf-8");
+                let unitArray = new Uint8Array(response.data);
+                let errorString = textDecoder.decode(unitArray);
+                let msg = JSON.parse(errorString).error;
+                Message.error(msg);
+            } catch (error) {
+                let response = err.response;
+                let errMsg = response.error || (response.data || response.data.message || response.data.errorMessage.message) ? (response.data.error || response.data.message || response.data.errorMessage.message || response.data.errorMessage) : "Server Interal Error.";
+                let xrequestID = this.getResponseXRequestID(response);
+                if (xrequestID) {
+                    errMsg = errMsg + ` (Request ID: ${xrequestID})`;
+                }
+                if (errMsg) {
+                    Message.error(errMsg);
+                } else {
+                    Message.error("Internal Server Error");
+                }
             }
-            if (errMsg) {
-                Message.error(errMsg);
-            } else {
-                Message.error("Internal Server Error");
-
-            }
-
         }
     }
 

@@ -1,11 +1,11 @@
-import WiseVue from "../../shared/wise-vue";
-import { Component, Prop } from "vue-property-decorator";
+import WiseVue from "@shared/wise-vue";
+import { Component, Prop, Inject } from "vue-property-decorator";
 import template from "./sidebar-menu.vue";
 import * as Velocity from 'velocity-animate';
 import { forEach, find } from 'lodash-es';
-import session from '../../shared/session';
-import userService from '../../services/user-service';
-import errorHanlder from '../../shared/error-handler';
+import session from '@shared/session';
+import userService from '@services/user-service';
+import errorHanlder from '@shared/error-handler';
 @Component({
     mixins: [template],
     name: 'sidebar-menu',
@@ -13,34 +13,37 @@ import errorHanlder from '../../shared/error-handler';
 export default class SidebarMenu extends WiseVue {
     @Prop({ default: [] })
     menuData!: Array<any>;
-     currentRouterName: any;
-    setMenuData(title: string, routerName: string) {
+    currentRouterName: any;
+
+    @Inject('reloads') reloads: any;
+
+    setMenuData(title: string) {
         this.menuData.forEach(menu => {
+            if (menu.title !== title) {
                 menu.display = "none";
-                this.resuriseSetDisplay(menu, title, routerName);
+            }
+            this.resuriseSetDisplay(menu, title);
         });
     }
 
-    resuriseSetDisplay(menu: any, title: string, routerName: string) {
+    resuriseSetDisplay(menu: any, title: string) {
         forEach(menu.subMenu, element => {
             if (element.title !== title) {
-                    element.display = "none";
+                element.display = "none";
                 if (this.currentRouterName === element.routerName) {
                     element.display = "block";
                 }
 
                 if (element.subMenu) {
-                    this.resuriseSetDisplay(element, title, routerName);
+                    this.resuriseSetDisplay(element, title);
                 }
-            } else {
-                menu.display = "display";
             }
         });
     }
     itemTitle: string = "";
     clickLi(menuItem: any) {
         this.currentRouterName = this.$route.name;
-        this.setMenuData(menuItem.title, menuItem.routerName);
+        this.setMenuData(menuItem.title);
         if (menuItem.display === "block") {
             menuItem.display = "none";
         } else {
@@ -61,10 +64,12 @@ export default class SidebarMenu extends WiseVue {
             if (menuItem.routerName === 'Login') {
                 this.signOut();
             } else {
+                if (menuItem.routerName === 'ReceiptEntry' || menuItem.routerName === 'OrderEntry' ) this.reloads();
                 this.$router.replace({ name: menuItem.routerName });
             }
 
         }
+        this.$emit('chooseItem', menuItem);
     }
 
     signOut() {
@@ -82,7 +87,6 @@ export default class SidebarMenu extends WiseVue {
     }
 
     mounted() {
-
     }
 
     judgeIsShowYellowTip(menuItem: any) {

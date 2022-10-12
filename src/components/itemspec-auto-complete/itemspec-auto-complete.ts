@@ -1,11 +1,10 @@
-import WiseVue from "../../shared/wise-vue";
-import { Component, Prop, Provide, Watch, Emit } from "vue-property-decorator";
+import WiseVue from "@shared/wise-vue";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import template from "./itemspec-auto-complete.vue";
 import { Select, Option } from "element-ui";
-import { mixins } from "vue-class-component";
 import { find, unionBy, findIndex, forEach } from 'lodash-es';
-import itemService from "../../services/item-service";
-import errorHanlder from '../../shared/error-handler';
+import itemService from "@services/item-service";
+import errorHanlder from '@shared/error-handler';
 
 WiseVue.use(Select);
 WiseVue.use(Option);
@@ -26,10 +25,10 @@ export default class ItemAutoComplete extends WiseVue {
     @Prop({ default: "" })
     value!: string;
 
-    @Prop({ default: "" })
+    @Prop({ default: () => [] })
     tags!: Array<any>;
 
-    @Prop({ default: [] })
+    @Prop({ default: () => [] })
     customerIds!: Array<any>;
 
     @Prop({ default: "" })
@@ -41,15 +40,17 @@ export default class ItemAutoComplete extends WiseVue {
     @Prop({ default: "Input to search" })
     placeholder!: string;
 
-    selectValue: any = "";
+    selectValue: any = this.value;
 
     loading = false;
     itemSpecList: Array<any> = [];
 
-
     onSelectChange() {
         this.$emit("input", this.selectValue);
         this.$emit("change", find(this.itemSpecList, { id: this.selectValue }));
+        if (!this.selectValue) {
+            this.searchItem("");
+        }
     }
 
     remoteMethod(keyword: string) {
@@ -57,16 +58,45 @@ export default class ItemAutoComplete extends WiseVue {
     }
 
     @Watch("value")
-    valueUpdate() {
-        this.getItemById(this.value);
+    valueUpdate(val: any) {
+        if (val) this.getItemById(val);
+        else this.selectValue = '';
+    }
+
+    @Watch("customerId")
+    onCustomerIdChange() {
+        this.selectValue = this.value;
+        if (this.value) {
+            this.searchItem("", [this.value]);
+        } else {
+            this.searchItem("");
+        }
+    }
+
+    mounted() {
+        if (this.value) {
+            this.searchItem("", [this.value]);
+        }
     }
 
     getItemById(id: string) {
-        if (this.value && findIndex(this.itemSpecList, { id: this.value }) < 0) {
+        let itemSpecIdIndex = findIndex(this.itemSpecList, ['id', this.value]);
+        if (this.value && itemSpecIdIndex > 0) {
+            this.selectValue = this.itemSpecList[itemSpecIdIndex].filtername;
+        }
+        else {
             this.unsubcribers.push(itemService.get(id).subscribe(
                 res => {
+                    res.filtername = res.name;
+                    if (res.shortDescription) {
+                        res.filtername = res.filtername + ` ( ${res.shortDescription} )`;
+                    } else {
+                        if (res.desc) {
+                            res.filtername = res.filtername + ` ( ${res.desc} )`;
+                        }
+                    }
                     this.itemSpecList = unionBy([res], this.itemSpecList, "id");
-                    this.selectValue = this.value;
+                    this.selectValue = res.filtername;
                 },
                 err => {
                     errorHanlder.handle(err);
@@ -75,24 +105,31 @@ export default class ItemAutoComplete extends WiseVue {
         }
     }
 
-    private setupSearchParameter(keyword: string) {
+    private setupSearchParameter(keyword?: string, ids?: Array<String>) {
         let parameter: any = { scenario: 'Auto Complete' };
-        if (this.tags) {
+        if (this.tags && this.tags.length > 0) {
             parameter.tags = this.tags;
         }
         if (keyword) {
             parameter.keyword = keyword;
         }
+        if (ids) {
+            parameter.ids = ids;
+        }
         return parameter;
     }
 
     private addCustomerIdToSearchParam(param: any) {
-        if (this.customerId) {
-            param.customerId = this.customerId;
+        let customerId = this.getCustomerIdByUserSelect();
+        if (customerId) {
+            param.customerId = customerId;
         }
-        if (this.customerIds) {
-            param.customerIds = this.customerIds;
-        }
+        // if (this.customerId) {
+        //     param.customerId = this.customerId;
+        // }
+        // if (this.customerIds) {
+        //     param.customerIds = this.customerIds;
+        // }
     }
 
     private addSupplierIdToSearchParam(param: any) {
@@ -102,8 +139,8 @@ export default class ItemAutoComplete extends WiseVue {
     }
 
 
-    private searchItem(keyword: string) {
-        let param = this.setupSearchParameter(keyword);
+    private searchItem(keyword?: string, ids?: Array<String>) {
+        let param = this.setupSearchParameter(keyword, ids);
         this.addCustomerIdToSearchParam(param);
         this.addSupplierIdToSearchParam(param);
         this.loading = true;

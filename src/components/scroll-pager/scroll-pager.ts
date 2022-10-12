@@ -1,8 +1,8 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch } from "vue-property-decorator";
 import template from "./scroll-pager.vue";
-import session from '../../shared/session';
-import errorHanlder from '../../shared/error-handler';
+import session from '@shared/session';
+import errorHanlder from '@shared/error-handler';
 import ElementSelect from "../element-select/element-select";
 
 

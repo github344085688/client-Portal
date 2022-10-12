@@ -1,4 +1,4 @@
-import WiseVue from "../../shared/wise-vue";
+import WiseVue from "@shared/wise-vue";
 import { Component, Prop, Provide, Watch } from "vue-property-decorator";
 import template from "./simplified-pager.vue";
 import ElementSelect from "../element-select/element-select";
@@ -24,8 +24,11 @@ export default class SimplifiedPager extends WiseVue {
     @Prop({ default: 5 })
     pagerShowCount!: number;
 
-    @Prop({ default: "" })
-    keyId!: string;
+    @Prop({ default: 1 })
+    currentPage!: number;
+
+    @Prop({ default: {} })
+    currentDate!: any;
 
     get showingFrom() {
         return (this.pager.activedPage - 1) * this.pageSize + 1;
@@ -68,6 +71,17 @@ export default class SimplifiedPager extends WiseVue {
     }
 
 
+    @Watch("currentPage")
+    updateWhenCurrentPageChange() {
+        if (this.currentPage != this.pager.activedPage) {
+            if (this.pager.activedPage == this.currentPage)
+                return;
+            this.pager.activedPage = this.currentPage;
+            this.inputPage = this.currentPage;
+            this.pages = this.loadPager(this.pager.activedPage);
+        }
+    }
+
     reRenderWhenPageSizeChange(selectPageSize: number) {
         console.log("Page Size change from inside" + selectPageSize);
         if (selectPageSize) {
@@ -76,8 +90,8 @@ export default class SimplifiedPager extends WiseVue {
         if (this.pageSize === 0 || this.lastPageSize == this.pageSize) return;
         this.reInitialPager();
         this.inputPage = this.pager.activedPage;
-        if (this.keyId) {
-            this.$emit("reloadContent", ({ 'currentPage': this.pager.activedPage, 'pageSize': this.pageSize, keyId: this.keyId }));
+        if (this.currentDate) {
+            this.$emit("reloadContent", ({ 'currentPage': this.pager.activedPage, 'pageSize': this.pageSize, currentDate: this.currentDate }));
 
         } else {
             this.$emit("reloadContent", ({ 'currentPage': this.pager.activedPage, 'pageSize': this.pageSize }));
@@ -116,8 +130,8 @@ export default class SimplifiedPager extends WiseVue {
         this.pager.activedPage = page;
         this.inputPage = page;
         this.pages = this.loadPager(this.pager.activedPage);
-        if (this.keyId) {
-            this.$emit("reloadContent", ({ 'currentPage': page, 'pageSize': this.pageSize, 'totalCount': this.totalCount, keyId: this.keyId }));
+        if (this.currentDate) {
+            this.$emit("reloadContent", ({ 'currentPage': page, 'pageSize': this.pageSize, 'totalCount': this.totalCount, currentDate: this.currentDate }));
 
         } else {
             this.$emit("reloadContent", ({ 'currentPage': page, 'pageSize': this.pageSize, 'totalCount': this.totalCount }));
@@ -157,7 +171,7 @@ export default class SimplifiedPager extends WiseVue {
     }
 
     setupPageSizeOptions() {
-        let defaultPageSizeOptions = [1, 10, 20, 50, 100, 300, 500, 1000];
+        let defaultPageSizeOptions = [10, 20, 50, 100, 300, 500, 1000];
         defaultPageSizeOptions.push(this.pageSize);
         this.pageSizeOptions = sortBy(uniq(defaultPageSizeOptions));
     }

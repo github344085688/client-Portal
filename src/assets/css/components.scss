@@ -8,7 +8,7 @@
   letter-spacing: 0.4px;
   color: #ffffff;
 }
-.button-unis {
+.unis-btn unis-btn-primary {
     border: solid 1px rgb(21, 34, 61);
     border-radius: 4px;
     background-image: -moz-linear-gradient( 0deg, rgb(21, 34, 61) 0%, rgb(99, 102, 108) 100%);
@@ -65,27 +65,43 @@
     width: 100%;
   }
   .child {
-    padding-left: 5%;
-    padding-right: 5%;
     background: white;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding: 15px 50px;
+    border-right: 1px solid #CECECE;
   }
   .child-table thead tr {
-    background-color: black;
-    color: #fff;
+    background-color: #F9F9F9;
+    font-weight: bold;
   }
-  .child-table thead tr:hover,
+  .child-table thead tr:hover{
+    background-color: #F9F9F9;
+  }
   .child-table tbody tr:hover {
-    background-color: black !important;
-  }
-  .child-table tbody tr {
-    background: #15223d !important;
+    // background-color: black !important;
+    background-color:#F9F9F9 !important;
   }
   .child-table tbody td {
-    color: #fff;
+    // color: #fff;
     font-size: 0.7rem;
+    min-width: 130px;
   }
+}
+
+.third-child-table{
+  .child-table thead tr {
+    background-color: #F9F9F9;
+  }
+  .child-table thead tr:hover{
+    background-color: #F9F9F9;
+  }
+  .child-table thead tr:hover{
+    background-color: #F9F9F9;
+  }
+  .child-table tbody tr {
+    // background: #15223d !important;
+    // background: #EDEAEA !important;.init-pager
+  }
+  
 }
 
 .cursor-point {
@@ -99,7 +115,7 @@
   display: inline-block;
 }
 input[type="text"], input[type="email"], input[type="password"], input[type="search"], input[type="number"] {
-  height: 35px !important;
+  min-height: 32px !important;
 }
 .el-select-dropdown__item.selected {
   font-weight: 500 !important;
@@ -123,4 +139,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="sea
   justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
+}
+.center{
+  text-align: center;
 }

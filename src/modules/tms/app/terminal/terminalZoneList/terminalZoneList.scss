@@ -1,0 +1,87 @@
+.filter-area {
+    margin-top: 60px;
+    padding: 0;
+}
+
+.input-address {
+    position: relative;
+    .icon-7 {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        z-index: 9;
+        font-size: 24px;
+    }
+    input {
+        padding-left: 32px !important;
+    }
+}
+.table-client tr {
+    border: 0 !important;
+    border-bottom: 1px solid #CECECE !important;
+}
+.table-client thead tr {
+    color: #777879 !important;
+}
+.table-client tbody td {
+    color: #444545 !important;
+}
+
+.zone-tab-tit {
+    div {
+        height: 48px;
+        line-height: 48px;
+        padding: 0 18px;
+        margin-right: 25px;
+        text-align: center;
+        color: #777879;
+        cursor: pointer;
+    }
+    .choose-tit {
+        color: #488492;
+        box-shadow: 0 2px 0 0 #488492;
+    }
+}
+
+.tms-table-space {
+width: 100%;
+border-collapse: separate;
+border-spacing: 0 14px; }
+.tms-table-space thead tr {
+border: none; }
+.tms-table-space thead tr th {
+min-height: 60px; }
+.tms-table-space thead tr th:first-child {
+padding-left: 21px; }
+.tms-table-space thead tr th:last-child {
+padding-right: 21px; }
+.tms-table-space tbody tr {
+box-sizing: border-box;
+box-shadow: 0px 2px 10px rgba(44, 60, 89, 0.07);
+border-radius: 4px;
+box-sizing: border-box;
+padding: 0;
+margin: 0; }
+.tms-table-space tbody tr td {
+min-height: 60px;
+height: 60px;
+background: #ffffff;
+vertical-align: middle;
+border-top: 1px solid rgba(68, 69, 69, 0.2);
+border-bottom: 1px solid rgba(68, 69, 69, 0.2); }
+.tms-table-space tbody tr td:first-child {
+    padding-left: 21px;
+    border-left: 1px solid rgba(68, 69, 69, 0.2);
+    border-radius: 4px 0 0 4px; }
+.tms-table-space tbody tr td:last-child {
+    padding-right: 21px;
+    border-radius: 0 4px 4px 0;
+    border-right: 1px solid rgba(68, 69, 69, 0.2); }
+
+.content {
+    width: 92%;
+    margin: 0 auto;
+    border-radius: 10px;
+    line-height: 24px;
+    background: rgba(200, 216, 228, 0.5);
+}

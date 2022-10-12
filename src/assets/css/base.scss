@@ -15,7 +15,6 @@ output, ruby, section, summary, time, mark, audio, video, textarea, input, selec
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	font-family: 'AvenirNext-Regular';
 	vertical-align: baseline;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -24,11 +23,7 @@ output, ruby, section, summary, time, mark, audio, video, textarea, input, selec
 	letter-spacing: 0.4px;
 }
 
-.avenirNext-Medium{
-	span , label {
-		font-family: 'AvenirNext-Medium';
-	}
-}  
+
 
 ol, ul {
 	list-style: none;
@@ -45,4 +40,49 @@ hr {
 }
 a{
 	color: #00a6e8;
+}
+.h-40-p{
+	height: 40px !important;
+	padding-bottom: inherit!important;
+	padding-top: inherit!important;
+}
+
+.h-32-p{
+	height: 32px !important;
+	padding-bottom: inherit!important;
+	padding-top: inherit!important;
+}
+
+.unis-steps {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	display: inline-block;
+	span{
+		width: 2rem;
+		height: 2rem;
+		border-radius: 2rem;
+		line-height: 2rem;
+		text-align: center;
+		display: inline-block;
+		margin-right: 1rem;
+		// background-image: -webkit-gradient(linear, left bottom, left top, from(#15223d), to(#63666c));
+		// background-image: linear-gradient(0deg, #15223d 0%, #63666c 100%);
+		// -webkit-box-shadow: 0px 7px 20px rgba(44, 60, 89, 0.07);
+		background: #91B5BE;
+		box-shadow: 0px 7px 20px rgba(44, 60, 89, 0.07);
+		color: #ffffff;
+	}
 }

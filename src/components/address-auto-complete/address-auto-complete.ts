@@ -1,11 +1,11 @@
-import WiseVue from "../../shared/wise-vue";
-import { Component, Prop, Provide, Watch, Emit } from "vue-property-decorator";
+import WiseVue from "@shared/wise-vue";
+import { Component, Prop, Watch } from "vue-property-decorator";
 import template from "./address-auto-complete.vue";
 import { Select, Option } from "element-ui";
 import { mixins } from "vue-class-component";
 import { find, unionBy, findIndex }  from 'lodash-es';
-import addressService from "../../services/address-service";
-import errorHanlder from '../../shared/error-handler';
+import addressService from "@services/address-service";
+import errorHanlder from '@shared/error-handler';
 
 WiseVue.use(Select);
 WiseVue.use(Option);
@@ -75,7 +75,7 @@ export default class AddressAutoComplete extends WiseVue {
     }
 
     getAddressById(id: string) {
-        if (this.value && findIndex(this.addressList, { id: this.value }) < 0) {
+        if (this.value && findIndex(this.addressList, ['id', this.value]) < 0) {
             this.unsubcribers.push(addressService.get(id).subscribe(
                 res => {
                     this.addressList = unionBy(res, this.addressList, "id");

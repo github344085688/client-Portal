@@ -1,30 +1,50 @@
-import BaseService  from  '../_base-service';
-import session from '../../shared/session';
 
-class Tms4axios extends BaseService  {
+import session from '@shared/session';
+import { Rx4axios, RxiosConfig } from '@shared/rx4axios';
+import axios, { AxiosInstance } from 'axios';
+import errorHandlerInterceptor from "@shared/interceptor/response/errorHandlerInterceptor";
+
+class Tms4axios extends Rx4axios  {
+
+    constructor(axios: AxiosInstance, options: RxiosConfig = {}) {
+         super(axios, options);
+    }
+
     public get<T>(url: string, queryParams?: object, headers?: object) {
         queryParams = this._addTokenAndUserInfo(queryParams);
-        return this.resource$.get<T>(this._addDomainToUrl(url), queryParams, headers);
+        headers = this._addTokenToHeader(headers);
+        return super.get<T>(this._addDomainToUrl(url), queryParams, headers);
     }
 
     public post<T>(url: string, body: object, queryParams?: object, headers?: object) {
         body = this._addTokenAndUserInfo(body);
-        return this.resource$.post<T>(this._addDomainToUrl(url),  body, queryParams, headers);
+        headers = this._addTokenToHeader(headers);
+        return super.post<T>(this._addDomainToUrl(url),  body, queryParams, headers);
     }
 
     public put<T>(url: string, body: object, queryParams?: object, headers?: object) {
         body = this._addTokenAndUserInfo(body);
-        return this.resource$.put<T>(this._addDomainToUrl(url), body, queryParams, headers);
+        headers = this._addTokenToHeader(headers);
+        return super.put<T>(this._addDomainToUrl(url), body, queryParams, headers);
     }
 
     public patch<T>(url: string, body: object, queryParams?: object, headers?: object) {
         body = this._addTokenAndUserInfo(body);
-        return this.resource$.patch<T>(this._addDomainToUrl(url), body, queryParams, headers);
+        headers = this._addTokenToHeader(headers);
+        return super.patch<T>(this._addDomainToUrl(url), body, queryParams, headers);
     }
 
     public delete(url: string, queryParams?: object, headers?: object) {
         queryParams = this._addTokenAndUserInfo(queryParams);
-        return this.resource$.delete(this._addDomainToUrl(url), queryParams, headers);
+        headers = this._addTokenToHeader(headers);
+        return super.delete(this._addDomainToUrl(url), queryParams, headers);
+    }
+
+    private _addTokenToHeader(headers?: object) {
+        headers = headers || {};
+        let token = session.getUserToken();
+        Object.assign(headers, {'User-Authorization': token});
+        return headers;
     }
 
     private _addDomainToUrl(url: string) {
@@ -38,16 +58,17 @@ class Tms4axios extends BaseService  {
 
     private  _addTokenAndUserInfo(queryParams?: object) {
         queryParams = queryParams || {};
-        let token = session.getUserToken();
         let idmUserId = session.getUserId();
-        Object.assign(queryParams, {UserToken: token, UserID: idmUserId});
+        Object.assign(queryParams, {UserID: idmUserId});
         return queryParams;
     }
 
 }
 
-let Tms4ax =  new Tms4axios();
-export default Tms4ax;
+let axios4Tms =  axios.create();
+axios4Tms.interceptors.response.use(response => response, errorHandlerInterceptor);
 
+let Tms4ax =  new Tms4axios(axios4Tms);
+export default Tms4ax;
 
 

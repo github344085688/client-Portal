@@ -1,0 +1,77 @@
+.filter-area {
+    margin-top: 60px;
+    padding: 0;
+}
+.el-dialog {
+    background: #FEFEFE !important;
+}
+.dialog-search > div {
+    box-shadow: 0 0 10px 4px #c9c9c9;
+    border-radius: 0;
+    .el-dialog__headerbtn {
+        float: right;
+        width: 20px;
+        top: 17px;
+        right: 16px;
+    }
+    .el-icon-close {
+        font-size: 22px;
+        color: #666;
+        font-weight: bold;
+    }
+    .el-dialog__header {
+        text-align: left;
+        color: #333 !important;
+    }
+}
+
+.content {
+    width: 92%;
+    margin: 0 auto;
+    border-radius: 10px;
+    line-height: 24px;
+    background: rgba(200, 216, 228, 0.5);
+}
+.c-error {
+    background: #F2D4CC !important;
+    border: 1px solid #E52628 !important;
+}
+
+.input-address {
+    position: relative;
+    .icon-7 {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        z-index: 9;
+        font-size: 24px;
+    }
+    input {
+        padding-left: 32px !important;
+    }
+}
+.radio-box {
+    padding: 12px 10px;
+    border: 1px solid #CECECE;
+    label {
+        padding-top: 4px;
+    }
+}
+.isActive-Y {
+    padding: 5px 10px;
+    color: #009934;
+    background: #CCEBD6;
+    border-radius: 18px;
+}
+.isActive-N {
+    padding: 5px 10px;
+    color: #333;
+    background: #bebbba;
+    border-radius: 18px;
+}
+.no-data {
+    text-align: center;
+    line-height: 500px;
+    height: 500px;
+    background: #F9F9F9;
+}

@@ -1,0 +1,23 @@
+.step-counter {
+    display:inline-block;
+    margin-right:20px;
+    margin-top:62px; 
+}
+.step-counter .change-color {
+        background:#C96C6C;
+}
+.step-counter .change-size {
+    width:26px;
+    height:26px;
+    line-height:26px;
+}  
+.step-counter span {
+    display: inline-block;
+    background: #91B5BE;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    text-align:center;
+    line-height:32px;
+    color:#fff;
+}

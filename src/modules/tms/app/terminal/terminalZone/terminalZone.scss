@@ -1,0 +1,63 @@
+.filter-area {
+    margin-top: 60px;
+    padding: 0;
+}
+
+.input-address {
+    position: relative;
+    .icon-41 {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        z-index: 9;
+        font-size: 24px;
+    }
+    input {
+        padding-left: 32px !important;
+    }
+}
+.table-client tr {
+    border: 0 !important;
+    border-bottom: 1px solid #CECECE !important;
+}
+.table-client thead tr {
+    color: #777879 !important;
+}
+.table-client tbody td {
+    color: #444545 !important;
+}
+
+.zone-tab-tit {
+    div {
+        height: 48px;
+        line-height: 48px;
+        padding: 0 18px;
+        margin-right: 25px;
+        text-align: center;
+        color: #777879;
+        cursor: pointer;
+    }
+    .choose-tit {
+        color: #488492;
+        box-shadow: 0 2px 0 0 #488492;
+    }
+}
+
+.content {
+    width: 92%;
+    margin: 0 auto;
+    border-radius: 10px;
+    line-height: 24px;
+    background: rgba(200, 216, 228, 0.5);
+}
+
+.color-b-g900 {
+    color: #444545;
+}
+
+.back-arrow {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 42px;
+    cursor: pointer;
+}

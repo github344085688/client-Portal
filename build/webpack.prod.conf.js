@@ -64,6 +64,13 @@ const webpackConfig = merge(baseWebpackConfig, {
       'API_CONTEXT_PATH': JSON.stringify(config.build.apiContextPath),
       'STATIC_CONTENT_CONTEXT_PATH': JSON.stringify(config.build.assetsPublicPath),
       'TMS_DOMAIN': config.build.TMS_DOMAIN,
+      'REPORT_CENTER_PATH': JSON.stringify(config.build.reportCenterPath),
+      'isPermissionDisabled': config.build.isPermissionDisabled,
+      'DEPOSIT_API_BASE_URL': config.build.DEPOSIT_API_BASE_URL,
+      'MESSAGE_URL': config.build.MESSAGE_URL,
+      'TMS_MESSAGE_URL': config.build.TMS_MESSAGE_URL,
+      'ssoRedirectLink': config.build.ssoRedirectLink,
+      'enableSaasMode': config.build.enableSaasMode
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
@@ -89,6 +96,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
+      enableGoogleAnalytics: config.build.enableGoogleAnalytics,  //Google Analytics in prod
       filename: process.env.NODE_ENV === 'testing'
         ? 'index.html'
         : config.build.index,

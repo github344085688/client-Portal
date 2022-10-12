@@ -1,0 +1,68 @@
+.panel-ship-list {
+    padding-top: 100px;
+    .table-relation table {
+        display: table;
+        margin: 0 auto 30px;
+    }
+    .table-relation table {
+		text-align: center;
+		border-collapse: collapse;
+		white-space: nowrap;
+		thead {
+            width: 100%;
+			padding: 0 15px;
+			height: 50px;
+			line-height: 50px;
+			color: #333;
+			font-weight: bold;
+			font-size: 18px;
+		}
+        th {
+            background: rgb(241, 248, 255);
+        }
+        td:nth-child(1) {
+            min-width: 200px;
+        }
+        td:nth-child(2) {
+            min-width: 800px;
+        }
+        td:nth-child(3) {
+            min-width: 400px;
+        }
+        td, th {
+            border: 1px solid #333;
+        }
+        td span {
+            text-decoration: underline;
+            padding: 0 10px;
+            cursor: pointer;
+        }
+        button {
+            width: 40%;
+            margin: 0 auto !important;
+        }
+		tbody tr {
+			height: 32px;
+			line-height: 32px;
+		}
+        tbody td {
+            padding: 6px 10px;
+            font-size: 16px;
+            span {
+                line-height: 24px;
+            }
+        }
+	}
+    li {
+        width: 90%;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 20px;
+        margin: 0 auto 26px;
+        font-size: 20px;
+        border-radius: 16px;
+        font-weight: 700;
+        box-shadow: 0 0 10px 0 rgb(192, 207, 188);
+        cursor: pointer;
+    }
+}

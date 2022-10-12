@@ -1,0 +1,47 @@
+.sn-details {
+  display: flex;
+  flex-flow: wrap;
+  padding: 0 24px 10px 24px;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  span {
+    padding: 6px 15px;
+  }
+}
+
+
+.group-tr {
+  background: #F6F6F6 !important;
+}
+
+.pred-checkbox {
+  margin: -7px 0;
+}
+
+.operation-btn {
+  position: absolute;
+  right: 36px;
+}
+
+.table-client {
+  input[type="checkbox"]:checked+.checkbox:after {
+    background-size: 10px 10px !important;
+  }
+
+  input[type="checkbox"]+.checkbox:after,
+  input[type="checkbox"]+.radio:after {
+    width: 15px;
+    height: 15px;
+  }
+}
+.download-icon {
+  background: #eee;
+  width: 40px;
+}
+
+.download-icon i {
+  font-size: 20px;
+  color: #00a6e8;
+  cursor: pointer;
+}

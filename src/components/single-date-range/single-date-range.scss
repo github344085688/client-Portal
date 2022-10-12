@@ -1,0 +1,36 @@
+.single-date-range {
+  position: relative !important;
+  .datepicker-single-trigger {
+    position: relative !important;
+    .asd__wrapper {
+      position: absolute !important;
+      border: #dddddd solid 1px;
+      top: 35px !important;
+      right: 0 !important;
+      left: inherit!important;
+      width: 100% !important;
+      border: #dddddd solid 1px !important;
+    }
+    img{
+      position: absolute;
+      z-index:5;
+      top:11px;
+      right: 15px;
+    }
+    .clearDatepicker{
+      width:15px;
+      height: 15px;
+      border-radius: 15px;
+      font-size: 15px;
+      background: #ddd;
+      position: absolute;
+      z-index:150;
+      top:12px;
+      right: 35px;
+      cursor: pointer;
+    }
+  }
+}
+
+
+

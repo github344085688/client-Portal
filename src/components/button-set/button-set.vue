@@ -7,7 +7,7 @@
                 </div>
 
                 <div class="grid-50 tablet-grid-50">
-                    <button type="button" class="button-yellow-large" @click="rightBtnAction">{{rightBtnText}}</button>
+                    <button type="button" class="button-yellow-large" @click="rightBtnAction" :disabled="disabled">{{rightBtnText}}</button>
                 </div>
             </div>
         </div>
