@@ -2,7 +2,7 @@
   "name": "wise-client-portal",
   "version": "1.0.0",
   "description": "Vue + TypeScript + Rxjs",
-  "author": "easonc",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --mode development --inline --progress --config build/webpack.dev.conf.js",
